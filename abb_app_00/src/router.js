@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Text from './components/Abb/Text.vue'
+import aaa from './views/aaa.vue'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {path:'/text',component:Text},
+    {path:'/aaa',component:aaa},
     {path: '/',component: Home},
     {
       path: '/about',
