@@ -23,9 +23,9 @@ server.use(session({
  //指定静态目录
 server.use(express.static("public"))
  //创建body中间件
-server.use(bodyParser.urlencoded({
-	extended:false
-}));
+// server.use(bodyParser.urlencoded({
+// 	extended:false
+// }));
 server.listen(3000);
  
  //测试一下服务器端
@@ -36,5 +36,5 @@ server.get("/test",(req,res)=>{
 
 server.use("/details",detailsRouter);
 server.use("/index",indexRouter);
-server.use("/add",detailsRouter);
+server.use("/add",addRouter);
 
