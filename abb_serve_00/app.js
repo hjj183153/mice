@@ -35,9 +35,6 @@ server.get("/test",(req,res)=>{
 })
 
 server.use("/details",detailsRouter);
-<<<<<<< HEAD
 server.use("/index",indexRouter);
-=======
 server.use("/add",detailsRouter);
->>>>>>> 7bfb848249977f4a7ee61ab3772f2432504dd9fe
 
