@@ -30,12 +30,6 @@ const session = require("express-session");
  server.use(express.static("public"))
  server.listen(3000);
  
-//房屋详情接口
-server.use("/details",(req,res)=>{
-  
-})
-
-
  //测试一下服务器端
  server.get("/test",(req,res)=>{
    var uname=req.query.uname;
