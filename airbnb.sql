@@ -11,6 +11,7 @@ CREATE TABLE Airbnb_City(
  City_rank INT,
  City_concern INT
 );
+INSERT INTO Airbnb_Carousel VALUES(1,'北京',1,null)
 #房屋时间表
 CREATE TABLE Airbnb_House_Time(
  Time_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -74,4 +75,3 @@ CREATE TABLE Airbnb_Carousel(
  Carousel_id INT PRIMARY KEY AUTO_INCREMENT,
  Carousel_imgurl VARCHAR(128)
 );
-
