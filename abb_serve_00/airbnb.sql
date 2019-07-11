@@ -11,7 +11,7 @@ CREATE TABLE Airbnb_City(
  City_rank INT,
  City_concern INT
 );
-INSERT INTO Airbnb_Carousel VALUES(1,'北京',1,null)
+
 #房屋时间表
 CREATE TABLE Airbnb_House_Time(
  Time_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -75,6 +75,8 @@ CREATE TABLE Airbnb_Carousel(
  Carousel_id INT PRIMARY KEY AUTO_INCREMENT,
  Carousel_imgurl VARCHAR(128)
 );
+#INSERT INTO Airbnb_Carousel VALUES(1,'北京',1,null)
+
 #房源类型表 zm
 CREATE TABLE Airbnb_housingResources_Type(
  housingResources_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -94,3 +96,6 @@ INSERT INTO Airbnb_Rent_Type VALUES
 (NULL,'整个房源','房客独享整个房源，无需与您或他人共住'),
 (NULL,'独立房间','房客有自己的独立房间，与他人共享客厅等空间'),
 (NULL,'合住房间','房客住在与他人合用的卧室或公共区域');
+
+#房屋表数据
+INSERT INTO Airbnb_House VALUES(NULL,)

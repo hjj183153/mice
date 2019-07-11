@@ -1,8 +1,8 @@
 const express=require('express');
 const pool=require('../pool.js');
 var router=express.Router();
-//房屋详情接口
-router.get("/",(req,res)=>{
-  var uid=req.query.uid;
+//房屋类型接口
+server.get("/housingResources_Type",(req,res)=>{
+  
 })
 module.exports=router;
