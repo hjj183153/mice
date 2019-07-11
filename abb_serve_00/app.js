@@ -36,8 +36,3 @@ const session = require("express-session");
    res.send({code:200,msg:uname})
  })
 
-//  //add 房源类型表
-//  server.get("/housingResources_Type",(req,res)=>{
-//   var uname=req.query.uname;
-//   res.send({code:200,msg:uname})
-// })
