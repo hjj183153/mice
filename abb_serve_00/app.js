@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 const session = require("express-session");
 const detailsRouter=require("./routers/details.js");
-const detailsRouter=require("./routers/add.js");
+const addRouter=require("./routers/add.js");
 //2:配置第三方模块
  //2.2:跨域
 var server = express();
