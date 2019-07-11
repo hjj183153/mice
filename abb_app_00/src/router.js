@@ -7,10 +7,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {path:'/text',component:Text},
-    {
-      path: '/',
-      component: Home
-    },
+    {path: '/',component: Home},
     {
       path: '/about',
       // route level code-splitting
