@@ -1,6 +1,7 @@
 <template>
     <div>
-       测试
+      这是测试用的  
+      客户端的Vue组件咱们都放在abb_sever_00/src/components/Abb文件下
     </div>
 </template>
 <script>
