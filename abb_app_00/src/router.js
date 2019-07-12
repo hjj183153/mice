@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Text from './components/Abb/Text.vue'
 import aaa from './views/aaa.vue'
 import add_become_a_host_room from './views/add_become_a_host_room.vue'
+import Story from './components/Abb/Story.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -12,6 +13,7 @@ export default new Router({
     {path:'/aaa',component:aaa},
     {path:'/add_become_a_host_room',component:add_become_a_host_room},
     {path: '/',component: Home},
+    {path:'/Story',component:Story},  
     {
       path: '/about',
       // route level code-splitting
