@@ -53,8 +53,8 @@ CREATE TABLE Airbnb_House(
  House_City_id INT,
  House_name VARCHAR(128),
  House_User_id INT,
- House_longitude INT,
- House_latitude INT,
+ House_longitude VARCHAR(64),
+ House_latitude VARCHAR(64),
  House_people_num INT,
  House_type VARCHAR(64),
  House_price INT,
@@ -98,6 +98,20 @@ INSERT INTO Airbnb_Rent_Type VALUES
 (NULL,'合住房间','房客住在与他人合用的卧室或公共区域');
 
 #房屋表数据
+INSERT INTO Airbnb_House VALUES(NULL,);
+
+#airbnb_house表添加数据
+INSERT INTO `airbnb_house` 
+(`House_id`, `House_City_id`, `House_name`, `House_User_id`, `House_longitude`, 
+`House_latitude`, `House_people_num`, `House_type`, `House_price`, 
+`House_tag`, `House_bednum`, `House_Bed`, `House_restroom`, 
+`House_HouseAmenities`, `House_Amenities`, `House_Building`, 
+`House_detail`, `House_address`, `House_trip`, `House_label`) 
+VALUES 
+(NULL, '1', '【浪漫满屋】国贸CBD三里屯的阳光复古浪漫公寓 托斯卡纳色调 夜景超美', 
+'1', '1231321', '12313213', '3', '独立房间', '3000', '9折', 
+'2', '圆床', '2', '厨房,空调', '免费停车位', '精品酒店', 
+'null', 'null', 'null', 'null');
 /*INSERT INTO Airbnb_House VALUES(NULL,)*/
 
 #个人信息表 gyh
@@ -117,6 +131,7 @@ INSERT INTO Airbnb_user VALUES(NULL,"涛涛","taotao","taotao@163.com",156609025
 INSERT INTO Airbnb_user VALUES(NULL,"然然","ranran","ranran@163.com",15660902592,0,'2018/1/5','2018/1/6');
 INSERT INTO Airbnb_user VALUES(NULL,"东东","dongdong","dongdong@163.com",15660902593,1,'2018/1/7','2018/1/8');
 INSERT INTO Airbnb_user VALUES(NULL,"亮亮","liangliang","liangliang@163.com",15660902594,1,'2018/1/9','2018/1/10');
+<<<<<<< HEAD
 
 CREATE TABLE Airbnb_story(
   stid INT PRIMARY KEY AUTO_INCREMENT,/*#每个故事的id*/
@@ -165,3 +180,5 @@ INSERT INTO Airbnb_story_collection VALUES
 (NULL,"北京竟然有这些不可思议的酒吧","帝都包罗万有的文化自然少不了酒吧文化，三里屯到亮马桥，不但分布着各国使馆，更有不同地域风格的酒吧。周末到了，要过一个怎样的夜晚呢？粗旷还是精致、热闹还是安静？从南洋到英伦，从精酿到鸡尾酒，总能找到一间酒吧称你的心情。"),
 (NULL,"住进「山水间」在民宿中亲近自然","本期「爱彼迎民宿指南」精选好风景的爱彼迎民宿，开窗即是山水，呼吸都有绿意。带着全家、约上朋友，寻其中一处宅子，也许在大理的洱海边，也许在莫干山的深处，或是在重庆的田园里，日出日落，做饭聊天，旅行从舒心净肺开始。"),
 (NULL,"住进「旧时光」在民宿中重拾历史","本期「爱彼迎民宿指南」带你跳跃时间和空间，找到国内有历史的老宅：从清时的乾隆行宫，到现代的珠江旧船厂；从南京的科举考试旧址，到大理的白族传统民居，都在爱彼迎民宿。邀你住进去，深入其中，一秒穿越不同年代，聆听每一座城市的故事。");
+=======
+>>>>>>> 3fd8a86f14cea3c1fb8fa05a8683040bad1e95b7
