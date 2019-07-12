@@ -53,8 +53,8 @@ CREATE TABLE Airbnb_House(
  House_City_id INT,
  House_name VARCHAR(128),
  House_User_id INT,
- House_longitude INT,
- House_latitude INT,
+ House_longitude VARCHAR(64),
+ House_latitude VARCHAR(64),
  House_people_num INT,
  House_type VARCHAR(64),
  House_price INT,
@@ -98,4 +98,17 @@ INSERT INTO Airbnb_Rent_Type VALUES
 (NULL,'合住房间','房客住在与他人合用的卧室或公共区域');
 
 #房屋表数据
-INSERT INTO Airbnb_House VALUES(NULL,)
+INSERT INTO Airbnb_House VALUES(NULL,);
+
+#airbnb_house表添加数据
+INSERT INTO `airbnb_house` 
+(`House_id`, `House_City_id`, `House_name`, `House_User_id`, `House_longitude`, 
+`House_latitude`, `House_people_num`, `House_type`, `House_price`, 
+`House_tag`, `House_bednum`, `House_Bed`, `House_restroom`, 
+`House_HouseAmenities`, `House_Amenities`, `House_Building`, 
+`House_detail`, `House_address`, `House_trip`, `House_label`) 
+VALUES 
+(NULL, '1', '【浪漫满屋】国贸CBD三里屯的阳光复古浪漫公寓 托斯卡纳色调 夜景超美', 
+'1', '1231321', '12313213', '3', '独立房间', '3000', '9折', 
+'2', '圆床', '2', '厨房,空调', '免费停车位', '精品酒店', 
+'null', 'null', 'null', 'null');
