@@ -7,6 +7,7 @@ const session = require("express-session");
 const detailsRouter=require("./routers/details.js");
 const indexRouter=require("./routers/index.js");
 const addRouter=require("./routers/add.js");
+const searchRouter=require("./routers/search.js");
 //2:配置第三方模块
  //2.2:跨域
 var server = express();
@@ -24,7 +25,7 @@ server.use(session({
  //指定静态目录
 server.use(express.static("public"))
  //创建body中间件
- server.use(bodyParser.urlencoded({
+server.use(bodyParser.urlencoded({
  	extended:false
  }));
 server.listen(3000);
@@ -38,4 +39,5 @@ server.get("/test",(req,res)=>{
 server.use("/details",detailsRouter);
 server.use("/index",indexRouter);
 server.use("/add",addRouter);
+server.use("/search",searchRouter);
 
