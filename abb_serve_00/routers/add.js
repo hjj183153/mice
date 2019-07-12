@@ -2,7 +2,6 @@ const express=require('express');
 const pool=require('../pool.js');
 var router=express.Router();
 //房屋类型接口
-<<<<<<< HEAD
 router.get("/housingResources_Type",(req,res)=>{
     var sql=`SELECT housingResources_id,housingResources_name FROM Airbnb_housingResources_Type`;
     pool.query(sql,[],(err,result)=>{
@@ -26,9 +25,4 @@ router.get("/Rent_Type",(req,res)=>{
       }
     })
 })
-=======
-// server.get("/housingResources_Type",(req,res)=>{
-  
-// })
->>>>>>> d3c59d921acc0438bbdce119a54042bd216f7a23
 module.exports=router;
