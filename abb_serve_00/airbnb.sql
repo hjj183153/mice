@@ -112,3 +112,22 @@ VALUES
 '1', '1231321', '12313213', '3', '独立房间', '3000', '9折', 
 '2', '圆床', '2', '厨房,空调', '免费停车位', '精品酒店', 
 'null', 'null', 'null', 'null');
+/*INSERT INTO Airbnb_House VALUES(NULL,)*/
+
+#个人信息表 gyh
+CREATE TABLE Airbnb_user(
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_name VARCHAR(64) UNIQUE,
+    user_pwd VARCHAR(64),
+    user_email VARCHAR(64),
+    user_phone VARCHAR(32) NOT NULL,
+    user_gender INT,
+    user_reg_time DATETIME,
+    user_login_time DATETIME
+);
+#个人信息数据 gyh
+INSERT INTO Airbnb_user VALUES(NULL,"张三","zhangsan","zhangsan@163.com",15660902590,1,'2018/1/1','2018/1/2');
+INSERT INTO Airbnb_user VALUES(NULL,"涛涛","taotao","taotao@163.com",15660902591,1,'2018/1/3','2018/1/4');
+INSERT INTO Airbnb_user VALUES(NULL,"然然","ranran","ranran@163.com",15660902592,0,'2018/1/5','2018/1/6');
+INSERT INTO Airbnb_user VALUES(NULL,"东东","dongdong","dongdong@163.com",15660902593,1,'2018/1/7','2018/1/8');
+INSERT INTO Airbnb_user VALUES(NULL,"亮亮","liangliang","liangliang@163.com",15660902594,1,'2018/1/9','2018/1/10');
