@@ -12,6 +12,22 @@
                 <h3>步骤1： 先填写基本信息</h3>
             </div>
         </div>
+        <!-- 头部进度条 -->
+        <div class="div_header2">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+        </div>
+        <!-- body -->
+        <div>
+        <add_become_a_host_room1></add_become_a_host_room1>     
+        </div>
         <!-- 底部固定悬浮 -->
         <div class="div_footer1">
             <div>
@@ -29,17 +45,25 @@
     </div>
 </template>
 <script>
+//引入子组件
+import  add_become_a_host_room1 from './../components/Add/add_become_a_host_room1'
 export default {
-    data(){return{}}
+    data(){return{}},
+    components:{
+        add_become_a_host_room1
+    }
 }
 </script>
 <style scoped>
 .div_header1{
     height:64px;
+    width: 100%;
     line-height: 64px;
     text-align: left;
     box-sizing: border-box;
     z-index: 100;
+    position: fixed;
+    background:#fff; 
 }
 .div_header1 div:first-child{
     float: left;
@@ -55,25 +79,65 @@ export default {
     float: left;
     padding-left: 20px;
 }
+
 .div_header1 div:last-child h3{
     color:#484848;
     /* font-family: "Circular","-apple-system","BlinkMacSystemFont","Roboto","Helvetica Neue","sans-serif"; */
     font-weight: 400;
 }
+.div_header2{
+    height:10px;
+    width: 100%;
+    background: #edefed;  
+    z-index: 100;  
+    position: fixed;
+    top:64px;
+}
+.div_header2:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+.div_header2>div{
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    height:10px;
+}
+.div_header2>div:first-child{
+    background-color: #008489;
+    width: 3%;
+    float:left;
+}
+.div_header2>div:first-child~div{
+    /* background-color: #008489; */
+    width: 14.28571428571429%;
+    float:left;
+}
+.div_header2>div:last-child{
+    border-top-right-radius: none;
+    border-bottom-right-radius: none;
+}
 .div_footer1{
     height:82px;
+    width: 100%;
+    z-index: 100;
+    position: fixed;
+    bottom:0px;
+    background: #f8f8f8;
 }
 .div_footer1>div{
     width: 912px;
     height:82px;
-    margin: 0 auto;
     /* padding: 20px 0; */
     box-sizing: border-box;
+    margin: 0px auto !important;
 }
 .div_footer1>div>div{
+    background: #fff;
     width: 547.2px;
     border-top:1px solid #ddd;
     padding: 20px 0;
+    
 }
 .div_footer1>div>div div:first-child{
     float: left;
@@ -89,7 +153,10 @@ export default {
     color:#008489;    
     /* font-family: var("--font-font_family", "Circular","-apple-system","BlinkMacSystemFont","Roboto","Helvetica Neue","sans-serif"); */
     font-weight: bold;
-    padding:10px 7px;; 
+    padding:10px 7px;  
+}
+.a_footer1:hover{
+    text-decoration: underline;
 }
 .next_btn{
     display: block;
