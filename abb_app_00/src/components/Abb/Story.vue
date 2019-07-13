@@ -507,7 +507,7 @@ export default {
       }
     },
     created(){
-      var url="story";
+      var url="/story";
       this.axios.get(url).then(result=>{
         console.log(result);
       });
