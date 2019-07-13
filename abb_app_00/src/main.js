@@ -11,6 +11,8 @@ import ElementUI from 'element-ui'
 import '../node_modules/element-ui/lib/theme-chalk/index.css'
 //引入axios
 import axios from './axios'
+
+//要求在node-modules下载v-viewer
 import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'
 Vue.config.productionTip = false

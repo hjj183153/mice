@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Text from './components/Abb/Text.vue'
 import Details from './views/Details.vue'
-import add_become_a_host_room from './views/add_become_a_host_room.vue'
 
 import Index from './views/Index.vue'
 //import add_become_a_host_room from './views/add_become_a_host_room.vue'
