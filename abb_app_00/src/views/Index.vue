@@ -22,7 +22,7 @@ export default {
     },
     methods: {
         getcarouserimg(){
-            this.axios.get("index/Carousel").then(result=>{
+            this.axios.get("/index/Carousel").then(result=>{
                 console.log(result)
             })
         }
