@@ -15,7 +15,9 @@
 <script>
 export default {
     data(){
-        return {}
+        return {
+            Carousel:[]
+        }
     },
     created(){
         this.getcarouserimg()
@@ -23,7 +25,7 @@ export default {
     methods: {
         getcarouserimg(){
             this.axios.get("/index/Carousel").then(result=>{
-                console.log(result)
+                console.log(result.data.data)
             })
         }
     },
