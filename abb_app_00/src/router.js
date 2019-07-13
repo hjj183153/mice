@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Text from './components/Abb/Text.vue'
 import aaa from './views/aaa.vue'
 import Details from './components/Abb/Details.vue'
+import add_become_a_host_room from './views/add_become_a_host_room.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -11,6 +12,7 @@ export default new Router({
     {path: '/details',component: Details},
     {path:'/text',component:Text},
     {path:'/aaa',component:aaa},
+    {path:'/add_become_a_host_room',component:add_become_a_host_room},
     {path: '/',component: Home},
     {
       path: '/about',

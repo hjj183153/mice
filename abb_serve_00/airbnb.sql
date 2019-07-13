@@ -53,8 +53,8 @@ CREATE TABLE Airbnb_House(
  House_City_id INT,
  House_name VARCHAR(128),
  House_User_id INT,
- House_longitude INT,
- House_latitude INT,
+ House_longitude VARCHAR(64),
+ House_latitude VARCHAR(64),
  House_people_num INT,
  House_type VARCHAR(64),
  House_price INT,
@@ -98,4 +98,41 @@ INSERT INTO Airbnb_Rent_Type VALUES
 (NULL,'合住房间','房客住在与他人合用的卧室或公共区域');
 
 #房屋表数据
-INSERT INTO Airbnb_House VALUES(NULL,)
+INSERT INTO Airbnb_House VALUES(NULL,);
+
+#airbnb_house表添加数据
+INSERT INTO `airbnb_house` 
+(`House_id`, `House_City_id`, `House_name`, `House_User_id`, `House_longitude`, 
+`House_latitude`, `House_people_num`, `House_type`, `House_price`, 
+`House_tag`, `House_bednum`, `House_Bed`, `House_restroom`, 
+`House_HouseAmenities`, `House_Amenities`, `House_Building`, 
+`House_detail`, `House_address`, `House_trip`, `House_label`) 
+VALUES 
+(NULL, '1', '【浪漫满屋】国贸CBD三里屯的阳光复古浪漫公寓 托斯卡纳色调 夜景超美', 
+'1', '1231321', '12313213', '3', '独立房间', '3000', '9折', 
+'2', '圆床', '2', '厨房,空调', '免费停车位', '精品酒店', 
+'null', 'null', 'null', 'null');
+/*INSERT INTO Airbnb_House VALUES(NULL,)*/
+
+#个人信息表 gyh
+CREATE TABLE Airbnb_user(
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_name VARCHAR(64) UNIQUE,
+    user_pwd VARCHAR(64),
+    user_email VARCHAR(64),
+    user_phone VARCHAR(32) NOT NULL,
+    user_gender INT,
+    user_reg_time DATETIME,
+    user_login_time DATETIME
+);
+#个人信息数据 gyh
+INSERT INTO Airbnb_user VALUES(NULL,"张三","zhangsan","zhangsan@163.com",15660902590,1,'2018/1/1','2018/1/2');
+INSERT INTO Airbnb_user VALUES(NULL,"涛涛","taotao","taotao@163.com",15660902591,1,'2018/1/3','2018/1/4');
+INSERT INTO Airbnb_user VALUES(NULL,"然然","ranran","ranran@163.com",15660902592,0,'2018/1/5','2018/1/6');
+INSERT INTO Airbnb_user VALUES(NULL,"东东","dongdong","dongdong@163.com",15660902593,1,'2018/1/7','2018/1/8');
+INSERT INTO Airbnb_user VALUES(NULL,"亮亮","liangliang","liangliang@163.com",15660902594,1,'2018/1/9','2018/1/10');
+ #房屋图片数据
+ INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('001', '1', NULL, 'https://z1.muscache.cn/im/pictures/f4043af9-eacb-47c2-b350-d6ad0e8e419b.jpg?aki_policy=large', 'https://z1.muscache.cn/im/pictures/f3e442f6-f07a-4a8e-a5c4-7b5d7495df0b.jpg?aki_policy=xx_large');
+ INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('002', '1', NULL, 'https://z1.muscache.cn/im/pictures/79c0a62a-72b4-4587-a556-a600ca25b0ec.jpg?aki_policy=large', NULL);
+INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('003', '1', NULL, 'https://z1.muscache.cn/im/pictures/a96de13b-5497-4361-82ff-c653cf181036.jpg?aki_policy=large', NULL);
+INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('004', '1', NULL, 'https://z1.muscache.cn/im/pictures/51e269e5-e80d-4ab6-8581-635714422640.jpg?aki_policy=large', NULL);
