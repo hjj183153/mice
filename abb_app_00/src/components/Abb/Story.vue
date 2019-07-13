@@ -1,15 +1,25 @@
 <template>
-    <div>
-      这是测试用的  
-      客户端的Vue公共组件咱们都放在abb_sever_00/src/components/Abb文件夹下
-      页面组件放在abb_sever_00/src/views文件夹下
-    </div>
+  <div>
+    故事
+    <el-alert
+      title="成功提示的文案"
+      type="success">
+    </el-alert>
+    <el-alert
+      title="消息提示的文案"
+      type="info">
+    </el-alert>
+    <el-alert
+      title="警告提示的文案"
+      type="warning">
+    </el-alert>
+  </div>
 </template>
 <script>
 export default {
     data(){
         return {   
-          
+
         }
     }
 }
