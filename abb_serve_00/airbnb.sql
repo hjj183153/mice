@@ -75,7 +75,7 @@ CREATE TABLE Airbnb_Carousel(
  Carousel_id INT PRIMARY KEY AUTO_INCREMENT,
  Carousel_imgurl VARCHAR(128)
 );
-#INSERT INTO Airbnb_Carousel VALUES(1,'北京',1,null)
+
 
 #房源类型表 zm
 CREATE TABLE Airbnb_housingResources_Type(
