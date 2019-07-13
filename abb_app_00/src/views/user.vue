@@ -52,11 +52,9 @@
                 </el-menu-item>
             </el-menu>
         </div>
-        <logout></logout>
     </div>
 </template>
 <script>
-import Logout from './userLogout';
 export default {
     data(){
         return{
@@ -72,9 +70,6 @@ export default {
             ],
             show:false
         }
-    },
-    components:{
-        "logout":Logout
     },
     methods: {
         handleSelect(key, keyPath) {
@@ -100,6 +95,7 @@ export default {
         position: absolute;
         left: -198px;
         top: 61px;
+        z-index: 100;
     }
     .el-menu-item * {
         width: 242px;
