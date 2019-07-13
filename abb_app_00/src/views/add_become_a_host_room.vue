@@ -26,7 +26,7 @@
         </div>
         <!-- body -->
         <div>
-        <add_become_a_host_room1></add_become_a_host_room1>     
+        <add_become_a_host_room1 :Airbnb_House="Airbnb_House"></add_become_a_host_room1>     
         </div>
         <!-- 底部固定悬浮 -->
         <div class="div_footer1">
@@ -37,7 +37,7 @@
                         <a href="" class="a_footer1">返回</a>
                     </div>
                     <div>
-                        <a href="#" class="next_btn">下一个</a>
+                        <a href="#" class="next_btn" @click="submit">下一个</a>
                     </div>
                 </div>
             </div>
@@ -48,12 +48,23 @@
 //引入子组件
 import  add_become_a_host_room1 from './../components/Add/add_become_a_host_room1'
 export default {
-    data(){return{}},
+    data(){
+        return{
+            Airbnb_House:{}
+    }},
+    methods:{
+        submit(){
+            console.log(this.Airbnb_House)
+
+        }
+    },
     components:{
         add_become_a_host_room1
     }
 }
+
 </script>
+
 <style scoped>
 .div_header1{
     height:64px;
