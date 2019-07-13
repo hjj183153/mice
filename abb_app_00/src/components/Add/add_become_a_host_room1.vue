@@ -65,11 +65,11 @@ export default {
     methods:{
         loadMore(){
             this.axios.get("http://127.0.0.1:3000/add/housingResources_Type").then(result=>{                
-                console.log(result.data)
+                //console.log(result.data)
                 this.housingResources_Type=result.data;                
             })
             this.axios.get("http://127.0.0.1:3000/add/Rent_Type").then(result=>{
-                console.log(result.data)
+                //console.log(result.data)
                 this.Rent_Type=result.data;
             })
         },
@@ -77,7 +77,7 @@ export default {
             var div=document.getElementById("housingResources");
             var divs=div.childNodes;
             for(var divc of divs){
-                console.log(divc)
+                //console.log(divc)
                 divc.style.display="block"
             }
             var type=document.getElementById("type");

@@ -55,8 +55,8 @@ CREATE TABLE Airbnb_House(
  House_User_id INT,
  House_longitude VARCHAR(64),
  House_latitude VARCHAR(64),
- House_people_num INT,
- House_type VARCHAR(64),#Airbnb_Rent_Type
+ House_people_num INT,#可住人数
+ House_type VARCHAR(64),#房源类型    
  House_price INT,
  House_tag VARCHAR(64),
  House_bednum INT,
@@ -70,12 +70,16 @@ CREATE TABLE Airbnb_House(
  House_trip VARCHAR(128),
  House_label VARCHAR(64)
 );
-#轮播图表
+#房屋表数据
+INSERT INTO Airbnb_House VALUES(NULL,);
+#轮播图表liupan
 CREATE TABLE Airbnb_Carousel(
  Carousel_id INT PRIMARY KEY AUTO_INCREMENT,
  Carousel_imgurl VARCHAR(128)
 );
-
+INSERT INTO Airbnb_Carousel VALUES(null,"carousel1.jpg");
+INSERT INTO Airbnb_Carousel VALUES(null,"carousel2.jpg");
+INSERT INTO Airbnb_Carousel VALUES(null,"carousel3.jpg");
 
 #房源类型表 zm
 CREATE TABLE Airbnb_housingResources_Type(
@@ -97,8 +101,6 @@ INSERT INTO Airbnb_Rent_Type VALUES
 (NULL,'独立房间','房客有自己的独立房间，与他人共享客厅等空间'),
 (NULL,'合住房间','房客住在与他人合用的卧室或公共区域');
 
-#房屋表数据
-INSERT INTO Airbnb_House VALUES(NULL,);
 
 #airbnb_house表添加数据
 INSERT INTO `airbnb_house` 
@@ -112,7 +114,7 @@ VALUES
 '1', '1231321', '12313213', '3', '独立房间', '3000', '9折', 
 '2', '圆床', '2', '厨房,空调', '免费停车位', '精品酒店', 
 'null', 'null', 'null', 'null');
-/*INSERT INTO Airbnb_House VALUES(NULL,)*/
+#INSERT INTO Airbnb_House VALUES(NULL,)
 
 #个人信息表 gyh
 CREATE TABLE Airbnb_user(
@@ -151,14 +153,14 @@ INSERT INTO Airbnb_story VALUES(1,1,1,"Kiki","img/story/user_img_1.jpg","img/sto
 CREATE TABLE Airbnb_story_family(
   fid INT PRIMARY KEY AUTO_INCREMENT,
   family_name VARCHAR(30)
-)
+);
 INSERT INTO Airbnb_story_family VALUES(1,"房源"),(2,"景点"),(3,"美食"),(4,"文化"),(5,"活动"),(6,"店铺");
 #精选故事详情图片
 CREATE TABLE Airbnb_story_pic(
   pid INT PRIMARY KEY AUTO_INCREMENT,
   story_id INT,
   bg_img VARCHAR(200)
-)
+);
 INSERT INTO Airbnb_story_pic VALUES
 (1,1,"img/story/bg_img1_1.jpg"),
 (2,1,"img/story/bg_img1_2.jpg"),
