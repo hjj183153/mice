@@ -41,31 +41,48 @@
                     <a href="#" target="_blank">帮助</a>
                 </el-menu-item>
                 <el-menu-item index="10">
-                    <a href="#" target="_blank">
-                        <img src="../assets/logo.png" alt="">
+                    <a href="javascript:;">
+                        <img src="../assets/logo.png" alt="" @click="user_bn">
                     </a>
-                    <el-card class="box-card">
-                        <div v-for="i in list" :key="i" class="text item">
-                            {{i}}
+                    <el-card class="box-card" v-show="show">
+                        <div v-for="(elem,i) of list" :key="i" class="text item">
+                            <a :href='elem.href'>{{elem.msg}}</a>
                         </div>
                     </el-card>
                 </el-menu-item>
             </el-menu>
         </div>
+        <logout></logout>
     </div>
 </template>
 <script>
+import Logout from './userLogout';
 export default {
     data(){
         return{
             activeIndex: '1',
-            list:['个人资料','账号','礼券中心','邀请好友','我的旅行指南','商务爱彼迎','退出']
+            list:[
+                {href:'javascript:;',msg:'个人资料'},
+                {href:'javascript:;',msg:'账号'},
+                {href:'javascript:;',msg:'礼券中心'},
+                {href:'javascript:;',msg:'邀请好友'},
+                {href:'javascript:;',msg:'我的旅行指南'},
+                {href:'javascript:;',msg:'商务爱彼迎'},
+                {href:'javascript:;',msg:'退出'}
+            ],
+            show:false
         }
+    },
+    components:{
+        "logout":Logout
     },
     methods: {
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
         },
+        user_bn(){
+            this.show=!this.show;
+        }
     },
 }
 </script>
@@ -95,5 +112,8 @@ export default {
     }
     .el-menu-item * :hover{
         border-bottom: 1px solid #000;
+    }
+    .el-menu--horizontal>.el-menu-item a, .el-menu--horizontal>.el-menu-item a,.el-menu--horizontal:last-child a img[data-v-e8694536]{
+        border: none;
     }
 </style>
