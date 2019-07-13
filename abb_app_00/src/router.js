@@ -3,8 +3,9 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Text from './components/Abb/Text.vue'
 import aaa from './views/aaa.vue'
-import Details from './components/Abb/Details.vue'
+import Details from './views/Details.vue'
 import add_become_a_host_room from './views/add_become_a_host_room.vue'
+
 Vue.use(Router)
 
 export default new Router({
