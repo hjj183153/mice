@@ -3,7 +3,8 @@ const pool=require('../pool.js');
 var router=express.Router();
 //故事接口
 router.get("/",(req,res)=>{
-  var sql="SELECT scid,sc_title,sc_subtitle FROM Airbnb_story_collection";
+  
+  var sql="SELECT * FROM Airbnb_story";
   pool.query(sql,[],(err,result)=>{
     if(err){
       console.log(err);
