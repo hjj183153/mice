@@ -5,6 +5,7 @@ import Text from './components/Abb/Text.vue'
 import Index from './views/Index.vue'
 import add_become_a_host_room from './views/add_become_a_host_room.vue'
 import Story from './components/Abb/Story.vue'
+import user from './views/user.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -14,6 +15,7 @@ export default new Router({
     {path:'/add_become_a_host_room',component:add_become_a_host_room},
     {path: '/',component: Home},
     {path:'/Story',component:Story},  
+    {path:'/user',component:user},    
     {
       path: '/about',
       // route level code-splitting

@@ -64,7 +64,7 @@ CREATE TABLE Airbnb_House(
  House_restroom INT,
  House_HouseAmenities VARCHAR(128),
  House_Amenities VARCHAR(64),
- House_Building VARCHAR(64),
+ House_Building VARCHAR(64),#Airbnb_housingResources_Type
  House_detail VARCHAR(256),
  House_address VARCHAR(128),
  House_trip VARCHAR(128),
