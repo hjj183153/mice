@@ -10,12 +10,12 @@
                         <p>房源类型</p>
                     </div>
                     <div class="div_btn" id="housingResources">
-                        <div v-for="(type,i) of housingResources_Type" :key="i" v-text="type.housingResources_name" :data-id="type.housingResources_id">
+                        <div @click="select(i,type)" v-for="(type,i) of housingResources_Type" :key="i" v-text="type.housingResources_name" :data-id="type.housingResources_id">
                         </div>
                         
                     </div>
                     <div>
-                        <a href="javascript:;" style="padding-left:0px;">其他房源类型</a>
+                        <a href="javascript:;" style="padding-left:0px;" @click="show()" id="type">其他房源类型</a>
                     </div>
                 </div>
                 <div class="div_body2">
@@ -66,6 +66,25 @@ export default {
                 console.log(result.data)
                 this.Rent_Type=result.data;
             })
+        },
+        show(){
+            var div=document.getElementById("housingResources");
+            var divs=div.childNodes;
+            for(var divc of divs){
+                console.log(divc)
+                divc.style.display="block"
+            }
+            var type=document.getElementById("type");
+            type.style.display="none"
+        },
+        select(i){
+            var div=document.getElementById("housingResources");
+            var divs=div.childNodes;
+            console.log(divs[i])
+            for(var divc of divs){
+                divc.style.background="rgb(242,242,242)"
+            }
+            divs[i].style.background="rgb(178,218,219)"
         }
     }
 }
