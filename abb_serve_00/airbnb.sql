@@ -50,26 +50,26 @@ CREATE TABLE Airbnb_House_Bed(
 #房屋表
 CREATE TABLE Airbnb_House(
  House_id INT PRIMARY KEY AUTO_INCREMENT,
- House_City_id INT,
- House_name VARCHAR(128),
- House_User_id INT,
- House_longitude VARCHAR(64),
- House_latitude VARCHAR(64),
+ House_City_id INT,#城市id
+ House_name VARCHAR(128),#房屋名
+ House_User_id INT,#用户id
+ House_longitude VARCHAR(64),#经度
+ House_latitude VARCHAR(64),#纬度
  House_people_num INT,#可住人数
  House_type VARCHAR(64),#房源类型    
- House_price INT,
- House_tag VARCHAR(64),
- House_bednum INT,
- House_Bed VARCHAR(128),
- House_restroom INT,
- House_HouseAmenities VARCHAR(128),
- House_Amenities VARCHAR(64),
- House_Building VARCHAR(64),#Airbnb_housingResources_Type
- House_detail VARCHAR(256),
- House_address VARCHAR(128),
- House_trip VARCHAR(128),
- House_label VARCHAR(64),
- House_imgurl VARCHAR(128)
+ House_price INT,#价格
+ House_tag VARCHAR(64),#标签
+ House_bednum INT,#床铺数量
+ House_Bed VARCHAR(128),#床类型
+ House_restroom INT,#卫生间数量
+ House_HouseAmenities VARCHAR(128),#便利设施
+ House_Amenities VARCHAR(64),#设施
+ House_Building VARCHAR(64),#建筑类型Airbnb_housingResources_Type
+ House_detail VARCHAR(256),#详情
+ House_address VARCHAR(128),#地址
+ House_trip VARCHAR(128),#出行信息
+ House_label VARCHAR(64),#标签信息
+ House_imgurl VARCHAR(128)#缩略图
 );
 
 #轮播图表liupan
@@ -197,3 +197,10 @@ INSERT INTO Airbnb_story_collection VALUES
 (NULL,"北京竟然有这些不可思议的酒吧","帝都包罗万有的文化自然少不了酒吧文化，三里屯到亮马桥，不但分布着各国使馆，更有不同地域风格的酒吧。周末到了，要过一个怎样的夜晚呢？粗旷还是精致、热闹还是安静？从南洋到英伦，从精酿到鸡尾酒，总能找到一间酒吧称你的心情。"),
 (NULL,"住进「山水间」在民宿中亲近自然","本期「爱彼迎民宿指南」精选好风景的爱彼迎民宿，开窗即是山水，呼吸都有绿意。带着全家、约上朋友，寻其中一处宅子，也许在大理的洱海边，也许在莫干山的深处，或是在重庆的田园里，日出日落，做饭聊天，旅行从舒心净肺开始。"),
 (NULL,"住进「旧时光」在民宿中重拾历史","本期「爱彼迎民宿指南」带你跳跃时间和空间，找到国内有历史的老宅：从清时的乾隆行宫，到现代的珠江旧船厂；从南京的科举考试旧址，到大理的白族传统民居，都在爱彼迎民宿。邀你住进去，深入其中，一秒穿越不同年代，聆听每一座城市的故事。");
+#合用空间 床类型表 zm
+CREATE TABLE Airbnb_Bed_type(
+ Bed_type_id INT PRIMARY KEY AUTO_INCREMENT,
+ Bed_type_name VARCHAR(64)
+);
+INSERT INTO Airbnb_Bed_type VALUES(NULL,'沙发床'),
+(NULL,'沙发'),(NULL,'地板床垫'),(NULL,'单人床'),(NULL,'双人床');

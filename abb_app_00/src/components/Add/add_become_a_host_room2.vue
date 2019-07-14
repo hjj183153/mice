@@ -67,23 +67,101 @@
                     </p>
                 </div>
                 <div class="div_body7">
-                    <div>
-                        <p>合用空间</p>
-                        <p class="font-title5" style="padding-top:2px;">0张床</p>
-                    </div>
-                    <div>
-                        <div id="addbed" @click="btn_addbed" v-show="addbed=='true'">
-                            添加床铺
+                    <div class="div_body7_show">
+                        <div>
+                            <p>合用空间</p>
+                            <p class="font-title5" style="padding-top:2px;">0张床</p>
                         </div>
-                        <div id="addbed" v-show="addbed=='false'" style="font-weight:600">
-                            完成
+                        <div>
+                            <div id="addbed" @click="btn_addbed" v-show="addbed=='true'">
+                                添加床铺
+                            </div>
+                            <div id="addbed" v-show="addbed=='false'" style="font-weight:600">
+                                完成
+                            </div>
                         </div>
                     </div>
+                    <!-- 隐藏区域 -->
+                    <div class="div_body7_blank">
+                        <!-- 沙发床 -->
+                        <div>
+                            <div class="text_addreduce">                  
+                                <p>沙发床</p>
+                            </div> 
+                            <div class="btn_add">
+                                <div @click="bed1_count(-1)" style="opacity:0.3;" id="btn_reduce1">
+                                    <span class="div_btn_add">
+                                        <svg viewBox="0 0 24 24" role="img" aria-label="subtract" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect></svg>
+                                    </span>
+                                </div>
+                                <div class="count_addreduce">
+                                    <span v-text="bed1count"></span>
+                                </div>
+                                <div  @click="bed1_count(1)" id="btn_add1">
+                                    <span class="div_btn_add">
+                                        <svg viewBox="0 0 24 24" role="img" aria-label="add" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect><rect height="12" rx="1" width="2" x="11" y="6"></rect></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 沙发 -->
+                        <div>
+                            <div class="text_addreduce">                  
+                                <p>沙发</p>
+                            </div> 
+                            <div class="btn_add">
+                                <div @click="bed2_count(-1)" style="opacity:0.3;" id="btn_reduce2">
+                                    <span class="div_btn_add">
+                                        <svg viewBox="0 0 24 24" role="img" aria-label="subtract" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect></svg>
+                                    </span>
+                                </div>
+                                <div class="count_addreduce">
+                                    <span v-text="bed2count"></span>
+                                </div>
+                                <div  @click="bed2_count(1)"  id="btn_add2">
+                                    <span class="div_btn_add">
+                                        <svg viewBox="0 0 24 24" role="img" aria-label="add" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect><rect height="12" rx="1" width="2" x="11" y="6"></rect></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 地板床垫 -->
+                        <div>
+                            <div class="text_addreduce">                  
+                                <p>地板床垫</p>
+                            </div> 
+                            <div class="btn_add">
+                                <div @click="bed3_count(-1)" style="opacity:0.3;"  id="btn_reduce3">
+                                    <span class="div_btn_add">
+                                        <svg viewBox="0 0 24 24" role="img" aria-label="subtract" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect></svg>
+                                    </span>
+                                </div>
+                                <div class="count_addreduce">
+                                    <span v-text="bed3count"></span>
+                                </div>
+                                <div  @click="bed3_count(1)" id="btn_add3">
+                                    <span class="div_btn_add">
+                                        <svg viewBox="0 0 24 24" role="img" aria-label="add" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect><rect height="12" rx="1" width="2" x="11" y="6"></rect></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 单人床 -->
+                        <!-- 双人床 -->
+
+
+
+
+
+                    </div>
+
+
+
                 </div>
-                <div class="div_body8">
-                    <div></div>
+                
+                <!-- 空白底边 -->
+                <div style="height:20px;">
                 </div>
-                <div style="height:20px;"></div>
             </div>
             
         </div>
@@ -98,6 +176,9 @@ export default {
             bedcount:1,
             peoplecount:4,
             addbed:'false',
+            bed1count:0,
+            bed2count:0,
+            bed3count:0,
         }
     },
     props:{
@@ -159,6 +240,72 @@ export default {
         },
         btn_addbed(){
 
+        },
+        bed1_count(z){
+            var btn_reduce1=document.getElementById("btn_reduce1")
+            var btn_add1=document.getElementById("btn_add1")              
+            if(z==1){
+                if(this.bed1count<8){
+                   btn_reduce1.style.opacity="1" 
+                   this.bed1count+=z;
+                }else if(this.bed1count==8){
+                    btn_add1.style.opacity="0.3"
+                    this.bed1count+=z;
+                }
+            }else{
+                if(this.bed1count>1){
+                    this.bed1count+=z;
+                    btn_add1.style.opacity="1"
+                }else if(this.bed1count==1){
+                    btn_reduce1.style.opacity="0.3"
+                    this.bed1count+=z;
+                }                
+            }
+                console.log(this.bed1count)
+        },
+        bed2_count(z){
+            var btn_reduce2=document.getElementById("btn_reduce2")
+            var btn_add2=document.getElementById("btn_add2")              
+            if(z==1){
+                if(this.bed2count<8){
+                   btn_reduce2.style.opacity="1" 
+                   this.bed2count+=z;
+                }else if(this.bed2count==8){
+                    btn_add2.style.opacity="0.3"
+                    this.bed2count+=z;
+                }
+            }else{
+                if(this.bed2count>1){
+                    this.bed2count+=z;
+                    btn_add2.style.opacity="1"
+                }else if(this.bed2count==1){
+                    btn_reduce2.style.opacity="0.3"
+                    this.bed2count+=z;
+                }                
+            }
+                console.log(this.bed2count)
+        },
+        bed3_count(z){
+            var btn_reduce3=document.getElementById("btn_reduce3")
+            var btn_add3=document.getElementById("btn_add3")              
+            if(z==1){
+                if(this.bed3count<8){
+                   btn_reduce3.style.opacity="1" 
+                   this.bed3count+=z;
+                }else if(this.bed3count==8){
+                    btn_add3.style.opacity="0.3"
+                    this.bed3count+=z;
+                }
+            }else{
+                if(this.bed3count>1){
+                    this.bed3count+=z;
+                    btn_add3.style.opacity="1"
+                }else if(this.bed3count==1){
+                    btn_reduce3.style.opacity="0.3"
+                    this.bed3count+=z;
+                }                
+            }
+                console.log(this.bed3count)
         }
     },
     
@@ -302,21 +449,24 @@ export default {
     padding-bottom : 28px;
     color: #484848;
 }
-.div_body7:after{
+.div_body7_show:after{
     content:"";
     display: block;
     clear: both;
 }
-.div_body7 p:first-child{
+.div_body7_show p:first-child{
     font-size: 19px;
 }
-.div_body7 div:first-child{
+.div_body7_show div:first-child{
     width:50%;
     float: left;
 }
-.div_body7>div:last-child{
+.div_body7_show>div:last-child{
     float: right;
     width:30%;
+}
+.div_body7_show{
+    margin-bottom:25px;
 }
 #addbed{
     float: right;
@@ -330,5 +480,51 @@ export default {
     line-height: 1.43;
     text-align: center;
     font-family: inherit;
+}
+.div_body7_blank>div{
+    margin-bottom: 18px;
+    height:36.8px;
+}
+/*加减号样式*/
+.text_addreduce{
+    font-weight: 600;
+    width:40%;
+    line-height: 1.375em;
+    color:#484848;
+    float:left;
+    margin-top:10px;
+}
+.div_btn_add{
+        display: block;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        border-radius: 50%;
+        border:1px solid rgb(0,132,137);
+        position: relative;
+}
+.btn_add{
+float:left
+}
+.btn_add:after{
+        content:"";
+        display: block;
+        clear: both;
+}
+.div_btn_add>svg{
+        position: absolute;
+        top:25%;
+        left: 25%;
+}
+.count_addreduce{
+    width: 15%;
+    text-align: center;
+    vertical-align: middle;
+    height:34px;
+}
+.count_addreduce>span{
+    display: block;
+    margin:10px auto;
+    font-weight: 600;
 }
 </style>
