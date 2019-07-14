@@ -30,10 +30,10 @@
             <el-submenu index="3">
                 <template slot="title">成为房东/体验达人</template>
                 <el-menu-item index="3-1">
-                        <router-link to="add/housingResources_Type">发布房源</router-link>
+                        <router-link to="add_become_a_host_room">发布房源</router-link>
                     </el-menu-item>
                     <el-menu-item index="3-2">
-                        <router-link to="add/housingResources_Type">开展体验</router-link>
+                        <router-link to="add_become_a_host_room">开展体验</router-link>
 
                 </el-menu-item>
             </el-submenu>
