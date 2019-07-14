@@ -67,7 +67,7 @@
         </a>
         <el-card class="box-card" v-show="show">
           <div v-for="(elem,i) of list" :key="i" class="text item">
-            <a :href="elem.href" >{{elem.msg}}</a>
+            <a :href="`#/`+elem.href" >{{elem.msg}}</a>
           </div>
         </el-card>
       </el-menu-item>
@@ -81,7 +81,7 @@ export default {
       activeIndex: "1",
       input: "",
       list: [
-        { href: "javascript:;", msg: "个人资料" },
+        { href: "userdata", msg: "个人资料" },
         { href: "javascript:;", msg: "账号" },
         { href: "javascript:;", msg: "礼券中心" },
         { href: "javascript:;", msg: "邀请好友" },

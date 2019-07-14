@@ -2,7 +2,9 @@
   <div class="user_data">
     <div class="data_left">
       <ul>
-        <li v-for="(elem,i) of list" :key="i">{{elem}}</li>
+        <li v-for="(elem,i) of list" :key="i">
+          <a href="javascript:;">{{elem}}</a>
+        </li>
       </ul>
       <el-button>查看个人资料</el-button>
     </div>
@@ -11,7 +13,7 @@
         <div class="title">必填</div>
         <el-form ref="form" label-width="200px">
           <el-form-item label="用户名">
-            <el-input></el-input>
+            <el-input v-model="name"></el-input>
             <div class="text-muted">您的公开个人资料将仅显示您的名字。申请预订时，房东会看到您的名字和姓氏。</div>
           </el-form-item>
           <el-form-item label="我是">
@@ -310,33 +312,52 @@
           </el-form-item>
           <el-form-item label="语言">
             <div class="text-muted">无</div>
-            <div class="text-muted"><a href="javascript:;">+添加更多</a></div>
+            <div class="text-muted">
+              <a href="javascript:;">+添加更多</a>
+            </div>
             <div class="text-muted">添加别人在爱彼迎与您对话时可以使用的所有语言</div>
           </el-form-item>
           <el-form-item label="增值税号">
-            <div class="text-muted"><a href="javascript:;">+添加增值税号</a></div>
-            <div class="text-muted">对于欧盟用户以及征收增值税国家/地区的用户，我们收取的服务费将被征收增值税。如果您居住的国家/地区需要征收增值税，在输入有效的增值税号后，您将不会被收取该税费。<a href="javascript:;">查看关于增值税的常见问题</a></div>
+            <div class="text-muted">
+              <a href="javascript:;">+添加增值税号</a>
+            </div>
+            <div class="text-muted">
+              对于欧盟用户以及征收增值税国家/地区的用户，我们收取的服务费将被征收增值税。如果您居住的国家/地区需要征收增值税，在输入有效的增值税号后，您将不会被收取该税费。
+              <a
+                href="javascript:;"
+              >查看关于增值税的常见问题</a>
+            </div>
           </el-form-item>
           <el-form-item label="紧急联系人">
-            <div class="text-muted"><a href="javascript:;">+添加联系人</a></div>
+            <div class="text-muted">
+              <a href="javascript:;">+添加联系人</a>
+            </div>
             <span class="text-muted">请提供一个您信任的联系人，如果出现紧急情况，我们的客户体验团队可以通知该联系人。</span>
           </el-form-item>
           <el-form-item label="收货地址">
-            <div class="text-muted"><a href="javascript:;">+添加收货地址</a></div>
+            <div class="text-muted">
+              <a href="javascript:;">+添加收货地址</a>
+            </div>
           </el-form-item>
           <el-form-item label="房客个人资料">
-            <div class="text-muted"><a href="javascript:;">+添加新的房客个人资料</a></div>
+            <div class="text-muted">
+              <a href="javascript:;">+添加新的房客个人资料</a>
+            </div>
             <span class="text-muted">只有当您前往中国的时候才需要提供此信息，我们不会和您的房东或其他房客分享该信息。</span>
           </el-form-item>
         </el-form>
       </div>
-      <div class="data_second">
+      <div class="data_three">
         <div class="title">商务差评</div>
         <el-form ref="form" label-width="200px">
           <el-form-item label="工作邮箱">
             <el-input></el-input>
-            <div class="text-muted">在您下次的搜索中，选择筛选条件 <strong>旅程类型</strong>，找到完美的商务差旅房源。<a href="javascript:;">了解详情</a></div>
-          </el-form-item> 
+            <div class="text-muted">
+              在您下次的搜索中，选择筛选条件
+              <strong>旅程类型</strong>，找到完美的商务差旅房源。
+              <a href="javascript:;">了解详情</a>
+            </div>
+          </el-form-item>
         </el-form>
       </div>
       <el-button type="danger" round style="margin-bottom:50px;">保存</el-button>
@@ -347,10 +368,20 @@
 export default {
   data() {
     return {
-      list: ["编辑个人资料", "照片", "信任和验证", "评价", "推荐语"]
+      list: ["编辑个人资料", "照片", "信任和验证", "评价", "推荐语"],
+      name: ""
     };
   },
-  methods: {}
+  created() {
+    this.getuser();
+  },
+  methods: {
+    getuser() {
+      this.axios.get("user/").then(result => {
+        console.log(result.data);
+      });
+    }
+  }
 };
 </script>
 <style scoped>
@@ -384,7 +415,8 @@ export default {
   color: #767676;
 }
 .data_first,
-.data_second {
+.data_second,
+.data_three {
   border: 1px solid rgba(191, 191, 191, 0.2);
   box-sizing: border-box;
   margin-bottom: 30px;
