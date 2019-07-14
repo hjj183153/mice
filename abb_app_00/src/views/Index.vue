@@ -3,10 +3,10 @@
         <!--引入头部组件-->
         <my-header class="position-abs"></my-header>
         <div class="block">
-    <el-carousel height="529px">
+    <el-carousel height="429px">
       <el-carousel-item v-for="(item,i) in Carousellist" :key="i">
         <div >
-             <img style="width:100%;height:529px" :src="'http://127.0.0.1:3000/img/img-index/'+item.Carousel_imgurl" alt=""> 
+             <img style="width:100%;height:429px" :src="'http://127.0.0.1:3000/img/img-index/'+item.Carousel_imgurl" alt=""> 
         </div>
       </el-carousel-item>
     </el-carousel>
@@ -27,7 +27,7 @@ export default {
     methods: {
         getcarouserimg(){
             this.axios.get("/index/Carousel").then(result=>{
-                console.log(result.data.data)
+                //console.log(result.data.data)
                 this.Carousellist=result.data.data
             })
         }

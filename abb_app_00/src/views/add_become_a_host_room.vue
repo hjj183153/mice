@@ -50,7 +50,8 @@
         <!-- 底部固定悬浮 -->
         <div class="div_footer1">
             <div>
-                <div>
+                <div class="div_margin">
+                    <div style="height:0px;border:1px solid #dce0e0;width:487.2px;margin:-20px 0 0;" ></div>
                     <div>
                         <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fill-rule="evenodd"></path></svg>
                         <a href="" class="a_footer1">返回</a>
@@ -177,9 +178,8 @@ export default {
 }
 .div_footer1>div>div{
     background: #fff;
-    width: 547.2px;
-    border-top:1px solid #ddd;
-    padding: 20px 0;
+    width: 487.2px;
+    padding: 20px 30px;
     
 }
 .div_footer1>div>div div:first-child{
@@ -293,4 +293,6 @@ export default {
     color:#008489;
     margin-left: 10px;
 }
+
+
 </style>
