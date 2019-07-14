@@ -50,26 +50,26 @@ CREATE TABLE Airbnb_House_Bed(
 #房屋表
 CREATE TABLE Airbnb_House(
  House_id INT PRIMARY KEY AUTO_INCREMENT,
- House_City_id INT,
- House_name VARCHAR(128),
- House_User_id INT,
- House_longitude VARCHAR(64),
- House_latitude VARCHAR(64),
+ House_City_id INT,#城市id
+ House_name VARCHAR(128),#房屋名
+ House_User_id INT,#用户id
+ House_longitude VARCHAR(64),#经度
+ House_latitude VARCHAR(64),#纬度
  House_people_num INT,#可住人数
  House_type VARCHAR(64),#房源类型    
- House_price INT,
- House_tag VARCHAR(64),
- House_bednum INT,
- House_Bed VARCHAR(128),
- House_restroom INT,
- House_HouseAmenities VARCHAR(128),
- House_Amenities VARCHAR(64),
- House_Building VARCHAR(64),#Airbnb_housingResources_Type
- House_detail VARCHAR(256),
- House_address VARCHAR(128),
- House_trip VARCHAR(128),
- House_label VARCHAR(64),
- House_imgurl VARCHAR(128)
+ House_price INT,#价格
+ House_tag VARCHAR(64),#标签
+ House_bednum INT,#床铺数量
+ House_Bed VARCHAR(128),#床类型
+ House_restroom INT,#卫生间数量
+ House_HouseAmenities VARCHAR(128),#便利设施
+ House_Amenities VARCHAR(64),#设施
+ House_Building VARCHAR(64),#建筑类型Airbnb_housingResources_Type
+ House_detail VARCHAR(256),#详情
+ House_address VARCHAR(128),#地址
+ House_trip VARCHAR(128),#出行信息
+ House_label VARCHAR(64),#标签信息
+ House_imgurl VARCHAR(128)#缩略图
 );
 
 #轮播图表liupan
