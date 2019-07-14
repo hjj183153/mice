@@ -1,5 +1,5 @@
 <template>
-    <div class="div_bg">
+    <div class="div_bg" @click="blurbedroom()">
         <div class="div_body" style="padding-top:74px;">
             <div>
                 <div class="div_title font_title1">
@@ -28,14 +28,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="div_body4">
+                <div class="div_body4" @click="blurbedroom()">
                     <p @click="loadMore1" class="font-title5">有几个卧室？</p>
-                    <div>
-                        <select name="bedroom" id="select_bedroom">
+                    <div class="div_bedroom">
+                        <select @click.stop="bedroom()" name="bedroom" id="select_bedroom">
                             <!-- <option value="i" v-for="(bed,i)of bedrooms" :key="i" v-text="bed">111</option> -->
                             <option value="i">0间卧室</option>
                         </select>
                     </div>
+                </div>
+                <div class="div_body5">
+                    <div>
+                        <p class="font-title5">有几张床？</p>
+                        <p class="font-title4">床铺数量</p>
+                    </div>                    
+                    <div class="btn_add">
+                        <div>
+                            <span class="div_btn_add">
+                                <svg viewBox="0 0 24 24" role="img" aria-label="subtract" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect></svg>
+                            </span>
+                        </div>
+                        <div id="people_count">
+                            <span>1</span>
+                        </div>
+                        <div>
+                            <span class="div_btn_add">
+                                <svg viewBox="0 0 24 24" role="img" aria-label="add" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect><rect height="12" rx="1" width="2" x="11" y="6"></rect></svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="div_body6">
+                    <btn_bd_g :text="按钮"></btn_bd_g>
                 </div>
             </div>
             
@@ -47,7 +71,8 @@ export default {
     data(){
         return{
             Airbnb_House:{},
-            bedrooms:[]
+            bedrooms:[],
+            
         }
     },
     props:{
@@ -65,8 +90,22 @@ export default {
             }
             console.log(this.bedrooms);
         },
+        bedroom(){
+            var select_bedroom=document.getElementById("select_bedroom")
+            var div_select_bedroom=select_bedroom.parentNode;
+            console.log(div_select_bedroom)
+            div_select_bedroom.style.border="1px solid #008489"
+            select_bedroom.style.outline="none"
+        },
+        blurbedroom(){
+            var select_bedroom=document.getElementById("select_bedroom")
+            var div_select_bedroom=select_bedroom.parentNode;
+            div_select_bedroom.style.border="0px solid transparent"
+        }
 
-    }
+    },
+    
+    
 }
 </script>
 <style scoped>
@@ -156,6 +195,26 @@ export default {
     color:#767676;
     padding: 9px 0 8px;
     font-size: 19px;
-
 }
+.div_bedroom{
+    width: 320px;
+    line-height: 24px;
+    background: #fff;
+    margin-bottom: 8px;
+    border:0px solid transparent;
+    border-radius: 2px;
+    box-sizing:border-box;
+}
+#select_bedroom{
+    height:46px;
+    width: 100%;
+    font-size:13.33px;
+    font-family: Arial;
+    font-weight: 400;
+    padding: 11px 40px 11px 11px;
+    color:#484848;
+    border:1px solid #eee;
+}
+
+.div_body6{height:100px;}
 </style>

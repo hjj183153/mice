@@ -5,7 +5,7 @@ import Text from './components/Abb/Text.vue'
 import Details from './views/Details.vue'
 
 import Index from './views/Index.vue'
-//import add_become_a_host_room from './views/add_become_a_host_room.vue'
+import add_become_a_host_room from './views/add_become_a_host_room.vue'
 import Story from './components/Abb/Story.vue'
 import user from './views/user.vue'
 import userdata from './views/user_data.vue'
