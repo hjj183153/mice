@@ -44,8 +44,9 @@
         </div>
         <!-- body -->
         <div>
-        <add_become_a_host_room1 :Airbnb_House="Airbnb_House" v-show="add_page==0"></add_become_a_host_room1>     
-        <add_become_a_host_room2 :Airbnb_House="Airbnb_House" v-show="add_page==1"></add_become_a_host_room2>     
+        <add_become_a_host_room1 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==0"></add_become_a_host_room1>     
+        <add_become_a_host_room2 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==1"></add_become_a_host_room2>     
+        <add_become_a_host_room3 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==2"></add_become_a_host_room3>     
         </div>
         <!-- 底部固定悬浮 -->
         <div class="div_footer1">
@@ -68,16 +69,24 @@
 //引入子组件
 import  add_become_a_host_room1 from './../components/Add/add_become_a_host_room1'
 import  add_become_a_host_room2 from './../components/Add/add_become_a_host_room2'
+import  add_become_a_host_room3 from './../components/Add/add_become_a_host_room3'
 export default {
     data(){
         return{
-            Airbnb_House:{},
+            Airbnb_House:{
+                House_Building:-1,
+                Rent_Type:-1,
+                House_people_num:-1,
+                House_bednum:-1,
+                House_restroom:-1,
+            },
             alert_show:false,
-            add_page:1
+            add_page:0,
     }},
     methods:{
         submit(){
             console.log(this.Airbnb_House)
+            this.add_page++;
         },
         alert_show_click(){
             console.log(this.alert_show)
@@ -95,7 +104,8 @@ export default {
     },
     components:{
         add_become_a_host_room1,
-        add_become_a_host_room2
+        add_become_a_host_room2,
+        add_become_a_host_room3,
     }
 }
 
@@ -180,7 +190,7 @@ export default {
     background: #fff;
     width: 487.2px;
     padding: 20px 30px;
-    
+    height:82px;
 }
 .div_footer1>div>div div:first-child{
     float: left;

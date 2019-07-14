@@ -1,5 +1,5 @@
 <template>
-    <div class="div_bg" @click="blurbedroom()">
+    <div class="div_bg">
         <div class="div_body" style="padding-top:74px;">
             <div>
                 <div class="div_title font_title1">
@@ -28,15 +28,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="div_body4" @click="blurbedroom()">
+                <!-- <div class="div_body4" @click="blurbedroom()">
                     <p @click="loadMore1" class="font-title5">有几个卧室？</p>
                     <div class="div_bedroom">
-                        <select @click.stop="bedroom()" name="bedroom" id="select_bedroom">
-                            <!-- <option value="i" v-for="(bed,i)of bedrooms" :key="i" v-text="bed">111</option> -->
+                        <select @click.stop="bedroom()" name="bedroom" id="select_bedroom"> -->
+                            <!-- <option value="i" v-for="(bed,i)of bedrooms" :key="i" v-text="bed">111</option>
                             <option value="i">0间卧室</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="div_body5">
                     <div>
                         <p class="font-title5">有几张床？</p>
@@ -73,16 +73,16 @@
                             <p class="font-title5" style="padding-top:2px;">0张床</p>
                         </div>
                         <div>
-                            <div id="addbed" @click="btn_addbed" v-show="addbed=='true'">
+                            <div id="addbed" @click="btn_addbed(1)" v-show="addbed=='true'">
                                 添加床铺
                             </div>
-                            <div id="addbed" v-show="addbed=='false'" style="font-weight:600">
+                            <div id="addbed" v-show="addbed=='false'" @click="btn_addbed(0)" style="font-weight:600">
                                 完成
                             </div>
                         </div>
                     </div>
                     <!-- 隐藏区域 -->
-                    <div class="div_body7_blank">
+                    <div class="div_body7_blank" v-show="addbed=='false'">
                         <!-- 沙发床 -->
                         <div>
                             <div class="text_addreduce">                  
@@ -147,42 +147,79 @@
                             </div>
                         </div>
                         <!-- 单人床 -->
+                        <div>
+                            <div class="text_addreduce">                  
+                                <p>单人床</p>
+                            </div> 
+                            <div class="btn_add">
+                                <div @click="bed4_count(-1)" style="opacity:0.3;"  id="btn_reduce4">
+                                    <span class="div_btn_add">
+                                        <svg viewBox="0 0 24 24" role="img" aria-label="subtract" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect></svg>
+                                    </span>
+                                </div>
+                                <div class="count_addreduce">
+                                    <span v-text="bed4count"></span>
+                                </div>
+                                <div  @click="bed4_count(1)" id="btn_add4">
+                                    <span class="div_btn_add">
+                                        <svg viewBox="0 0 24 24" role="img" aria-label="add" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect><rect height="12" rx="1" width="2" x="11" y="6"></rect></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                         <!-- 双人床 -->
-
-
-
-
-
+                        <div>
+                            <div class="text_addreduce">                  
+                                <p>双人床</p>
+                            </div> 
+                            <div class="btn_add">
+                                <div @click="bed5_count(-1)" style="opacity:0.3;"  id="btn_reduce5">
+                                    <span class="div_btn_add">
+                                        <svg viewBox="0 0 24 24" role="img" aria-label="subtract" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect></svg>
+                                    </span>
+                                </div>
+                                <div class="count_addreduce">
+                                    <span v-text="bed5count"></span>
+                                </div>
+                                <div  @click="bed5_count(1)" id="btn_add5">
+                                    <span class="div_btn_add">
+                                        <svg viewBox="0 0 24 24" role="img" aria-label="add" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect><rect height="12" rx="1" width="2" x="11" y="6"></rect></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
-
-                </div>
-                
+                </div>               
                 <!-- 空白底边 -->
                 <div style="height:20px;">
                 </div>
-            </div>
-            
+            </div>            
         </div>
     </div>
 </template>
 <script>
+
+</script>
+
+<script>
 export default {
     data(){
         return{
-            Airbnb_House:{},
+            
             bedrooms:[],
             bedcount:1,
             peoplecount:4,
-            addbed:'false',
+            addbed:'true',
             bed1count:0,
             bed2count:0,
             bed3count:0,
+            bed4count:0,
+            bed5count:0,
         }
     },
     props:{
-        Airbnb_House:{default:""}
+        Airbnb_House:{default:""},
+          add_page:{default:""}
         },
      created(){
         this.loadMore1();
@@ -190,24 +227,23 @@ export default {
     },
     methods:{
         loadMore1(){
-            for(var i=0;i<=50;i++){
-                this.bedrooms[i]=`${i}间卧室`;
-                
-            }
-            console.log(this.bedrooms);
+            if(this.add_page>=1){
+                this.Airbnb_House.House_people_num=4;
+                this.Airbnb_House.House_bednum=1
+            }            
         },
-        bedroom(){
-            var select_bedroom=document.getElementById("select_bedroom")
-            var div_select_bedroom=select_bedroom.parentNode;
-            console.log(div_select_bedroom)
-            div_select_bedroom.style.border="1px solid #008489"
-            select_bedroom.style.outline="none"
-        },
-        blurbedroom(){
-            var select_bedroom=document.getElementById("select_bedroom")
-            var div_select_bedroom=select_bedroom.parentNode;
-            div_select_bedroom.style.border="0px solid transparent"
-        },
+        // bedroom(){
+        //     var select_bedroom=document.getElementById("select_bedroom")
+        //     var div_select_bedroom=select_bedroom.parentNode;
+        //     console.log(div_select_bedroom)
+        //     div_select_bedroom.style.border="1px solid #008489"
+        //     select_bedroom.style.outline="none"
+        // },
+        // blurbedroom(){
+        //     var select_bedroom=document.getElementById("select_bedroom")
+        //     var div_select_bedroom=select_bedroom.parentNode;
+        //     div_select_bedroom.style.border="0px solid transparent"
+        // },
         bed_count(n){
             var div_bed_count=document.getElementById("div_bed_count")
             var bed_reduce=div_bed_count.firstChild;
@@ -236,9 +272,17 @@ export default {
             }else if(m==-1&&this.peoplecount==2){
                 people_reduce.style.opacity="0.3"
                 this.peoplecount+=m;
-            }                  
+            }   
+            console.log(1);
+                this.Airbnb_House.House_people_num=this.peoplecount; 
+                console.log(Airbnb_House) ;     
         },
-        btn_addbed(){
+        btn_addbed(n){
+            if(n==1){
+                this.addbed='false'
+            }else{
+                this.addbed='true'
+            }
 
         },
         bed1_count(z){
@@ -306,6 +350,50 @@ export default {
                 }                
             }
                 console.log(this.bed3count)
+        },
+        bed4_count(z){
+            var btn_reduce4=document.getElementById("btn_reduce4")
+            var btn_add4=document.getElementById("btn_add4")              
+            if(z==1){
+                if(this.bed4count<8){
+                   btn_reduce4.style.opacity="1" 
+                   this.bed4count+=z;
+                }else if(this.bed4count==8){
+                    btn_add4.style.opacity="0.3"
+                    this.bed4count+=z;
+                }
+            }else{
+                if(this.bed4count>1){
+                    this.bed4count+=z;
+                    btn_add4.style.opacity="1"
+                }else if(this.bed4count==1){
+                    btn_reduce4.style.opacity="0.3"
+                    this.bed4count+=z;
+                }                
+            }
+                console.log(this.bed4count)
+        },
+        bed5_count(z){
+            var btn_reduce5=document.getElementById("btn_reduce5")
+            var btn_add5=document.getElementById("btn_add5")              
+            if(z==1){
+                if(this.bed5count<8){
+                   btn_reduce5.style.opacity="1" 
+                   this.bed5count+=z;
+                }else if(this.bed5count==8){
+                    btn_add5.style.opacity="0.3"
+                    this.bed5count+=z;
+                }
+            }else{
+                if(this.bed5count>1){
+                    this.bed5count+=z;
+                    btn_add5.style.opacity="1"
+                }else if(this.bed5count==1){
+                    btn_reduce5.style.opacity="0.3"
+                    this.bed5count+=z;
+                }                
+            }
+                console.log(this.bed5count)
         }
     },
     
@@ -495,26 +583,26 @@ export default {
     margin-top:10px;
 }
 .div_btn_add{
-        display: block;
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-        border-radius: 50%;
-        border:1px solid rgb(0,132,137);
-        position: relative;
+    display: block;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 50%;
+    border:1px solid rgb(0,132,137);
+    position: relative;
 }
 .btn_add{
-float:left
+    float:left
 }
 .btn_add:after{
-        content:"";
-        display: block;
-        clear: both;
+    content:"";
+    display: block;
+    clear: both;
 }
 .div_btn_add>svg{
-        position: absolute;
-        top:25%;
-        left: 25%;
+    position: absolute;
+    top:25%;
+    left: 25%;
 }
 .count_addreduce{
     width: 15%;
