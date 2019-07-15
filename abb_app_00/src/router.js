@@ -6,6 +6,7 @@ import Details from './views/Details.vue'
 
 import Index from './views/Index.vue'
 import add_become_a_host_room from './views/add_become_a_host_room.vue'
+import add_become_a_host_room2 from './components/Add/add_become_a_host_room2.vue'
 import Story from './components/Abb/Story.vue'
 import userdata from './views/userdata.vue'
 Vue.use(Router)
@@ -16,6 +17,7 @@ export default new Router({
     {path:'/index',component:Index},
     {path:'/text',component:Text},
     {path:'/add_become_a_host_room',component:add_become_a_host_room},
+    {path:'/add_become_a_host_room2',component:add_become_a_host_room2},
     {path: '/',component: Home},
     {path:'/Story',component:Story},     
     {path:'/userdata',component:userdata},    

@@ -5,7 +5,7 @@
         </div>
         
         <div class="nav">
-            <h1>导航</h1>
+            <user-header> </user-header>         
         </div>
         <div class="topimg">
             <div class="topleft" >
@@ -18,8 +18,8 @@
                     <div class="imgshadow" v-show="s!=i"></div>
                 </div>
             </div>
-            <button class="share" >分享</button>
-            <button class="save">保存</button>
+            <button class="share" @click="share"><img src="http://127.0.0.1:3000/img/details/share.png">分享</button>
+            <button class="save"><img src="http://127.0.0.1:3000/img/details/save.png">保存</button>
             <button class="lookimg" @click="show">查看图片</button>
         </div>
         <div class="main">
@@ -41,25 +41,39 @@
                         <div>
                             <span>北京</span><span class="dian">·</span><span>整套公寓</span>
                         </div>
+                        <div style="font-size:32px">
+                            <p>{{imgs[0].House_name}}</p>
+                        </div>
+                        <div>
+                            <div></div>
+                        </div>
                     </div>
                     <div class="speak" style="height:500px">
-                        <h1 id="speak">评价</h1>
+                        <h1>评价</h1>
 
                     </div>
                     <div class="leftdate" style="height:500px">
-                        <h1 id="date">可定日期</h1>
+                        <h1>可定日期</h1>
 
                     </div>
                     <div class="address" style="height:500px">
-                        <h1 id="date">位置</h1>
+                        <h1>位置</h1>
 
                     </div>
                     <div class="notice" style="height:500px">
-                        <h1 id="date">须知</h1>
+                        <h1>须知</h1>
 
                     </div>
                     <div class="housename" style="height:500px">
-                        <h1 id="date">房东</h1>
+                        <h1>房东</h1>
+
+                    </div>
+                    <div class="more" style="height:500px">
+                        <h1>更多适合您的房源</h1>
+
+                    </div>
+                    <div class="other" style="height:500px">
+                        <h1>北京附近的其他选择</h1>
 
                     </div>
                 </div>
@@ -88,11 +102,7 @@ export default {
     methods: {
         imgLg(e,sh){
             e.target.style.width="105%";
-            //console.log(e.target)
             var shadow=e.target.parentElement
-           // console.log(shadow);
-            
-           
         },
         imgSm(e){
             e.target.style.width="100%"
@@ -106,22 +116,26 @@ export default {
         },
         scroll(){
             var scrollTop =  document.documentElement.scrollTop;
+            console.log(scrollTop)
             var mainnav = document.querySelector('.main_nav')
             var ul = document.querySelector('.main_nav ul')
             var main_main=document.querySelector(".main_main");
             var speak=document.querySelector(".main_main .leftdate")
-            //var speak=document.querySelector(".main_main .speak")
             var share=document.querySelector(".topimg .share")
             var save=document.querySelector(".topimg .save")
-
-            //console.log(ul)
-            if(scrollTop>380){
+            var rightdate=document.querySelector(".main_main .rightdate")
+            if(scrollTop>380&&scrollTop<3200){
                 mainnav.style.position="fixed";
                 mainnav.style.borderBottom="1px solid #ddd";
                 ul.style.borderBottom="0";
                 main_main.style.marginTop="71px"
                 share.style.position="fixed";
                 save.style.position="fixed";
+                share.style.right="265px";
+                save.style.right="150px";
+                rightdate.style="position:fixed;top:80px;width:30%;right:150px"
+            }else if(scrollTop>=3200){
+                rightdate.style="position:absolute;top:2700px;width:80%;right:0px"
             }else{
                 mainnav.style.position="";
                 mainnav.style.borderBottom="0";
@@ -129,6 +143,9 @@ export default {
                 main_main.style.marginTop="30px";
                 share.style.position="absolute";
                 save.style.position="absolute";
+                share.style.right="140px";
+                save.style.right="25px";
+                rightdate.style="position:absolute;top:-30px;width:80%;right:0px"
             }
             if(scrollTop>=911&&scrollTop<1455){
                 this.changeBlack=1;
@@ -143,7 +160,6 @@ export default {
             }else{
                 this.changeBlack=0;
             }
-            console.log(this.changeBlack)
         },
         toggle(b){
             this.changeBlack=b;
@@ -161,6 +177,9 @@ export default {
                 document.documentElement.scrollTop=3105;
             }
             
+        },
+        share() {
+            this.$alert(`<div><h2>分享</h2><div>`, '标题名称');
         }
     },
     mounted() {
@@ -171,18 +190,16 @@ export default {
         var url="details";
         var obj={house_id:this.houseId};
         this.axios.get(url,{params:obj}).then(result=>{
-            //console.log(result.data.data)
             this.imgs=result.data.data;
+            console.log(this.imgs)
         })
     },
-
+    
 }
 </script>
 <style  scoped>
     .nav{
-        width: 100%;
         height: 80px;
-        background: #ffffaa
     }
     .topimg{
         display: flex;
@@ -192,7 +209,7 @@ export default {
         position: relative;
         
     }
-    .topimg img{
+    .topright img,.topleft img{
         width: 100%;
         transition: 0.5s;
         transform-origin:left top;
@@ -243,6 +260,10 @@ export default {
         cursor: pointer;
         z-index: 10;
     }
+    .topimg button img{
+        width:20px;
+        margin: -4px 7px;
+    }
     .share{
         right:140px;
         top:5px;
@@ -261,7 +282,8 @@ export default {
     .main_nav{
         width: 100%;
         top:0;
-        background: #fff
+        background: #fff;
+        z-index: 100;
     }
     .main_nav .ul{
         width: 1050px;
@@ -273,7 +295,7 @@ export default {
         border-bottom: 1px solid #ddd;
         padding: 10px;
         padding-left: 0;
-        margin:left   
+          
     }
     .main_nav ul li{
         float: left;
@@ -307,6 +329,15 @@ export default {
         width:1050px;
         margin: auto;
         margin-top:10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .main_main .mainleft{
+        width: 50%
+    }
+    .main_main .mainright{
+        width: 50%;
+        position: relative;
     }
     .main_main .mainleft>div{
         border-bottom:1px solid #ddd;
@@ -331,6 +362,13 @@ export default {
     .main_main .notice{
     }
     .main_main .housename{
-         border-bottom:1px solid #ddd;
+    }
+    .main_main .rightdate{
+        width:80%;
+        height: 500px;
+        border:1px solid #ddd;
+        position: absolute;
+        top:-30px;
+        right: 0px;
     }
 </style>

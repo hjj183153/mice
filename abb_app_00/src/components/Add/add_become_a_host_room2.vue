@@ -227,10 +227,10 @@ export default {
     },
     methods:{
         loadMore1(){
-            if(this.add_page>=1){
-                this.Airbnb_House.House_people_num=4;
-                this.Airbnb_House.House_bednum=1
-            }            
+            // if(this.add_page>=1){
+            //     this.Airbnb_House.House_people_num=4;
+            //     this.Airbnb_House.House_bednum=1
+            // }            
         },
         // bedroom(){
         //     var select_bedroom=document.getElementById("select_bedroom")
