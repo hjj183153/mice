@@ -8,7 +8,7 @@ router.get("/",(req,res)=>{
     res.send({code:-1,msg:'请登录'});
     return;
   }
-  var sql='SELECT user_name,user_pwd,user_email,user_phone,user_gender,user_reg_time,user_login_time FROM Airbnb_user WHERE user_id=?';
+  var sql='SELECT user_name,user_pwd,user_email,user_phone,user_gender,user_reg_time,user_login_time,user_imgurl FROM Airbnb_user WHERE user_id=?';
   pool.query(sql,[user_id],(err,result)=>{
     if(err) throw err;
     res.send({code:1,msg:'查询成功',data:result})
