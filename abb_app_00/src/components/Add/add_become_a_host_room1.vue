@@ -49,8 +49,8 @@
 export default {
     data(){
         return{
-            housingResources_Type:"",
-            Rent_Type:0,
+            housingResources_Type:[],
+            Rent_Type:[{Rent_name:""},{Rent_name:""},{Rent_name:""}],
         }
     },
     props:{
@@ -67,14 +67,15 @@ export default {
                 this.housingResources_Type=result.data;                
             })
             this.axios.get("http://127.0.0.1:3000/add/Rent_Type").then(result=>{
-                //console.log(result.data)
+                console.log(result.data,111)
                 this.Rent_Type=result.data;
+                
             })
             //setTimeout(function(){this.Rentselect(0);},3000)
-            console.log(add_page)
-            if(this.add_page>=0){
-                this.Airbnb_House.Rent_Type=0;
-            }  
+            // console.log(add_page)
+            // if(this.add_page>=0){
+            //     this.Airbnb_House.Rent_Type=0;
+            // }  
         },
         show(){
             var div=document.getElementById("housingResources");
