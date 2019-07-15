@@ -16,9 +16,8 @@
             <el-input v-model="name"></el-input>
             <div class="text-muted">您的公开个人资料将仅显示您的名字。申请预订时，房东会看到您的名字和姓氏。</div>
           </el-form-item>
-          <el-form-item label="我是">
-            <select id="user_sex" name="user[sex]">
-              <option value selected="selected">性别</option>
+          <el-form-item label="性别">
+            <select v-model="sex">
               <option value="1">男性</option>
               <option value="0">女性</option>
               <option value="-1">保密</option>
@@ -32,15 +31,19 @@
             >此数据将帮助我们更好地为您提供服务，除必要的内部使用外，我们不会将您的信息透露给房东或其他用户。您必须年满 18 周岁才能使用爱彼迎的网站和服务。</div>
           </el-form-item>
           <el-form-item label="电子邮件地址">
-            <el-input></el-input>
+            <el-input v-model="email"></el-input>
             <div class="text-muted">
               我们不会向其他爱彼迎用户透露您的个人邮箱地址。
               <a href="javascrpt:;">了解更多</a>。
             </div>
           </el-form-item>
           <el-form-item label="手机号">
-            <el-input></el-input>
+            <el-input v-model="phone"></el-input>
             <div class="text-muted">只有在您和另一名爱彼迎用户确认预订时，此资料才会被分享。这是我们帮助大家联系彼此的方式。</div>
+          </el-form-item>
+          <el-form-item label="登录时间">
+            <el-input v-model="user_login_time" disabled></el-input>
+            <div class="text-muted">此数据会显示您最近一次登录的时间</div>
           </el-form-item>
           <el-form-item label="首选语言">
             <select>
@@ -124,8 +127,8 @@
           <el-form-item label="您住的地方">
             <el-input placeholder="例如，法国巴黎 / 纽约布鲁克林 / 伊利诺伊州芝加哥"></el-input>
           </el-form-item>
-          <el-form-item label="您住的地方">
-            <textarea cols="40" rows="5"></textarea>
+          <el-form-item label="自我介绍">
+            <textarea cols="90" rows="7" placeholder="比如喜欢看电影,旅游,爬山..."></textarea>
             <div class="text-muted">
               爱彼迎以相互信任为基础，请帮助其他人了解您。
               <br />告诉他们您喜欢什么，您离开了哪几样东西就不能活？分享您最喜爱的旅游目的地、书籍、电影、电视节目、音乐以及美食。
@@ -360,7 +363,7 @@
           </el-form-item>
         </el-form>
       </div>
-      <el-button type="danger" round style="margin-bottom:50px;">保存</el-button>
+      <el-button type="danger" round style="margin-bottom:50px;" @click="open">保存</el-button>
     </div>
   </div>
 </template>
@@ -369,7 +372,11 @@ export default {
   data() {
     return {
       list: ["编辑个人资料", "照片", "信任和验证", "评价", "推荐语"],
-      name: ""
+      name: "",
+      email: "",
+      phone: "",
+      sex: "",
+      user_login_time: ""
     };
   },
   created() {
@@ -378,8 +385,48 @@ export default {
   methods: {
     getuser() {
       this.axios.get("user/").then(result => {
-        console.log(result.data);
+        if (result.data.code > 0) {
+          this.name = result.data.data[0].user_name;
+          this.email = result.data.data[0].user_email;
+          this.phone = result.data.data[0].user_phone;
+          this.sex = result.data.data[0].user_gender;
+          this.user_login_time = result.data.data[0].user_login_time;
+        } else {
+          this.$alert("您还没有登录,请登录!", "消息提示");
+        }
       });
+    },
+    open() {
+      this.$confirm("此操作将保存您修改的数据, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+        center: true
+      })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "保存成功!"
+          });
+          this.axios
+            .get("user/user_update", {
+              params: {
+                name: this.name,
+                email: this.email,
+                phone: this.phone,
+                sex:this.sex
+              }
+            })
+            .then(result => {
+              console.log(123)
+            });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消保存"
+          });
+        });
     }
   }
 };
