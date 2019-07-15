@@ -10,15 +10,16 @@
                 </div>
                 <div class="div_body1">
                     <p class="select_title">省(直辖市、自治区)</p>
-                    <select name="sad" id="asd">
-                        <option value="0">请选择</option>
-                        <option value="1">请选择</option>
+                    <select name="sad" id="asd" v-model="cityid" @change="district_select(cityid)">
+                        <option value="-1">请选择</option>
+                        <option :value="i+1" v-for="(c,i) of city" :key="i" v-text="c.City_name"></option>
                     </select>
                 </div>
                 <div class="div_body2">
                     <p  class="select_title">市(区)</p>
                     <select name="sasdd" id="asdsd">
-                        <option value="1">sadasd</option>
+                        <option value="0">请选择</option>
+                        <!-- <option value="d.District_id" v-for="(d,i) of district" :key="i" v-text="d.District_name"></option> -->
                     </select>
                 </div>
             </div>
@@ -31,10 +32,33 @@
 <script>
 export default {
     data(){return{
-        
+        city:{},
+        district:{District_name:"",District_id:""},
+        cityid:-1,
     }},
     props:{
         Airbnb_House:{default:""}
+    },
+    created(){
+        this.loadMore()
+    },
+    
+    methods:{
+        loadMore(){
+            this.axios.get("http://127.0.0.1:3000/add/City").then(result=>{                
+                console.log(result.data)
+                this.city=result.data;                
+            })
+                  
+            
+        },
+        district_select(n){
+            console.log(n);
+            this.axios.get("http://127.0.0.1:3000/add/district",{params:{"id":n}}).then(result=>{                
+                console.log(result.data)
+                this.district=result.data; 
+            })         
+        }
     }
 }
 </script>
