@@ -5,7 +5,7 @@
         </div>
         
         <div class="nav">
-            <h1>导航</h1>
+            <user-header> </user-header>         
         </div>
         <div class="topimg">
             <div class="topleft" >
@@ -199,9 +199,7 @@ export default {
 </script>
 <style  scoped>
     .nav{
-        width: 100%;
         height: 80px;
-        background: #ffffaa
     }
     .topimg{
         display: flex;
