@@ -27,7 +27,7 @@
                 <div class="ul">
                     <ul >
                         <li><a :class="{black:changeBlack==0}" href="#details" @click="toggle(0)">详情</a></li>
-                        <li><div class="circle"></div>  <a  href="#speak" :class="{black:changeBlack==1}" @click="toggle(1)">评价</a> </li>
+                        <li><div class="circle"></div>  <a  href="javascript:;" :class="{black:changeBlack==1}" @click="toggle(1)">评价</a> </li>
                         <li style="width:75px;"><div class="circle"></div> <a href="javascript:;" :class="{black:changeBlack==2}" @click="toggle(2)">可定日期</a> </li>
                         <li><div class="circle"></div> <a href="javascript:;" :class="{black:changeBlack==3}" @click="toggle(3)">位置</a> </li>
                         <li><div class="circle"></div> <a href="javascript:;" :class="{black:changeBlack==4}" @click="toggle(4)">须知</a> </li>
@@ -37,15 +37,29 @@
             </div>
             <div class="main_main">
                 <div class="mainleft">
-                    <div id="details" style="height:500px">
-
+                    <div class="details" style="height:500px">
+                        <div>
+                            <span>北京</span><span class="dian">·</span><span>整套公寓</span>
+                        </div>
                     </div>
                     <div class="speak" style="height:500px">
                         <h1 id="speak">评价</h1>
 
                     </div>
-                    <div class="leftdate">
+                    <div class="leftdate" style="height:500px">
+                        <h1 id="date">可定日期</h1>
 
+                    </div>
+                    <div class="address" style="height:500px">
+                        <h1 id="date">位置</h1>
+
+                    </div>
+                    <div class="notice" style="height:500px">
+                        <h1 id="date">须知</h1>
+
+                    </div>
+                    <div class="housename" style="height:500px">
+                        <h1 id="date">房东</h1>
 
                     </div>
                 </div>
@@ -70,16 +84,15 @@ export default {
             s:-1,
             changeBlack:0
         }
-    },
+  },
     methods: {
-        imgLg(e){
+        imgLg(e,sh){
             e.target.style.width="105%";
             //console.log(e.target)
             var shadow=e.target.parentElement
            // console.log(shadow);
             
-            //this.s=c
-            //console.log(this.s)
+           
         },
         imgSm(e){
             e.target.style.width="100%"
@@ -95,19 +108,59 @@ export default {
             var scrollTop =  document.documentElement.scrollTop;
             var mainnav = document.querySelector('.main_nav')
             var ul = document.querySelector('.main_nav ul')
+            var main_main=document.querySelector(".main_main");
+            var speak=document.querySelector(".main_main .leftdate")
+            //var speak=document.querySelector(".main_main .speak")
+            var share=document.querySelector(".topimg .share")
+            var save=document.querySelector(".topimg .save")
+
             //console.log(ul)
             if(scrollTop>380){
                 mainnav.style.position="fixed";
                 mainnav.style.borderBottom="1px solid #ddd";
-                ul.style.borderBottom="0"
+                ul.style.borderBottom="0";
+                main_main.style.marginTop="71px"
+                share.style.position="fixed";
+                save.style.position="fixed";
             }else{
                 mainnav.style.position="";
                 mainnav.style.borderBottom="0";
-                ul.style.borderBottom="1px solid #ddd"
+                ul.style.borderBottom="1px solid #ddd";
+                main_main.style.marginTop="30px";
+                share.style.position="absolute";
+                save.style.position="absolute";
             }
+            if(scrollTop>=911&&scrollTop<1455){
+                this.changeBlack=1;
+            }else if(scrollTop>=1455&&scrollTop<2010){
+                this.changeBlack=2;
+            }else if(scrollTop>=2010&&scrollTop<2562){
+                this.changeBlack=3;
+            }else if(scrollTop>=2562&&scrollTop<3105){
+                this.changeBlack=4;
+            }else if(scrollTop>=3105){
+                this.changeBlack=5;
+            }else{
+                this.changeBlack=0;
+            }
+            console.log(this.changeBlack)
         },
         toggle(b){
             this.changeBlack=b;
+            if(b==0){
+                document.documentElement.scrollTop=400;
+            }else if(b==1){
+                document.documentElement.scrollTop=911;
+            }else if(b==2){
+                document.documentElement.scrollTop=1455;
+            }else if(b==3){
+                document.documentElement.scrollTop=2010;
+            }else if(b==4){
+                document.documentElement.scrollTop=2562;
+            }else if(b==5){
+                document.documentElement.scrollTop=3105;
+            }
+            
         }
     },
     mounted() {
@@ -188,14 +241,15 @@ export default {
         font:14px 微软雅黑;
         font-weight: bold;
         cursor: pointer;
+        z-index: 10;
     }
     .share{
         right:140px;
-        top:25px;
+        top:5px;
     }
     .save{
         right:25px;
-         top:25px;
+         top:5px;
     }
     .lookimg{
         top:240px;
@@ -203,7 +257,6 @@ export default {
     }
     .main{
         width: 100%;
-        
     }
     .main_nav{
         width: 100%;
@@ -253,6 +306,31 @@ export default {
     .main_main{
         width:1050px;
         margin: auto;
-        margin-top: 51px;
+        margin-top:10px;
+    }
+    .main_main .mainleft>div{
+        border-bottom:1px solid #ddd;
+    }
+    .main_main .mainleft>div:not(:first-child){
+        margin-top: 50px;
+    }
+    .main_main .details{
+        font-size: 12px;
+        font-weight: 800
+    }
+    .main_main .details .dian{
+        font-weight:lighter;
+        margin: 0 5px
+    }
+    .main_main .speak{
+    }
+    .main_main .leftdate{
+    }
+    .main_main .address{
+    }
+    .main_main .notice{
+    }
+    .main_main .housename{
+         border-bottom:1px solid #ddd;
     }
 </style>
