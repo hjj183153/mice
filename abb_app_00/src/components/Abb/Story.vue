@@ -1,14 +1,91 @@
 <template>
   <div>
-    <div class="main">
+    <!-- 以下是搜索界面 -->
+    <div class="search_story search_active" id="search_story_main">
+      <div style="margin-top:32px;">
+        <div class="search_input">
+          <el-autocomplete  placeholder="请输入搜索内容" id="el_input" @keyup.enter.native="insearch" v-model="state"
+          :fetch-suggestions="querySearchAsync" @select="handleSelect" v-focus ></el-autocomplete>
+          <div>
+            <img class="cancel_search" @click="cancel_seachStory" src="http://127.0.0.1:3000/img/story/cancel.png" alt="">
+          </div>
+        </div>
+        <!-- <el-table :data="peopleMange"> 
+        </el-table> -->
+        <div class="hot_place">
+          <div class="hot_title">
+            热门目的地
+          </div>
+          <ul class="hot_city_list">
+            <li>
+              <a href="javascript:;">
+                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
+                <p>东京</p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
+                <p>东京</p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
+                <p>东京</p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
+                <p>东京</p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
+                <p>东京</p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
+                <p>东京</p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
+                <p>东京</p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
+                <p>东京</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="near_search">
+          <div class="near_search_title hot_title">
+            最近搜索
+          </div>
+          <ul class="near_search_list">
+            <li v-for="(item1,j) of hot_city_list">{{item1}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- 以下是story主页面的内容 暂时设置为display:none-->
+    <div class="main" id="main">
       <!-- <ul class="infinite-list" v-infinite-scroll="load">
-    <li v-for="i in count" :key="i" class="infinite-list-item" >{{ i }}</li>
-  </ul> -->
-      <div class="story_content">
+        <li v-for="i in count" :key="i" class="infinite-list-item" >{{ i }}</li>
+      </ul> -->
         <!-- 故事标题 -->
         <div class="story_title">
           <span>故事</span>
-          <a href="javascript:;">搜索故事
+          <a href="javascript:;" id="search_story1" @click="search_story1">搜索故事
             <img src="../../../../abb_serve_00/public/img/story/story_search.png" alt="">
           </a>
         </div>
@@ -99,22 +176,24 @@
               <div class="careful_story">
                 <!-- 每一行4个 -->
                 <div style="margin-top:32px;">
-                  <ul class="careful_story_list">
-                    <li>
+                  <ul class="careful_story_list" >
+                    <li v-for="(item,i) of sel_list" :key="i">
+                      
                       <a href="javascript:;">
                         <div class="careful_story_top">
+                          <!-- <img alt="" class="story_md" :src="'http://127.0.0.1:3000/'+item.md_img"> -->
                           <div>活动</div>
                           <!-- 点赞 -->
                           <div class="story_top_zan"></div>
                         </div>
                         <div class="careful_story_detail">
-                          <span>巴厘岛</span>
-                          <span>旅行的意义，是一顿可以吃到中午的早餐。</span>
+                          <span>{{item.city}}</span>
+                          <span>{{item.detail_title}}</span>
                         </div>
                         <div class="careful_story_user">
                           <!-- 头像 -->
                           <div class="story_user_img">
-                            <img src="../../../../abb_serve_00/public/img/story/user_img_1.jpg" alt="">
+                            <img :src="'http://127.0.0.1:3000/'+item.user_img" alt="">
                           </div>
                           <!-- <div class="story_user_num"> -->
                             <!-- 点赞 -->
@@ -129,93 +208,7 @@
                         </div>
                       </a>
                     </li>
-                    <li>
-                      <a href="javascript:;">
-                        <div class="careful_story_top">
-                          <div>活动</div>
-                          <!-- 点赞 -->
-                          <div class="story_top_zan"></div>
-                        </div>
-                        <div class="careful_story_detail">
-                          <span>巴厘岛</span>
-                          <span>旅行的意义，是一顿可以吃到中午的早餐。</span>
-                        </div>
-                        <div class="careful_story_user">
-                          <!-- 头像 -->
-                          <div class="story_user_img">
-                            <img src="../../../../abb_serve_00/public/img/story/user_img_1.jpg" alt="">
-                          </div>
-                          <!-- <div class="story_user_num"> -->
-                            <!-- 点赞 -->
-                            <div class="story_user_zan"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_zan_number">13</div>
-                            <!-- 评论 -->
-                            <div class="story_user_com" id="story_user_com"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_com_number">1</div>
-                          <!-- </div> -->
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:;">
-                        <div class="careful_story_top">
-                          <div>活动</div>
-                          <!-- 点赞 -->
-                          <div class="story_top_zan"></div>
-                        </div>
-                        <div class="careful_story_detail">
-                          <span>巴厘岛</span>
-                          <span>旅行的意义，是一顿可以吃到中午的早餐。</span>
-                        </div>
-                        <div class="careful_story_user">
-                          <!-- 头像 -->
-                          <div class="story_user_img">
-                            <img src="../../../../abb_serve_00/public/img/story/user_img_1.jpg" alt="">
-                          </div>
-                          <!-- <div class="story_user_num"> -->
-                            <!-- 点赞 -->
-                            <div class="story_user_zan"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_zan_number">13</div>
-                            <!-- 评论 -->
-                            <div class="story_user_com" id="story_user_com"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_com_number">1</div>
-                          <!-- </div> -->
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:;">
-                        <div class="careful_story_top">
-                          <div>活动</div>
-                          <!-- 点赞 -->
-                          <div class="story_top_zan"></div>
-                        </div>
-                        <div class="careful_story_detail">
-                          <span>巴厘岛</span>
-                          <span>旅行的意义，是一顿可以吃到中午的早餐。</span>
-                        </div>
-                        <div class="careful_story_user">
-                          <!-- 头像 -->
-                          <div class="story_user_img">
-                            <img src="../../../../abb_serve_00/public/img/story/user_img_1.jpg" alt="">
-                          </div>
-                          <!-- <div class="story_user_num"> -->
-                            <!-- 点赞 -->
-                            <div class="story_user_zan"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_zan_number">13</div>
-                            <!-- 评论 -->
-                            <div class="story_user_com" id="story_user_com"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_com_number">1</div>
-                          <!-- </div> -->
-                        </div>
-                      </a>
-                    </li>
+                    
                   </ul>
                 </div>
               </div>
@@ -485,36 +478,197 @@
           <li>店铺</li>
         </ul> -->
         <!-- 搜索推荐 -->
-        
-      </div>
+       
+     <!-- </div>  -->
     </div>
   </div>
 </template>
 <script>
 export default {
-    data() {
-      return {
-        activeName: 'first',//设置当前显示的是第一个标签内容
-        count:0
+  data() {
+    return {
+      activeName: 'first',//设置当前显示的是第一个标签内容
+      count:0,
+      sel_list:[],//从数据库获取的数据列表
+      hot_city_list:[],
+      input:"",
+
+      timeout:  null,
+      restaurants: [],
+      state: ''
+    };
+  },
+  methods: {
+    handleClick(tab, event) {
+      console.log(tab, event);
+    },
+    load () {
+      this.count += 2;
+    },
+    // 键盘回车实现搜索查询，将input内容追加到数组中，然后在页面中显示，并跳转到相应的搜索页面
+      insearch(){
+        // alert("按了enter键");
+        // sessionStorage.setItem("state",this.state);
+        // var session=sessionStorage.getItem("state");
+        // console.log(session);
+        //console.log(this.state);
+        //当输入数据和当前数组中元素内容不同时，在数组开头追加元素，
+        var pos=this.hot_city_list.indexOf(this.state);
+        if(pos<0){
+          this.hot_city_list.unshift(this.state);
+        }
+        //console.log(this.hot_city_list);
+        var hot_place=document.getElementsByClassName("hot_place")[0];
+        console.log(hot_place);
+        hot_place.style.display="none";
+      },
+      loadAll() {
+        return [
+          { "value": "北京", "address": "长宁区新渔路144号" },
+          { "value": "上海", "address": "上海市长宁区淞虹路661号" },
+          { "value": "深圳", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113" },
+          { "value": "珠海", "address": "天山西路438号" },
+          { "value": "东京", "address": "上海市长宁区金钟路968号1幢18号楼一层商铺18-101" }
+        ];
+      },
+    querySearchAsync(queryString, cb) {
+      var restaurants = this.restaurants;
+      var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
+
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        cb(results);
+      }, 3000 * Math.random());
+    },
+    createStateFilter(queryString) {
+      return (state) => {
+        return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
       };
     },
-    methods: {
-      handleClick(tab, event) {
-        console.log(tab, event);
-      },
-      load () {
-        this.count += 2;
-      }
+    handleSelect(item) {
+      console.log(item.value);
+      document.querySelector('input').focus();//当选中选项后，input中二次自动获取焦点
     },
-    created(){
-      var url="/story";
-      this.axios.get(url).then(result=>{
-        console.log(result);
-      });
+    //点击搜索故事按钮，当前主页面添加active样式，即隐藏；搜索页面显示，去除story_active样式
+    search_story1(){
+      var search_story_main=document.getElementById("search_story_main");
+      var main=document.getElementById("main");
+      main.style.display="none";
+      search_story_main.style.display="block";
+    },
+    cancel_seachStory(){
+      var search_story_main=document.getElementById("search_story_main");
+      var main=document.getElementById("main");
+      
+      main.style.display="block";
+      search_story_main.style.display="none";
     }
-  };
+  },
+  mounted() {
+    this.restaurants = this.loadAll();
+  },
+  created(){
+    var url="/story";
+    this.axios.get(url).then(result=>{
+      console.log(result.data);
+      //通过sel_list[]数组来接收数据，显示在页面上
+      this.sel_list=result.data;
+    });
+  },
+  directives: {
+  focus: {
+      inserted: function (el) {
+      el.querySelector('input').focus()
+      }
+  }
+  }
+}   
 </script>
 <style scoped>
+.search_story.search_active{
+  display:none;
+}
+/*搜索界面*/
+.search_story{
+  width: 1080px;
+  position: relative;
+  overflow: hidden;
+  padding: 0 32px;
+  margin: 0 auto;
+  color:#484848;
+  font-weight:400;
+}
+.search_input{
+  width:1080px;
+  background: #fff;
+  margin:0 auto;
+  border-bottom:2px solid #008489;
+  font-size:16px;
+  position: relative;
+}
+/*父子组建中加deep修改组件原有样式*/ 
+.search_input /deep/ #el_input{
+  border:none !important;
+  width:1080px;
+  margin:0 auto;
+  line-height:24px;
+  font-size:16px !important;
+  color:#484848 !important;
+}
+img.cancel_search{
+  float: right;
+  width:15px;
+  height: 15px;
+  cursor: pointer;
+  position: absolute;
+  top:13px;
+  right:51px;
+}
+.hot_title{
+  margin-top:20px;
+  font-size:14px;
+}
+ul.hot_city_list{
+  margin-top:16px;
+}
+ul.hot_city_list::before{
+  content:"";
+  display:table;
+}
+ul.hot_city_list::after{
+  content:"";
+  display:table;
+  clear:both;
+}
+ul.hot_city_list>li{
+  float:left;
+  text-align: center;
+  margin: 8px 24px 10px 4px;
+}
+ul.hot_city_list>li img{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background-color: #dbdbdb;
+  margin-bottom:8px;
+}
+ul.hot_city_list>li>a{
+  font-size:14px;
+  font-weight:400;
+  color:#484848;
+}
+/*最近搜索*/ 
+.near_search{
+  margin-top:48px;
+}
+ul.near_search_list>li{
+  padding:16px 0;
+  border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+
+
+
 *{
   padding:0;
   margin:0;
@@ -529,6 +683,9 @@ a{text-decoration: none;}
   padding:0 32px;
   margin:0 auto;
   /* border:1px solid #f00; */
+}
+.main.main_active{
+  display:none;
 }
 .story_title{
   padding:6px 0;
@@ -751,17 +908,27 @@ ul.careful_story_list{
 }
 ul.careful_story_list>li{
   width:242px;
-  
+  position: relative;
 }
 ul.careful_story_list>li .careful_story_top{
   width:242px;
   height: 242px;
-  background-image:url(../../../../abb_serve_00/public/img/story/story_carefulSelect_1.jpg);
+  background-image:url("http://127.0.0.1:3000/img/story/bg_img1_1.jpg");
   background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: cover; 
+  background-repeat: no-repeat;/**/
   border-radius: 8px;
   position:relative;
+}
+ul.careful_story_list>li>img{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  position:absolute;
+  top:0;
+  left:0;
+  border-radius: 8px;
+
 }
 .careful_story_top>div:first-child{
   position: absolute;
