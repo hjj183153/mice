@@ -7,7 +7,7 @@ import Details from './views/Details.vue'
 import Index from './views/Index.vue'
 import add_become_a_host_room from './views/add_become_a_host_room.vue'
 import Story from './components/Abb/Story.vue'
-import userdata from './views/user_data.vue'
+import userdata from './views/userdata.vue'
 Vue.use(Router)
 
 export default new Router({
