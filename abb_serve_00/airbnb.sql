@@ -50,26 +50,26 @@ CREATE TABLE Airbnb_House_Bed(
 #房屋表
 CREATE TABLE Airbnb_House(
  House_id INT PRIMARY KEY AUTO_INCREMENT,
- House_City_id INT,
- House_name VARCHAR(128),
- House_User_id INT,
- House_longitude VARCHAR(64),
- House_latitude VARCHAR(64),
+ House_City_id INT,#城市id
+ House_name VARCHAR(128),#房屋名
+ House_User_id INT,#用户id
+ House_longitude VARCHAR(64),#经度
+ House_latitude VARCHAR(64),#纬度
  House_people_num INT,#可住人数
  House_type VARCHAR(64),#房源类型    
- House_price INT,
- House_tag VARCHAR(64),
- House_bednum INT,
- House_Bed VARCHAR(128),
- House_restroom INT,
- House_HouseAmenities VARCHAR(128),
- House_Amenities VARCHAR(64),
- House_Building VARCHAR(64),#Airbnb_housingResources_Type
- House_detail VARCHAR(256),
- House_address VARCHAR(128),
- House_trip VARCHAR(128),
- House_label VARCHAR(64),
- House_imgurl VARCHAR(128)
+ House_price INT,#价格
+ House_tag VARCHAR(64),#标签
+ House_bednum INT,#床铺数量
+ House_Bed VARCHAR(128),#床类型
+ House_restroom INT,#卫生间数量
+ House_HouseAmenities VARCHAR(128),#便利设施
+ House_Amenities VARCHAR(64),#设施
+ House_Building VARCHAR(64),#建筑类型Airbnb_housingResources_Type
+ House_detail VARCHAR(256),#详情
+ House_address VARCHAR(128),#地址
+ House_trip VARCHAR(128),#出行信息
+ House_label VARCHAR(64),#标签信息
+ House_imgurl VARCHAR(128)#缩略图
 );
 
 #轮播图表liupan
@@ -144,13 +144,11 @@ INSERT INTO Airbnb_user VALUES(NULL,"涛涛","taotao","taotao@163.com",156609025
 INSERT INTO Airbnb_user VALUES(NULL,"然然","ranran","ranran@163.com",15660902592,0,'2018/1/5','2018/1/6');
 INSERT INTO Airbnb_user VALUES(NULL,"东东","dongdong","dongdong@163.com",15660902593,1,'2018/1/7','2018/1/8');
 INSERT INTO Airbnb_user VALUES(NULL,"亮亮","liangliang","liangliang@163.com",15660902594,1,'2018/1/9','2018/1/10');
-<<<<<<< HEAD
  #房屋图片数据
  INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('001', '1', NULL, 'https://z1.muscache.cn/im/pictures/f4043af9-eacb-47c2-b350-d6ad0e8e419b.jpg?aki_policy=large', 'https://z1.muscache.cn/im/pictures/f3e442f6-f07a-4a8e-a5c4-7b5d7495df0b.jpg?aki_policy=xx_large');
  INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('002', '1', NULL, 'https://z1.muscache.cn/im/pictures/79c0a62a-72b4-4587-a556-a600ca25b0ec.jpg?aki_policy=large', NULL);
 INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('003', '1', NULL, 'https://z1.muscache.cn/im/pictures/a96de13b-5497-4361-82ff-c653cf181036.jpg?aki_policy=large', NULL);
 INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('004', '1', NULL, 'https://z1.muscache.cn/im/pictures/51e269e5-e80d-4ab6-8581-635714422640.jpg?aki_policy=large', NULL);
-=======
 
 CREATE TABLE Airbnb_story(
   stid INT PRIMARY KEY AUTO_INCREMENT,/*#每个故事的id*/
@@ -166,7 +164,7 @@ CREATE TABLE Airbnb_story(
   detail_title VARCHAR(1000),/*--文章简介标题,也是详情页的标题*/
   detail_intr VARCHAR(10000)/*--文章简介正文*/
 );
-INSERT INTO Airbnb_story VALUES(1,1,1,"Kiki","img/story/user_img_1.jpg","img/story/bg_img1_1.jpg","北京",0,0,"走进三里屯东三街的Róng Bar，一派复古的装饰。坐在舒适的露台点一杯「青梅煮酒」，论英雄何人，适合向往度假、寻求惬意的你！","将海鲜做到极致的大叔居酒屋","酒肴一瓢，主打日式海鲜料理，素净的木招牌在霄云路美食后街上众多日料店之中并不显眼。北京大叔的真性情酒肴一瓢的老板是位北京大叔，浑身透着北京人的健谈，今天最新鲜的海产是什么，值得一试的是什么，自进门起老板就热络招呼。对待食物老板又有着近乎严苛的匠人精神，每天只挑最新鲜的海产，严格把控上菜时间和顺序，在细节上绝不马虎。日式海鲜的一万种可能性,在酒肴一瓢，除了当日最新鲜的鱼生刺身，酒蒸、串烧、火锅，海产的可能性多到超乎想象。活章鱼七味烧，新鲜活章鱼去皮剔筋，客人自行在炭炉上烤制，边烤边吃，保证最新鲜的口感。活牡蛎炮烙，手掌大的牡蛎撒盐烤制，新鲜的牡蛎肉质厚实，入口微甜，对贝类无感的我都被征服了。滑蛋青蛤，不太常见的做法，鸡蛋将蛤蜊的鲜味提升了一个层次。老板总说自己的餐厅无非是一间大叔店罢了，登不上台面。在我看来，抱有如此热情和心思对待料理，才是食客们的宝藏之地。地址：朝阳区霄云路15号霄云美食街后街24门");
+INSERT INTO Airbnb_story VALUES(NULL,1,1,"Kiki","img/story/user_img_1.jpg","img/story/bg_img1_1.jpg","北京",0,0,"走进三里屯东三街的Róng Bar，一派复古的装饰。坐在舒适的露台点一杯「青梅煮酒」，论英雄何人，适合向往度假、寻求惬意的你！","将海鲜做到极致的大叔居酒屋","酒肴一瓢，主打日式海鲜料理，素净的木招牌在霄云路美食后街上众多日料店之中并不显眼。北京大叔的真性情酒肴一瓢的老板是位北京大叔，浑身透着北京人的健谈，今天最新鲜的海产是什么，值得一试的是什么，自进门起老板就热络招呼。对待食物老板又有着近乎严苛的匠人精神，每天只挑最新鲜的海产，严格把控上菜时间和顺序，在细节上绝不马虎。日式海鲜的一万种可能性,在酒肴一瓢，除了当日最新鲜的鱼生刺身，酒蒸、串烧、火锅，海产的可能性多到超乎想象。活章鱼七味烧，新鲜活章鱼去皮剔筋，客人自行在炭炉上烤制，边烤边吃，保证最新鲜的口感。活牡蛎炮烙，手掌大的牡蛎撒盐烤制，新鲜的牡蛎肉质厚实，入口微甜，对贝类无感的我都被征服了。滑蛋青蛤，不太常见的做法，鸡蛋将蛤蜊的鲜味提升了一个层次。老板总说自己的餐厅无非是一间大叔店罢了，登不上台面。在我看来，抱有如此热情和心思对待料理，才是食客们的宝藏之地。地址：朝阳区霄云路15号霄云美食街后街24门");
 #精选故事种类
 CREATE TABLE Airbnb_story_family(
   fid INT PRIMARY KEY AUTO_INCREMENT,
@@ -199,4 +197,10 @@ INSERT INTO Airbnb_story_collection VALUES
 (NULL,"北京竟然有这些不可思议的酒吧","帝都包罗万有的文化自然少不了酒吧文化，三里屯到亮马桥，不但分布着各国使馆，更有不同地域风格的酒吧。周末到了，要过一个怎样的夜晚呢？粗旷还是精致、热闹还是安静？从南洋到英伦，从精酿到鸡尾酒，总能找到一间酒吧称你的心情。"),
 (NULL,"住进「山水间」在民宿中亲近自然","本期「爱彼迎民宿指南」精选好风景的爱彼迎民宿，开窗即是山水，呼吸都有绿意。带着全家、约上朋友，寻其中一处宅子，也许在大理的洱海边，也许在莫干山的深处，或是在重庆的田园里，日出日落，做饭聊天，旅行从舒心净肺开始。"),
 (NULL,"住进「旧时光」在民宿中重拾历史","本期「爱彼迎民宿指南」带你跳跃时间和空间，找到国内有历史的老宅：从清时的乾隆行宫，到现代的珠江旧船厂；从南京的科举考试旧址，到大理的白族传统民居，都在爱彼迎民宿。邀你住进去，深入其中，一秒穿越不同年代，聆听每一座城市的故事。");
->>>>>>> 02eca4ab79ea09c100e1c12e8159040fb53e6010
+#合用空间 床类型表 zm
+CREATE TABLE Airbnb_Bed_type(
+ Bed_type_id INT PRIMARY KEY AUTO_INCREMENT,
+ Bed_type_name VARCHAR(64)
+);
+INSERT INTO Airbnb_Bed_type VALUES(NULL,'沙发床'),
+(NULL,'沙发'),(NULL,'地板床垫'),(NULL,'单人床'),(NULL,'双人床');
