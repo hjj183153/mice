@@ -47,6 +47,7 @@
         <add_become_a_host_room1 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==0"></add_become_a_host_room1>     
         <add_become_a_host_room2 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==1"></add_become_a_host_room2>     
         <add_become_a_host_room3 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==2"></add_become_a_host_room3>     
+        <add_become_a_host_room4 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==3"></add_become_a_host_room4>     
         </div>
         <!-- 底部固定悬浮 -->
         <div class="div_footer1">
@@ -70,6 +71,7 @@
 import  add_become_a_host_room1 from './../components/Add/add_become_a_host_room1'
 import  add_become_a_host_room2 from './../components/Add/add_become_a_host_room2'
 import  add_become_a_host_room3 from './../components/Add/add_become_a_host_room3'
+import  add_become_a_host_room4 from './../components/Add/add_become_a_host_room4'
 export default {
     data(){
         return{
@@ -81,12 +83,12 @@ export default {
                 House_restroom:-1,
             },
             alert_show:false,
-            add_page:0,
+            add_page:3,
     }},
     methods:{
         submit(){
             console.log(this.Airbnb_House)
-            this.add_page++;
+            // this.add_page++;
         },
         alert_show_click(){
             console.log(this.alert_show)
@@ -106,6 +108,7 @@ export default {
         add_become_a_host_room1,
         add_become_a_host_room2,
         add_become_a_host_room3,
+        add_become_a_host_room4,
     }
 }
 

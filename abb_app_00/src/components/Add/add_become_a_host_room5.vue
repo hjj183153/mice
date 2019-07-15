@@ -12,7 +12,7 @@
 <script>
 export default {
      data(){return{
-        Airbnb_House:{}
+        
     }},
     props:{
         Airbnb_House:{default:""}
@@ -36,3 +36,4 @@ export default {
     padding-bottom: 102px;
     background: #fff;
 }
+</style>

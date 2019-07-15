@@ -8,8 +8,6 @@ USE Airbnb;
 CREATE TABLE Airbnb_City(
  City_id INT PRIMARY KEY AUTO_INCREMENT,
  City_name VARCHAR(64) UNIQUE,
- City_rank INT,
- City_concern INT
 );
 
 #房屋时间表
@@ -204,3 +202,51 @@ CREATE TABLE Airbnb_Bed_type(
 );
 INSERT INTO Airbnb_Bed_type VALUES(NULL,'沙发床'),
 (NULL,'沙发'),(NULL,'地板床垫'),(NULL,'单人床'),(NULL,'双人床');
+#地区表 zm
+CREATE TABLE Airbnb_district(
+ District_id INT PRIMARY KEY AUTO_INCREMENT,
+ District_name VARCHAR(64) UNIQUE,
+ District_longitude VARCHAR(64),#经度
+ District_latitude VARCHAR(64),#纬度
+ City_id INT
+);
+#城市表 数据 zm
+INSERT INTO Airbnb_City VALUES
+(NULL,'北京'),
+(NULL,'上海')
+;
+#地区表 数据 zm
+INSERT INTO Airbnb_district VALUES
+(NULL,'西城区','116.37','39.92','1'),
+(NULL,'东城区','116.42','39.93','1'),
+(NULL,'朝阳区','116.43','39.92','1'),
+(NULL,'房山区','116.13','39.75','1'),
+(NULL,'海淀区','116.30','39.95','1'),
+(NULL,'石景山区','116.22','39.90','1'),
+(NULL,'顺义区','116.65','40.13','1'),
+(NULL,'丰台区','116.28','39.85','1'),
+(NULL,'怀柔区','116.63','40.32','1'),
+(NULL,'密云区','116.83','40.37','1'),
+(NULL,'昌平区','116.23','40.22','1'),
+(NULL,'大兴区','116.33','39.73','1'),
+(NULL,'平谷区','117.12','40.13','1'),
+(NULL,'通州区','116.65','39.92','1'),
+(NULL,'延庆区','115.97','40.45','1'),
+(NULL,'门头沟区','116.10','39.93','1'),
+(NULL,'静安区','121.45','31.23','2'),
+(NULL,'徐汇区','121.43','31.18','2'),
+(NULL,'长宁区','121.42','31.22','2'),
+(NULL,'黄浦区','121.48','31.23','2'),
+(NULL,'虹口区','121.50','31.27','2'),
+(NULL,'宝山区','121.48','31.40','2'),
+(NULL,'浦东新区','121.53','31.22','2'),
+(NULL,'普陀区','121.40','31.25','2'),
+(NULL,'杨浦区','121.52','31.27','2'),
+(NULL,'闵行区','121.38','31.12','2'),
+(NULL,'嘉定区','121.27','31.38','2'),
+(NULL,'松江区','121.22','31.03','2'),
+(NULL,'金山区','121.33','30.75','2'),
+(NULL,'青浦区','121.12','31.15','2'),
+(NULL,'奉贤区','121.47','30.92','2'),
+(NULL,'崇明区','121.40','31.62','2')
+;
