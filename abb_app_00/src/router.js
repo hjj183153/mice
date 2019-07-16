@@ -6,16 +6,13 @@ import Details from './views/Details.vue'
 
 import Index from './views/Index.vue'
 import add_become_a_host_room from './views/add_become_a_host_room.vue'
-<<<<<<< HEAD
 import Search from './views/search/Search.vue'
-=======
 import add_become_a_host_room2 from './components/Add/add_become_a_host_room2.vue'
 import Story from './components/Abb/Story.vue'
 import Search_result from './components/Abb/Search_result.vue'
 import user from './views/user.vue'
 import userdata from './views/user_data.vue'
 
->>>>>>> 443d8958b1b1e788d86655dd5307d412167dc53e
 Vue.use(Router)
 
 export default new Router({
@@ -30,7 +27,7 @@ export default new Router({
     {path:'/Story',component:Story},
     {path:'/Search_result',component:Search_result},
     {path:'/user',component:user},    
-    {path:'/userdata',component:userdata},    
+    {path:'/userdata',component:userdata}, 
     {
       path: '/about',
       // route level code-splitting
