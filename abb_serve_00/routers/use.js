@@ -36,7 +36,7 @@ router.get('/',(rep,res)=>{
     });
 });
 //添加路由
-roter.fet('/',(res,res)=>{
+router.get('/',(req,res)=>{
     res.send('这是注册路由');
 });
 //添加用户登录路由
@@ -63,4 +63,4 @@ router.post('/',(req,res)=>{
         }
     })
 })
-module.exports=rooter;
+module.exports=router;

@@ -5,7 +5,6 @@
         <h3>没有账号?
       <a class="password">注册</a>
     </h3>
-     <img src="img-login/icon-weixin.png" alt="">
     </div>
     <div class='zc'>
         用户名：<input type="text" id='uname' placeholder='请输入用户名'>
@@ -25,20 +24,23 @@
         <br>
     </div>
         <div class='account'>
-            <a href="#">账号登录</a>
+            <a href="javascript:">账号登录</a>
         </div>
     <div class='sign'>
         <button>提交注册信息</button>
     </div>
 </div>
-</template> 
+<!-- <div id='msg'></div>
+<a href="loginzme.vue">账号登陆</a> -->
+</template>
 <script>
-export default {
-    data(){
-        return{
-        }
-    }
-}
+ export default {
+     data(){
+         return{ 
+            
+         }
+     }
+ }
 </script>
 <style scope>
     *{padding:0;margin:0}
@@ -79,11 +81,10 @@ export default {
         border-color:#0a0a0a;
         border:1px;
     }
-    .account>a{/*账号登录*/
+     .account>a{/*账号登录*/
         margin-left:290px;
         color:rgb(0,132,137);
-
-    }
+    } 
     .sign>button{
         width:341px;
         height:42px;
