@@ -1,4 +1,5 @@
 <template>
+<!-- 出租类型、房源类型 -->
     <div class="div_bg">
         <div class="div_body" style="padding-top:74px;">
             <div>

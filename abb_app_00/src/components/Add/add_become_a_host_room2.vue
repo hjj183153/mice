@@ -1,4 +1,5 @@
 <template>
+<!-- 房客数量，床数量，床型 -->
     <div class="div_bg">
         <div class="div_body" style="padding-top:74px;">
             <div>

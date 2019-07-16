@@ -1,4 +1,5 @@
 <template>
+<!-- 地址填写 -->
     <div class="div_bg">
         <div class="div_body" >
             <div>
@@ -25,19 +26,16 @@
                 <div class="div_body3">
                     <p class="select_title">详细地址（无需再写省市）</p>
                     <div>
-                        <input type="text" class="input_text" placeholder="例如：崂山国际花园1号楼">
+                        <input type="text" v-model="House_address" @change="addresschange" class="input_text" placeholder="例如：崂山国际花园1号楼">
                     </div>
                 </div>
                 <div class="div_body4">
                     <p class="select_title">门牌号（仅告知预订的房客）</p>
                     <div>
-                        <input type="text" class="input_text" placeholder="例如：1单元1202室">
+                        <input type="text"  v-model="House_number" @change="numberchange" class="input_text" placeholder="例如：1单元1202室">
                     </div>
                 </div>
-            </div>
-            
-
-        
+            </div>                
         </div>
     </div>
 </template>
@@ -48,6 +46,8 @@ export default {
         district:{District_name:"",District_id:""},
         cityid:-1,
         districtid:-1,
+        House_address:"",
+        House_number:"",
     }},
     props:{
         Airbnb_House:{House_City_id:-1,House_District_id:-1}
@@ -75,7 +75,15 @@ export default {
         district_change(){
                 this.Airbnb_House.House_District_id=this.districtid;
                 //console.log(this.Airbnb_House.House_District_id)
-        }
+        },
+        addresschange(){
+            this.Airbnb_House.House_address=this.House_address;
+           // console.log(this.Airbnb_House.House_address)
+        },
+        numberchange(){
+            this.Airbnb_House.House_number=this.House_number;
+            //console.log(this.Airbnb_House.House_number)
+        },
     }
 }
 </script>
