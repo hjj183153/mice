@@ -1,4 +1,5 @@
 <template>
+<!-- 卫生间数量 -->
     <div class="div_bg">
         <div class="div_body" >
             <div>
@@ -49,9 +50,9 @@ export default {
     },
     methods:{
         loadMore(){
-            if(this.add_page>=2){
-                this.Airbnb_House.House_restroom=0;
-            }  
+            // if(this.add_page>=2){
+            //     this.Airbnb_House.House_restroom=0;
+            // }  
         },
         bed_count(z){
             var btn_reduce=document.getElementById("btn_reduce")

@@ -71,7 +71,7 @@
       </el-menu-item>
       <el-menu-item index="10">
         <a href="javascript:;">
-          <img src="../assets/logo.png" alt @click="user_bn" />
+          <img :src="user_imgurl" alt @click="user_bn" />
         </a>
         <el-card class="box-card" v-show="show">
           <div v-for="(elem,i) of list" :key="i" class="text item">
@@ -97,13 +97,17 @@ export default {
         { href: "javascript:;", msg: "商务爱彼迎" },
         { href: "javascript:;", msg: "退出" }
       ],
-      show: false
+      show: false,
+      user_imgurl: ""
     };
   },
   watch: {
     input() {
       console.log(this.input);
     }
+  },
+  created() {
+    this.loader();
   },
   methods: {
     handleSelect(key, keyPath) {
@@ -114,12 +118,22 @@ export default {
     },
     user_bn() {
       this.show = !this.show;
+    },
+    loader() {
+      this.axios.get("user/").then(result => {
+        if (result.data.code > 0) {
+          this.user_imgurl =
+            `http://127.0.0.1:3000/` + result.data.data[0].user_imgurl;
+        } else {
+          this.$alert("您还没有登录,请登录!", "消息提示");
+        }
+      });
     }
   }
 };
 </script>
 <style scoped>
-.my-img{
+.my-img {
   width: 160px !important;
   height: 160px !important;
 }
@@ -147,6 +161,9 @@ div.search > div:first-child {
 .el-menu--horizontal:last-child a img {
   width: 44px;
   height: 46px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  border-radius: 50%;
 }
 .el-card.is-always-shadow,
 .el-card.is-hover-shadow:focus,

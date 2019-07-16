@@ -7,9 +7,7 @@ USE Airbnb;
 #城市表
 CREATE TABLE Airbnb_City(
  City_id INT PRIMARY KEY AUTO_INCREMENT,
- City_name VARCHAR(64) UNIQUE,
- City_rank INT,
- City_concern INT
+ City_name VARCHAR(64) UNIQUE
 );
 
 #房屋时间表
@@ -51,6 +49,7 @@ CREATE TABLE Airbnb_House_Bed(
 CREATE TABLE Airbnb_House(
  House_id INT PRIMARY KEY AUTO_INCREMENT,
  House_City_id INT,#城市id
+ House_District_id INT,#区域id
  House_name VARCHAR(128),#房屋名
  House_User_id INT,#用户id
  House_longitude VARCHAR(64),#经度
@@ -66,7 +65,8 @@ CREATE TABLE Airbnb_House(
  House_Amenities VARCHAR(64),#设施
  House_Building VARCHAR(64),#建筑类型Airbnb_housingResources_Type
  House_detail VARCHAR(256),#详情
- House_address VARCHAR(128),#地址
+ House_address VARCHAR(128),#详细地址
+ House_number VARCHAR(128),#地址门牌号
  House_trip VARCHAR(128),#出行信息
  House_label VARCHAR(64),#标签信息
  House_imgurl VARCHAR(128)#缩略图
@@ -137,14 +137,15 @@ CREATE TABLE Airbnb_user(
     user_phone VARCHAR(32) NOT NULL,
     user_gender INT,
     user_reg_time DATETIME,
-    user_login_time DATETIME
+    user_login_time DATETIME,
+    user_imgurl VARCHAR(128)
 );
 #个人信息数据 gyh
-INSERT INTO Airbnb_user VALUES(NULL,"张三","zhangsan","zhangsan@163.com",15660902590,1,'2018/1/1','2018/1/2');
-INSERT INTO Airbnb_user VALUES(NULL,"涛涛","taotao","taotao@163.com",15660902591,1,'2018/1/3','2018/1/4');
-INSERT INTO Airbnb_user VALUES(NULL,"然然","ranran","ranran@163.com",15660902592,0,'2018/1/5','2018/1/6');
-INSERT INTO Airbnb_user VALUES(NULL,"东东","dongdong","dongdong@163.com",15660902593,1,'2018/1/7','2018/1/8');
-INSERT INTO Airbnb_user VALUES(NULL,"亮亮","liangliang","liangliang@163.com",15660902594,1,'2018/1/9','2018/1/10');
+INSERT INTO Airbnb_user VALUES(NULL,"迪丽热巴","reba","reba@163.com",15660902590,0,'2018/1/1','2018/1/2','img/user/reba.jpeg');
+INSERT INTO Airbnb_user VALUES(NULL,"高圆圆","gaoyuanyuan","gaoyuanyuan@163.com",15660902591,0,'2018/1/3','2018/1/4','img/user/gaoyuanyuan.jpg');
+INSERT INTO Airbnb_user VALUES(NULL,"杨幂","yangmi","yangmi@163.com",15660902592,0,'2018/1/5','2018/1/6','img/user/yangmi.jpeg');
+INSERT INTO Airbnb_user VALUES(NULL,"赵丽颖","zhaoliying","zhaoliying@163.com",15660902593,0,'2018/1/7','2018/1/8','img/user/zhaoliying.jpeg');
+INSERT INTO Airbnb_user VALUES(NULL,"郑凯","zhengkai","zhengkai@163.com",15660902594,1,'2018/1/9','2018/1/10','img/user/zhengkai.jpeg');
  #房屋图片数据
  INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('001', '1', NULL, 'https://z1.muscache.cn/im/pictures/f4043af9-eacb-47c2-b350-d6ad0e8e419b.jpg?aki_policy=large', 'https://z1.muscache.cn/im/pictures/f3e442f6-f07a-4a8e-a5c4-7b5d7495df0b.jpg?aki_policy=xx_large');
  INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('002', '1', NULL, 'https://z1.muscache.cn/im/pictures/79c0a62a-72b4-4587-a556-a600ca25b0ec.jpg?aki_policy=large', NULL);
@@ -205,3 +206,49 @@ CREATE TABLE Airbnb_Bed_type(
 );
 INSERT INTO Airbnb_Bed_type VALUES(NULL,'沙发床'),
 (NULL,'沙发'),(NULL,'地板床垫'),(NULL,'单人床'),(NULL,'双人床');
+#地区表 zm
+CREATE TABLE Airbnb_district(
+ District_id INT PRIMARY KEY AUTO_INCREMENT,
+ District_name VARCHAR(64) UNIQUE,
+ District_longitude VARCHAR(64),#经度
+ District_latitude VARCHAR(64),#纬度
+ City_id INT
+);
+#城市表 数据 zm
+INSERT INTO Airbnb_City VALUES(NULL,'上海');
+INSERT INTO Airbnb_City VALUES(NULL,'北京');
+#地区表 数据 zm
+INSERT INTO Airbnb_district VALUES
+(NULL,'静安区','121.45','31.23','1'),
+(NULL,'徐汇区','121.43','31.18','1'),
+(NULL,'长宁区','121.42','31.22','1'),
+(NULL,'黄浦区','121.48','31.23','1'),
+(NULL,'虹口区','121.50','31.27','1'),
+(NULL,'宝山区','121.48','31.40','1'),
+(NULL,'浦东新区','121.53','31.22','1'),
+(NULL,'普陀区','121.40','31.25','1'),
+(NULL,'杨浦区','121.52','31.27','1'),
+(NULL,'闵行区','121.38','31.12','1'),
+(NULL,'嘉定区','121.27','31.38','1'),
+(NULL,'松江区','121.22','31.03','1'),
+(NULL,'金山区','121.33','30.75','1'),
+(NULL,'青浦区','121.12','31.15','1'),
+(NULL,'奉贤区','121.47','30.92','1'),
+(NULL,'崇明区','121.40','31.62','1'),
+(NULL,'西城区','116.37','39.92','2'),
+(NULL,'东城区','116.42','39.93','2'),
+(NULL,'朝阳区','116.43','39.92','2'),
+(NULL,'房山区','116.13','39.75','2'),
+(NULL,'海淀区','116.30','39.95','2'),
+(NULL,'石景山区','116.22','39.90','2'),
+(NULL,'顺义区','116.65','40.13','2'),
+(NULL,'丰台区','116.28','39.85','2'),
+(NULL,'怀柔区','116.63','40.32','2'),
+(NULL,'密云区','116.83','40.37','2'),
+(NULL,'昌平区','116.23','40.22','2'),
+(NULL,'大兴区','116.33','39.73','2'),
+(NULL,'平谷区','117.12','40.13','2'),
+(NULL,'通州区','116.65','39.92','2'),
+(NULL,'延庆区','115.97','40.45','2'),
+(NULL,'门头沟区','116.10','39.93','2')
+;

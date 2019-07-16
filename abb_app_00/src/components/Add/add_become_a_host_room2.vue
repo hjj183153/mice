@@ -1,4 +1,5 @@
 <template>
+<!-- 房客数量，床数量，床型 -->
     <div class="div_bg">
         <div class="div_body" style="padding-top:74px;">
             <div>
@@ -227,10 +228,10 @@ export default {
     },
     methods:{
         loadMore1(){
-            if(this.add_page>=1){
-                this.Airbnb_House.House_people_num=4;
-                this.Airbnb_House.House_bednum=1
-            }            
+            // if(this.add_page>=1){
+            //     this.Airbnb_House.House_people_num=4;
+            //     this.Airbnb_House.House_bednum=1
+            // }            
         },
         // bedroom(){
         //     var select_bedroom=document.getElementById("select_bedroom")
