@@ -26,14 +26,11 @@ export default new Router({
     {path:'/add_become_a_host_room',component:add_become_a_host_room},
     {path:'/add_become_a_host_room2',component:add_become_a_host_room2},
     {path: '/',component: Home},
-<<<<<<< HEAD
     {path: '/Search',component: Search},
-=======
     {path:'/Story',component:Story},
     {path:'/Search_result',component:Search_result},
     {path:'/user',component:user},    
     {path:'/userdata',component:userdata},    
->>>>>>> 443d8958b1b1e788d86655dd5307d412167dc53e
     {
       path: '/about',
       // route level code-splitting
