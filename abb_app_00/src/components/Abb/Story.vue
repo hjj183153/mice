@@ -72,7 +72,7 @@
             最近搜索
           </div>
           <ul class="near_search_list">
-            <li v-for="(item1,j) of hot_city_list">{{item1}}</li>
+            <li v-for="(item1,j) of hot_city_list" :key="j">{{item1}}</li>
           </ul>
         </div>
       </div>

@@ -51,7 +51,7 @@
                             <div class="roomnum"><img src="http://127.0.0.1:3000/img/details/pnum.png" alt=""><span>最多住{{houseData[0].House_people_num}}人</span></div>
                         </div>
                         <div class="housemessage">
-                            <div v-for="(message,i) of messages" :key="i">{{message}}</div>
+                            <div v-for="(label,i) of labels" :key="i">{{label}}</div>
                         </div>
                         <div class="line"></div>
                         <div class="master">
@@ -80,8 +80,20 @@
                                 <div><span>1张{{houseData[0].House_Bed}}</span></div>
                             </div>
                         </div>
-                        <div class="dd">
-
+                        <div class="houserool">
+                            <div class="rools" v-for="(message,i) of messages" :key="i" >
+                                <div>{{message}}</div>
+                                <div>{{rools[i]}}</div>
+                            </div>
+                        </div>
+                        <div class="amenities">
+                            <div class="amenity">
+                                <div>
+                                    <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" style="height: 24px; width: 24px; fill: currentcolor;"><path d="m12 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 5a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm5.92-5.78a.5.5 0 1 1 -.84.55c-1.19-1.81-3.07-2.77-5.08-2.77s-3.89.96-5.08 2.78a.5.5 0 0 1 -.84-.55c1.38-2.1 3.58-3.23 5.92-3.23s4.54 1.13 5.92 3.23zm2.98-3.03a.5.5 0 1 1 -.79.61c-1.66-2.14-5.22-3.8-8.11-3.8-2.83 0-6.26 1.62-8.12 3.82a.5.5 0 0 1 -.76-.65c2.05-2.42 5.75-4.17 8.88-4.17 3.19 0 7.05 1.8 8.9 4.19zm2.95-2.33a.5.5 0 0 1 -.71-.02c-2.94-3.07-6.71-4.84-11.14-4.84s-8.2 1.77-11.14 4.85a.5.5 0 0 1 -.72-.69c3.12-3.27 7.14-5.16 11.86-5.16s8.74 1.89 11.86 5.16a.5.5 0 0 1 -.02.71z" fill-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>无线网络</div>
+                            </div>
                         </div>
                     </div>
                     <div class="speak" style="height:500px">
@@ -133,8 +145,11 @@ export default {
             houseId:1,
             s:-1,
             changeBlack:0,
-            messages:[],
+            labels:[],
             roomnum:[],
+            messages:[],
+            rools:[],
+            amenities:[]
         }
   },
     methods: {
@@ -229,12 +244,15 @@ export default {
         var obj={house_id:this.houseId};
         this.axios.get(url,{params:obj}).then(result=>{
             this.houseData=result.data.data;
-            this.messages=result.data.data[0].House_message.split(",");
+            this.labels=result.data.data[0].House_label.split(",");
             console.log(this.messages)
             var num=this.houseData[0].House_bednum;
             for(var i=1;i<=num;i++){
                 this.roomnum.push(i)
             }
+            this.messages=this.houseData[0].House_message.split(",");
+            this.rools=this.houseData[0].House_rool.split(",");
+            this.amenities=this.houseData[0].House_amenities.split(",");
             //console.log(this.roomsum)
         })
         
@@ -337,7 +355,7 @@ export default {
     }
     .main_nav ul{
         width:58%;
-        height: 30px;
+        height:30px;
         border-bottom: 1px solid #ddd;
         padding: 10px;
         padding-left: 0;
@@ -378,6 +396,7 @@ export default {
         display: flex;
         justify-content: space-between;
         color: #484848;
+        font-family: 微软雅黑;
     }
     .main_main .mainleft{
         width: 60%
@@ -388,7 +407,6 @@ export default {
     }
     .main_main .mainleft>div{
         border-bottom:1px solid #ddd;
-        padding-bottom:40px;
     }
     .main_main .mainleft>div:not(:first-child){
         margin-top: 50px;
@@ -452,7 +470,7 @@ export default {
     }
     .details .line{
         border-bottom: 1px solid #eee;
-        margin-top:50px;
+        margin-top:30px;
     }
     .master {
         width: 100%;
@@ -504,11 +522,41 @@ export default {
         border: 1px solid #ddd;
         border-radius: 5px;
         width: 100px;
-        height: 80px;
+        height:80px;
         margin-right:20px;
         padding: 15px;
     }
     .details .rooms .room div{
         margin-bottom:5px;
+    }
+    .details .houserool{
+        font-size: 16px;
+        font-weight: 600;
+        border-bottom: 1px solid #ddd
+    }
+    .details .houserool .rools{
+        display: flex;
+        justify-content: space-between;
+        margin: 30px 0;
+    }
+    .details .houserool .rools div:first-child{
+        width:20%
+    }
+    .details .houserool .rools div:last-child{
+        width:75%;
+        font-weight: 400
+    }
+    .details .amenities{
+        display: flex;
+        justify-content: space-between
+    }
+    .details .amenity{
+        width: 50px;
+        height:70px;
+        margin: 30px 10px;
+    }
+    .details .amenity div{
+        text-align: center;
+        margin: 10px 0;
     }
 </style>
