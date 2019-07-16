@@ -377,11 +377,19 @@
             <div class="title">个人头像</div>
             <div class="uphone">
               <div class="uphone_left">
-                <img :src='user_imgurl' alt="">
+                <img :src="user_imgurl" />
               </div>
               <div class="uphone_right">
-                <div class="text-muted">清晰的正面脸部照片是房东和房客互相认识对方的重要途径。您能想象把自己的房子租给一只猫吗？ 请确保使用能够清楚显示您面部的照片，并确认其中不包含任何您不希望其他房东或房客看到的个人或敏感信息。</div>
-                <el-button>从您的计算机上传照片</el-button>
+                <div
+                  class="text-muted"
+                >清晰的正面脸部照片是房东和房客互相认识对方的重要途径。您能想象把自己的房子租给一只猫吗？ 请确保使用能够清楚显示您面部的照片，并确认其中不包含任何您不希望其他房东或房客看到的个人或敏感信息。</div>
+                <div>
+                  <!-- 选择图片 -->
+                  <input type="file" accept="image/*" @change="chooseImg" />
+                  <!-- 提交图片 -->
+                  <img :src="base64" class="aa" />
+                  <el-button type="danger" round style="margin-bottom:50px;" @click="open1">保存</el-button>
+                </div>
               </div>
             </div>
           </div>
@@ -435,7 +443,8 @@ export default {
       sex: "",
       user_login_time: "",
       user_reg_time: "",
-      user_imgurl:''
+      user_imgurl: "",
+      base64: ""
     };
   },
   created() {
@@ -451,7 +460,8 @@ export default {
           this.sex = result.data.data[0].user_gender;
           this.user_login_time = result.data.data[0].user_login_time;
           this.user_reg_time = result.data.data[0].user_reg_time;
-          this.user_imgurl=`http://127.0.0.1:3000/`+result.data.data[0].user_imgurl;
+          this.user_imgurl =
+            `http://127.0.0.1:3000/` + result.data.data[0].user_imgurl;
         } else {
           this.$alert("您还没有登录,请登录!", "消息提示");
         }
@@ -479,13 +489,48 @@ export default {
               }
             })
             .then(result => {
-              console.log(123);
+              console.log(result);
             });
         })
         .catch(() => {
           this.$message({
             type: "info",
             message: "已取消保存"
+          });
+        });
+    },
+    chooseImg(event) {
+      var file = event.target.files[0];
+      var reader = new FileReader();
+      var img = new Image();
+      // 读取图片
+      reader.readAsDataURL(file);
+      // 读取完毕后的操作
+      reader.onloadend = e => {
+        img.src = e.target.result;
+        // 这里的e.target就是reader
+        // console.log(reader.result)
+        // reader.result就是图片的base64字符串
+        this.base64 = reader.result;
+      };
+    },
+    open1() {
+      this.$confirm("您本次将要上传本张图片, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+        center: true
+      })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "上传成功!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消上传"
           });
         });
     }
@@ -528,24 +573,28 @@ export default {
   box-sizing: border-box;
   margin-bottom: 30px;
 }
-.uphone{
+.uphone {
   display: flex;
   justify-content: center;
   height: 300px;
 }
-.uphone .uphone_left{
-  width: 40%;
+.uphone .uphone_left {
+  width: 30%;
   line-height: 300px;
-}
-.uphone .uphone_left img{
-  width: 300px;
-  height: 300px;
-}
-.uphone .uphone_right{
-  width: 60%;
-}
-.uphone .uphone_right div.text-muted{
   text-align: center;
 }
-
+.uphone .uphone_left img {
+  height: 300px;
+}
+.uphone .uphone_right {
+  width: 70%;
+  text-align: center;
+}
+.uphone .uphone_right div.text-muted {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.aa {
+  height: 150px;
+}
 </style>
