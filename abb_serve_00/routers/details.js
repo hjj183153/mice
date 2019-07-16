@@ -5,6 +5,7 @@ var router=express.Router();
 router.get("",(req,res)=>{
   var house_id=req.query.house_id;
   var sql="select * from airbnb_house,airbnb_house_img where house_id=houseimg_house_id and house_id=?";
+  var sql1="select * from airbnb_house right outer join airbnb_house_img on house_id=houseimg_house_id where house_id=?"
   pool.query(sql,[house_id],(err,result)=>{
     if(err) throw err
     if(result.length>0){

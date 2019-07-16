@@ -23,7 +23,8 @@
       :default-active="activeIndex"
       class="el-menu-demo"
       mode="horizontal"
-      @select="handleSelect">
+      @select="handleSelect"
+    >
       <el-submenu index="1">
         <template slot="title">人民币-￥</template>
         <el-menu-item index="1-1">美元-$</el-menu-item>
@@ -35,13 +36,20 @@
       </el-submenu>
       <el-submenu index="2">
         <template slot="title">手机端</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
+        <el-menu-item index="2-1">
+          <img class="my-img" src="http://127.0.0.1:3000/img/img-index/kehuduan.png" alt />
+          <img class="my-img" src="http://127.0.0.1:3000/img/img-index/weixin.png" alt />
+          <img class="my-img" src="http://127.0.0.1:3000/img/img-index/xiaochengxu.jpg" alt />
+        </el-menu-item>
       </el-submenu>
       <el-submenu index="3">
         <template slot="title">成为房东/体验达人</template>
-        <el-menu-item index="3-1">选项1</el-menu-item>
-        <el-menu-item index="3-2">选项2</el-menu-item>
-        <el-menu-item index="3-3">选项3</el-menu-item>
+        <el-menu-item index="3-1">
+          <router-link to="add_become_a_host_room">发布房源</router-link>
+        </el-menu-item>
+        <el-menu-item index="3-2">
+          <router-link to="add_become_a_host_room">开展体验</router-link>
+        </el-menu-item>
       </el-submenu>
       <el-menu-item index="4">
         <a href="javascript:;" target="_blank">故事</a>
@@ -63,11 +71,11 @@
       </el-menu-item>
       <el-menu-item index="10">
         <a href="javascript:;">
-          <img src="../assets/logo.png" alt @click="user_bn" />
+          <img :src="user_imgurl" alt @click="user_bn" />
         </a>
         <el-card class="box-card" v-show="show">
           <div v-for="(elem,i) of list" :key="i" class="text item">
-            <a :href="`#/`+elem.href" >{{elem.msg}}</a>
+            <a :href="`#/`+elem.href">{{elem.msg}}</a>
           </div>
         </el-card>
       </el-menu-item>
@@ -89,13 +97,17 @@ export default {
         { href: "javascript:;", msg: "商务爱彼迎" },
         { href: "javascript:;", msg: "退出" }
       ],
-      show: false
+      show: false,
+      user_imgurl: ""
     };
   },
   watch: {
     input() {
       console.log(this.input);
     }
+  },
+  created() {
+    this.loader();
   },
   methods: {
     handleSelect(key, keyPath) {
@@ -106,11 +118,25 @@ export default {
     },
     user_bn() {
       this.show = !this.show;
+    },
+    loader() {
+      this.axios.get("user/").then(result => {
+        if (result.data.code > 0) {
+          this.user_imgurl =
+            `http://127.0.0.1:3000/` + result.data.data[0].user_imgurl;
+        } else {
+          this.$alert("您还没有登录,请登录!", "消息提示");
+        }
+      });
     }
   }
 };
 </script>
 <style scoped>
+.my-img {
+  width: 160px !important;
+  height: 160px !important;
+}
 #my-header {
   min-width: 1450px;
   display: flex;
@@ -135,6 +161,9 @@ div.search > div:first-child {
 .el-menu--horizontal:last-child a img {
   width: 44px;
   height: 46px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  border-radius: 50%;
 }
 .el-card.is-always-shadow,
 .el-card.is-hover-shadow:focus,
@@ -146,7 +175,7 @@ div.search > div:first-child {
   top: 61px;
   z-index: 100;
 }
-.el-menu-item *{
+.el-menu-item * {
   width: 242px;
   height: 45px;
   box-sizing: border-box;
@@ -155,10 +184,10 @@ div.search > div:first-child {
   line-height: 45px;
   border-bottom: 1px solid rgba(191, 191, 191, 0.2);
 }
-.el-menu-item  *:hover {
+.el-menu-item *:hover {
   border-bottom: 1px solid #000;
 }
-.el-menu--horizontal>.el-menu-item a{
+.el-menu--horizontal > .el-menu-item a {
   border-bottom: none;
 }
 </style>
