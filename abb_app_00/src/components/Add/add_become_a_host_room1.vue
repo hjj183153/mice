@@ -1,4 +1,5 @@
 <template>
+<!-- 出租类型、房源类型 -->
     <div class="div_bg">
         <div class="div_body" style="padding-top:74px;">
             <div>
@@ -63,11 +64,9 @@ export default {
     methods:{       
         loadMore(){
             this.axios.get("http://127.0.0.1:3000/add/housingResources_Type").then(result=>{                
-                //console.log(result.data)
                 this.housingResources_Type=result.data;                
             })
             this.axios.get("http://127.0.0.1:3000/add/Rent_Type").then(result=>{
-                console.log(result.data,111)
                 this.Rent_Type=result.data;
                 
             })

@@ -49,6 +49,7 @@ CREATE TABLE Airbnb_House_Bed(
 CREATE TABLE Airbnb_House(
  House_id INT PRIMARY KEY AUTO_INCREMENT,
  House_City_id INT,#城市id
+ House_District_id INT,#区域id
  House_name VARCHAR(128),#房屋名
  House_User_id INT,#用户id
  House_longitude VARCHAR(64),#经度
@@ -64,7 +65,8 @@ CREATE TABLE Airbnb_House(
  House_Amenities VARCHAR(64),#设施
  House_Building VARCHAR(64),#建筑类型Airbnb_housingResources_Type
  House_detail VARCHAR(256),#详情
- House_address VARCHAR(128),#地址
+ House_address VARCHAR(128),#详细地址
+ House_number VARCHAR(128),#地址门牌号
  House_trip VARCHAR(128),#出行信息
  House_label VARCHAR(64),#标签信息
  House_imgurl VARCHAR(128)#缩略图

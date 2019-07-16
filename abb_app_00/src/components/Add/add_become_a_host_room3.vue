@@ -1,4 +1,5 @@
 <template>
+<!-- 卫生间数量 -->
     <div class="div_bg">
         <div class="div_body" >
             <div>

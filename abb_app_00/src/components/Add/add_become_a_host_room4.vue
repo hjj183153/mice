@@ -1,4 +1,5 @@
 <template>
+<!-- 地址填写 -->
     <div class="div_bg">
         <div class="div_body" >
             <div>
@@ -15,17 +16,26 @@
                         <option :value="i+1" v-for="(c,i) of city" :key="i" v-text="c.City_name"></option>
                     </select>
                 </div>
-                <div class="div_body2">
+                <div class="div_body2" v-show="cityid!=-1">
                     <p  class="select_title">市(区)</p>
-                    <select name="sasdd" id="asdsd">
-                        <option value="0">请选择</option>
-                        <!-- <option value="d.District_id" v-for="(d,i) of district" :key="i" v-text="d.District_name"></option> -->
+                    <select name="sasdd" id="asdsd" v-model="districtid" @change="district_change()">
+                        <option value="-1">请选择</option>
+                        <option :value="d.District_id" v-for="(d,i) of district" :key="i" v-text="d.District_name"></option>
                     </select>
                 </div>
-            </div>
-            
-
-        
+                <div class="div_body3">
+                    <p class="select_title">详细地址（无需再写省市）</p>
+                    <div>
+                        <input type="text" v-model="House_address" @change="addresschange" class="input_text" placeholder="例如：崂山国际花园1号楼">
+                    </div>
+                </div>
+                <div class="div_body4">
+                    <p class="select_title">门牌号（仅告知预订的房客）</p>
+                    <div>
+                        <input type="text"  v-model="House_number" @change="numberchange" class="input_text" placeholder="例如：1单元1202室">
+                    </div>
+                </div>
+            </div>                
         </div>
     </div>
 </template>
@@ -35,9 +45,12 @@ export default {
         city:{},
         district:{District_name:"",District_id:""},
         cityid:-1,
+        districtid:-1,
+        House_address:"",
+        House_number:"",
     }},
     props:{
-        Airbnb_House:{default:""}
+        Airbnb_House:{House_City_id:-1,House_District_id:-1}
     },
     created(){
         this.loadMore()
@@ -46,19 +59,31 @@ export default {
     methods:{
         loadMore(){
             this.axios.get("http://127.0.0.1:3000/add/City").then(result=>{                
-                console.log(result.data)
+                //console.log(result.data)
                 this.city=result.data;                
-            })
-                  
-            
+            })                              
         },
         district_select(n){
-            console.log(n);
+            //console.log(n);
             this.axios.get("http://127.0.0.1:3000/add/district",{params:{"id":n}}).then(result=>{                
-                console.log(result.data)
+                //console.log(result.data)
                 this.district=result.data; 
             })         
-        }
+                this.Airbnb_House.House_City_id=this.cityid;
+                //console.log(this.Airbnb_House.House_City_id)            
+        },
+        district_change(){
+                this.Airbnb_House.House_District_id=this.districtid;
+                //console.log(this.Airbnb_House.House_District_id)
+        },
+        addresschange(){
+            this.Airbnb_House.House_address=this.House_address;
+           // console.log(this.Airbnb_House.House_address)
+        },
+        numberchange(){
+            this.Airbnb_House.House_number=this.House_number;
+            //console.log(this.Airbnb_House.House_number)
+        },
     }
 }
 </script>
@@ -106,7 +131,24 @@ select{
     color:#484848;
     border:1px solid #aaa;
     border-radius:2px;
-    width:80%;
+    width:100%;
 }
-
+.input_text{
+    background: #fff5f2;
+    font-size: 18px;
+    line-height: 27px;
+    color:#484848;
+    padding: 15px;
+    width: 100%;
+    border-radius: 2px;
+    font-weight: 400;
+    font-family: Arial;
+    box-sizing: border-box;
+}
+.div_body3>div{
+    border:1px solid #f8e5df;
+}
+.div_body4>div{
+    border:1px solid #f8e5df;
+}
 </style>
