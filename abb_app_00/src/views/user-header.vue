@@ -71,7 +71,7 @@
       </el-menu-item>
       <el-menu-item index="10">
         <a href="javascript:;">
-          <img :src='user_imgurl' alt @click="user_bn" />
+          <img :src="user_imgurl" alt @click="user_bn" />
         </a>
         <el-card class="box-card" v-show="show">
           <div v-for="(elem,i) of list" :key="i" class="text item">
@@ -98,7 +98,7 @@ export default {
         { href: "javascript:;", msg: "退出" }
       ],
       show: false,
-      user_imgurl:''
+      user_imgurl: ""
     };
   },
   watch: {
@@ -122,7 +122,8 @@ export default {
     loader() {
       this.axios.get("user/").then(result => {
         if (result.data.code > 0) {
-          this.user_imgurl=`http://127.0.0.1:3000/`+result.data.data[0].user_imgurl;
+          this.user_imgurl =
+            `http://127.0.0.1:3000/` + result.data.data[0].user_imgurl;
         } else {
           this.$alert("您还没有登录,请登录!", "消息提示");
         }
