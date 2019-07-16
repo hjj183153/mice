@@ -6,6 +6,8 @@ import Index from './views/Index.vue'
 import add_become_a_host_room from './views/add_become_a_host_room.vue'
 import Story from './components/Abb/Story.vue'
 Vue.use(Router)
+import login from './views/login.vue'
+import loginzmw from './views/loginzmw.vue'
 
 export default new Router({
   routes: [
@@ -20,6 +22,8 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+    },
+    {path:'/login',component:login},
+    {path:'/loginzmw',component:loginzmw},
   ]
 })
