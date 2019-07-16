@@ -89,12 +89,12 @@ export default {
                 House_restroom:-1,
             },
             alert_show:false,
-            add_page:6,
+            add_page:0,
     }},
     methods:{
         submit(){
             console.log(this.Airbnb_House)
-            // this.add_page++;
+            this.add_page++;
         },
         alert_show_click(){
             console.log(this.alert_show)

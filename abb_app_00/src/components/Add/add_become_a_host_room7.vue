@@ -36,13 +36,9 @@ export default {
     methods:{
         House_namechange(){
             this.Airbnb_House.House_name=this.House_name;
-            console.log(this.Airbnb_House.House_name)
         },
         housenamecount(){
-
             this.namecount=50-this.House_name.length
-             console.log(this.namecount)
-
         }
     },
     // computed:{

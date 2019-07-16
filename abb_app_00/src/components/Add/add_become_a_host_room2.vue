@@ -547,7 +547,7 @@ export default {
     font-size: 19px;
 }
 .div_body7_show div:first-child{
-    width:50%;
+    width:55%;
     float: left;
 }
 .div_body7_show>div:last-child{
@@ -569,6 +569,7 @@ export default {
     line-height: 1.43;
     text-align: center;
     font-family: inherit;
+
 }
 .div_body7_blank>div{
     margin-bottom: 18px;
