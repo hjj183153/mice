@@ -16,8 +16,8 @@ CREATE TABLE Airbnb_City(
 CREATE TABLE Airbnb_House_Time(
  Time_id INT PRIMARY KEY AUTO_INCREMENT,
  Time_House_id INT,
- Time_start BIGINT,
- Time_end BIGINT
+ Time_start VARCHAR(64),
+ Time_end VARCHAR(64)
 );
 #房屋图片表
 CREATE TABLE Airbnb_House_Img(
@@ -68,7 +68,8 @@ CREATE TABLE Airbnb_House(
  House_detail VARCHAR(256),
  House_address VARCHAR(128),
  House_trip VARCHAR(128),
- House_label VARCHAR(64)
+ House_label VARCHAR(64),
+ House_imgurl VARCHAR(128)
 );
 #轮播图表
 CREATE TABLE Airbnb_Carousel(
@@ -112,7 +113,10 @@ VALUES
 '1', '1231321', '12313213', '3', '独立房间', '3000', '9折', 
 '2', '圆床', '2', '厨房,空调', '免费停车位', '精品酒店', 
 'null', 'null', 'null', 'null');
-/*INSERT INTO Airbnb_House VALUES(NULL,)*/
+
+
+#房屋时间表添加数据
+INSERT INTO `airbnb_house_time` (`Time_id`, `Time_House_id`, `Time_start`, `Time_end`) VALUES (NULL, '1', '2019-7-12', '2019-9-20'), (NULL, '2', '2019-7-12', '2019-7-20');
 
 #个人信息表 gyh
 CREATE TABLE Airbnb_user(

@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Text from './components/Abb/Text.vue'
 import aaa from './views/aaa.vue'
 import add_become_a_host_room from './views/add_become_a_host_room.vue'
+import Search from './views/search/Search.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -12,6 +13,7 @@ export default new Router({
     {path:'/aaa',component:aaa},
     {path:'/add_become_a_host_room',component:add_become_a_host_room},
     {path: '/',component: Home},
+    {path: '/Search',component: Search},
     {
       path: '/about',
       // route level code-splitting
@@ -19,5 +21,6 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     }
+    
   ]
 })
