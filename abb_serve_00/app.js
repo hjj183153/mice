@@ -10,6 +10,7 @@ const addRouter=require("./routers/add.js");
 const searchRouter=require("./routers/search.js");
 const userRouter=require("./routers/user.js");
 const storyRouter=require("./routers/story.js");
+const useRouter=require("./routers/use.js");
 //2:配置第三方模块
  //2.2:跨域
 var server = express();
@@ -44,4 +45,5 @@ server.use("/add",addRouter);
 server.use("/search",searchRouter);
 server.use("/user",userRouter);
 server.use("/story",storyRouter);
+server.use("/use",useRouter);
 

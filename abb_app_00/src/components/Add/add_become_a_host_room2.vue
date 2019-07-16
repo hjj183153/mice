@@ -546,13 +546,16 @@ export default {
 .div_body7_show p:first-child{
     font-size: 19px;
 }
-.div_body7_show div:first-child{
-    width:55%;
+.div_body7_show>div:first-child{
+    width:40%;
     float: left;
+}
+.div_body7_show>div>div:first-child{
+    float: right;
 }
 .div_body7_show>div:last-child{
     float: right;
-    width:30%;
+    width:58%;
 }
 .div_body7_show{
     margin-bottom:25px;
