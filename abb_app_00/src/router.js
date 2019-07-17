@@ -63,25 +63,16 @@ export default new Router({
     {path: '/Search',component: Search},
     {path:'/Story',component:Story},
     {path:'/Search_result',component:Search_result},   
-<<<<<<< HEAD
-    {path:'/userdata',component:userdata}, 
-=======
     {path:'/userdata',component:userdata},    
     {path:'/userguide',component:userguide},    
->>>>>>> 7e9c5ef5cf946babb242bddcf8b6a5d0bb3c9b7d
     {
       path: '/about',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-<<<<<<< HEAD
-    }
-    
-=======
     },
     {path:'/login',component:login},
     {path:'/loginzmw',component:loginzmw},
->>>>>>> 7e9c5ef5cf946babb242bddcf8b6a5d0bb3c9b7d
   ]
 })
