@@ -5,22 +5,20 @@ var router=express.Router();
 //房屋查询接口
 router.get("/",(req,res)=>{
   var condition=req.query;
+  console.log(condition);
   let {
     House_City_id,
     Time_start,
     Time_end,
+    people,
+    children,
+    baby,
+    price,
+    District_name
   } = condition;
-
-  //全连接
-  // var sql='(SELECT DISTINCT * FROM Airbnb_House LEFT JOIN Airbnb_House_Time ON House_id=Time_House_id WHERE House_City_id=? AND Time_start=? AND Time_end=?) UNIQUE (SELECT DISTINCT * FROM Airbnb_House RIGHT JOIN Airbnb_House_Time ON House_id=Time_House_id WHERE House_City_id=? AND Time_start=? AND Time_end=?)';
-
-  //in
-  // var sql='SELECT * FROM Airbnb_House WHERE House_id in ( SELECT Time_House_id FROM Airbnb_House_Time WHERE (@Time_start is null or @Time_start=?) AND (@Time_end is null or @Time_end=? ) ) AND (House_City_id is null or House_City_id=?)';
-
-  
-  console.log(House_City_id,Time_start,Time_end);
+  console.log(House_City_id,Time_start,Time_end,people,children,baby,price,District_name);
   if(!House_City_id){
-    House_City_id=1;
+    House_City_id=2;
   }
   if(!Time_start){
     let startDate=new Date('2019-7-12').toLocaleDateString();
@@ -30,11 +28,19 @@ router.get("/",(req,res)=>{
     let endDate=new Date('2999-12-31').toLocaleDateString();
     Time_end=endDate;
   }
-  console.log(House_City_id,Time_start,Time_end);
+  if(!District_name){
+    District_name='朝阳区';
+  }
+  // var sql='SELECT * FROM Airbnb_district WHERE District_name=?'
+  // pool.query(sql,[District_name],(err,result)=>{
+  //   if(err) throw err;
+  //   console.log(result[0]);
+  // });
+  //console.log(House_City_id,Time_start,Time_end);
   var sql='SELECT * FROM Airbnb_House LEFT JOIN Airbnb_House_Time ON House_id=Time_House_id WHERE House_City_id=? AND Time_start>=? AND Time_end<=?'
   pool.query(sql,[House_City_id,Time_start,Time_end],(err,result)=>{
     if(err) throw err;
-    console.log(sql);
+    //console.log(sql);
     //console.log(result);
     res.send(result);
   })

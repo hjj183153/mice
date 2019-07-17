@@ -8,6 +8,7 @@
             id="SearchBtn"
             v-on:click="change($event,0)"
             :style="active[0]?isActive:noActive"
+            ref="box"
           >日期</el-button>
           <div class="search-condition" v-show="active[0]">
             <div class="search-condition-detail">
@@ -170,7 +171,9 @@
             <div class="search-condition-detail">
               <el-tabs v-model="activeName" @tab-click="handleClick">
                 <el-tab-pane label="热点" name="first">热点</el-tab-pane>
-                <el-tab-pane label="行政区" name="second">行政区</el-tab-pane>
+                <el-tab-pane label="行政区" name="second">
+                  <div></div>
+                </el-tab-pane>
                 <el-tab-pane label="商圈" name="third">商圈</el-tab-pane>
                 <el-tab-pane label="景点" name="fourth">景点</el-tab-pane>
               </el-tabs>
@@ -298,6 +301,7 @@
 </template>
 <script>
 import SearchCard from "./Search-card.vue";
+//import BMapLib from 'BMapLib';
 export default {
   name: "Map",
   data() {
@@ -374,6 +378,25 @@ export default {
     SearchCard
   },
   methods: {
+    //访问后台接口
+    SearchAxios(){
+      var url = "http://127.0.0.1:3000/search";
+      this.axios.get(url, {
+        params: {
+          House_City_id:"",
+          Time_start: "",
+          Time_end: "",
+          people: "",
+          children:"",
+          baby:"",
+          price:[this.price[0],this.price[1]],
+          District_name:"",
+        }
+      }).then(result => {
+        console.log(result.data);
+        this.dataList = result.data;
+      });
+    },
     //加载地图模块高度
     mapHeight() {
       this.windowHeight = window.screen.availHeight;
@@ -404,7 +427,7 @@ export default {
       // var marker = new BMap.Marker(point);
       //  map.addOverlay(marker);
 
-      /*
+      
       //创建测试用经纬度
       var x = [116.404, 116.414, 116.424]; // 测试用的3个点的经度
       var y = [39.915, 39.905, 39.895]; //测试用的3个点的纬度
@@ -413,24 +436,39 @@ export default {
         map.centerAndZoom(point, 15); //设置范围
         var marker = new BMap.Marker(point); //根据点来创建点状覆盖物
         map.addOverlay(marker); //把这个覆盖物加载到地图上
-      }*/
+      }
+      var htm =
+        "<div style='background:#E7F0F5;color:#0082CB;border:1px solid #333'>" +
+        "欢迎使用百度地图！" +
+        "<img src='http://map.baidu.com/img/logo-map.gif' border='0' />" +
+        "</div>";
+      var obj1={
+        html:`<el-date-picker
+                v-model="date"
+                type="daterange"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                format="yyyy 年 MM 月 dd 日"
+                value-format="yyyy-MM-dd"
+              ></el-date-picker>123`
+      }
+      var htm=obj1.html;
 
-      var point = new BMap.Point(121.479048,31.240008);
-      map.centerAndZoom(point, 11);
-      map.enableScrollWheelZoom();
-      var htm="<div style='background:#E7F0F5;color:#0082CB;border:1px solid #333;width:145px;'>"+"上海意逗信息技术有限公司"
-      +"<img src='http://www.eadou.cn/statics/index/images/logo.png' border='0' />"
-      + "</div>";
-      var myRM= new BMapLib.RichMarker(htm, point,{"anchor" : new BMap.Size(-72, -84),"enableDragging" : true});
+      var point = new BMap.Point(116.404, 39.915);
+      var myRichMarkerObject = new BMapLib.RichMarker(htm, point, {
+        anchor: new BMap.Size(0,-20),
+        enableDragging:false
+      });
+      map.addOverlay(myRichMarkerObject);
+
       //myRM.disableDragging();//设置Marker不能拖拽 否则是enableDragging();
-      map.addOverlay(myRM);// 设置显示覆盖物标志
-
-
+      //map.addOverlay(myRM);// 设置显示覆盖物标志
 
       //点击标注
-      marker.addEventListener("click", function() {
-        console.log("您点击了标注");
-      });
+      // marker.addEventListener("click", function() {
+      //   console.log("您点击了标注");
+      // });
 
       //事件
       //点击地图事件
@@ -449,6 +487,7 @@ export default {
     change(event, index) {
       //获取点击对象
       //console.log(index);
+      console.log(event.target);
       if (this.active[index]) {
         this.active = this.active.map((item, index, arr) => {
           return false;
@@ -457,10 +496,7 @@ export default {
         this.active = this.active.map((item, index, arr) => {
           return false;
         });
-        //console.log(this.active[index],1)
-
         this.active[index] = true;
-        //console.log(this.active[index],3)
       }
 
       // if(index<=6){
@@ -509,23 +545,22 @@ export default {
     this.createMap();
   },
   created() {
-    //获取浏览器高度
-
+    //解决点击其他位置时关闭active
+    document.addEventListener('click',(e)=>{
+      console.log(e.target);
+      // if(!this.$refs.box.contains(e.target)){
+      //   this.active[0]=false;
+      // }
+      if(e.target!='button'){
+        // this.active = this.active.map((item, index, arr) => {
+        //   return false;
+        // });
+      }
+    })
+    
     //访问接口
-    document.onclick = function(e) {};
-    var url = "http://127.0.0.1:3000/search";
-    this.axios
-      .get(url, {
-        params: {
-          House_City_id: "",
-          Time_start: "",
-          Time_end: ""
-        }
-      })
-      .then(result => {
-        console.log(result.data);
-        this.dataList = result.data;
-      });
+    this.SearchAxios();
+    
   }
 };
 </script>

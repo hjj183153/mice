@@ -48,7 +48,6 @@ CREATE TABLE Airbnb_House_Bed(
 #房屋表
 CREATE TABLE Airbnb_House(
  House_id INT PRIMARY KEY AUTO_INCREMENT,
-<<<<<<< HEAD
  House_City_id INT,
  House_name VARCHAR(128),
  House_User_id INT,
@@ -71,7 +70,6 @@ CREATE TABLE Airbnb_House(
  House_imgurl VARCHAR(128)
 );
 #轮播图表
-=======
  House_City_id INT,#城市id
  House_District_id INT,#区域id
  House_name VARCHAR(128),#房屋名
@@ -98,7 +96,6 @@ CREATE TABLE Airbnb_House(
 );
 
 #轮播图表liupan
->>>>>>> 443d8958b1b1e788d86655dd5307d412167dc53e
 CREATE TABLE Airbnb_Carousel(
  Carousel_id INT PRIMARY KEY AUTO_INCREMENT,
  Carousel_imgurl VARCHAR(128)
@@ -129,7 +126,6 @@ INSERT INTO Airbnb_Rent_Type VALUES
 
 
 #airbnb_house表添加数据
-<<<<<<< HEAD
 INSERT INTO `airbnb_house` 
 (`House_id`, `House_City_id`, `House_name`, `House_User_id`, `House_longitude`, 
 `House_latitude`, `House_people_num`, `House_type`, `House_price`, 
@@ -145,7 +141,6 @@ VALUES
 
 #房屋时间表添加数据
 INSERT INTO `airbnb_house_time` (`Time_id`, `Time_House_id`, `Time_start`, `Time_end`) VALUES (NULL, '1', '2019-7-12', '2019-9-20'), (NULL, '2', '2019-7-12', '2019-7-20');
-=======
 #房屋表数据
 INSERT INTO `airbnb_house` (`House_id`, `House_City_id`, `House_name`, `House_User_id`, `House_longitude`, `House_latitude`, `House_people_num`, `House_type`, `House_price`, `House_tag`, `House_bednum`, `House_Bed`, `House_restroom`, `House_HouseAmenities`, `House_Amenities`, `House_Building`, `House_detail`, `House_address`, `House_trip`, `House_label`,`House_imgurl`) VALUES (NULL, '1', '【浪漫满屋】国贸CBD三里屯的阳光复古浪漫公寓 托斯卡纳色调 夜景超美', '1', '1231321', '12313213', '3', '独立房间', '3000', '9折', '2', '圆床', '2', '厨房,空调', '免费停车位', '精品酒店', 'null', 'null', 'null', 'null','/img-index/index1.jpg');
 INSERT INTO `airbnb_house` (`House_id`, `House_City_id`, `House_name`, `House_User_id`, `House_longitude`, `House_latitude`, `House_people_num`, `House_type`, `House_price`, `House_tag`, `House_bednum`, `House_Bed`, `House_restroom`, `House_HouseAmenities`, `House_Amenities`, `House_Building`, `House_detail`, `House_address`, `House_trip`, `House_label`,`House_imgurl`) VALUES (NULL, '1', '【浪漫满屋】国贸CBD三里屯的阳光复古浪漫公寓 托斯卡纳色调 夜景超美', '1', '1231321', '12313213', '3', '独立房间', '3000', '9折', '2', '圆床', '2', '厨房,空调', '免费停车位', '精品酒店', 'null', 'null', 'null', 'null','/img-index/index1.jpg');
@@ -169,7 +164,6 @@ INSERT INTO `airbnb_house` (`House_id`, `House_City_id`, `House_name`, `House_Us
 INSERT INTO `airbnb_house` (`House_id`, `House_City_id`, `House_name`, `House_User_id`, `House_longitude`, `House_latitude`, `House_people_num`, `House_type`, `House_price`, `House_tag`, `House_bednum`, `House_Bed`, `House_restroom`, `House_HouseAmenities`, `House_Amenities`, `House_Building`, `House_detail`, `House_address`, `House_trip`, `House_label`,`House_imgurl`) VALUES (NULL, '2', '【浪漫满屋】国贸CBD三里屯的阳光复古浪漫公寓 托斯卡纳色调 夜景超美', '1', '1231321', '12313213', '3', '独立房间', '3000', '9折', '2', '圆床', '2', '厨房,空调', '免费停车位', '精品酒店', 'null', 'null', 'null', 'null','/img-index/index2.jpg');
 
 
->>>>>>> 443d8958b1b1e788d86655dd5307d412167dc53e
 
 #个人信息表 gyh
 CREATE TABLE Airbnb_user(
