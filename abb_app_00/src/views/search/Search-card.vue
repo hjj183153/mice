@@ -1,0 +1,182 @@
+<template>
+  <div>
+    <div class="search-card _1wbi47zw">
+        <div class="search-card-img">
+            <img src="./img/7bf9c0ef-3e6a-4e74-b9b4-3653fafeb02e.jpg" alt="">
+        </div>
+        <div class="search-card-detail">
+            <div class='search-house-detail'>
+              <div class='s-h-text'>
+                <span>整套公寓</span>
+                <span>1室1.5卫1床</span>
+              </div>
+              <div class='s-h-name'>【浪漫满屋】国贸CBD三里屯的阳光复古浪漫公寓 托斯卡纳色调 夜景超美</div>
+              <div class='s-h-label-box'>
+                <span class='s-h-label'>5.0分·192条评论</span>
+                <span class='s-h-label'>超赞房东</span>
+                <span class='s-h-label'>近地铁</span>
+                <span class='s-h-label'>高性价比</span>
+                <span class='s-h-label'>自助入住</span>
+              </div>
+            </div>
+            <div class='search-house-price'>
+              <div class="_1ovgt1s0">￥645</div>
+              <div class="_6rrm590">每晚</div>
+              <div class="_6rrm590"><i class='el-icon-circle-check'></i>满七天立享9.5折</div>
+              <div class="search-user-head">
+                <img src="./img/a23a2645-fc2b-44db-bfc6-2f9cae228b56.jpg" alt="">
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class=''></div>
+  </div>
+</template>
+<script>
+export default {
+  props:{
+    House_name:'', 
+    House_Amenities:'',
+    House_Bed:'',
+    House_Building:'',
+    House_price:'',
+    House_tag:'',
+    House_type:'',
+    House_detail:'',   
+  },
+  data() {
+    return {};
+  },
+  methods:{},
+  created(){}
+};
+</script>
+<style scoped>
+._gig1e7 {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+._gig1e7 {
+  width: 100% !important;
+  height: 100% !important;
+  padding-top: 8px !important;
+  padding-bottom: 12px !important;
+}
+.search-card {
+  width:100%;
+  display:flex;
+  box-sizing: border-box;
+  margin:8px 8px 12px;
+  transition: all .5s linear;
+}
+.search-card:hover{
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.1)
+}
+._1wbi47zw {
+    position: relative !important;
+    color: #484848 !important;
+    height: 100% !important;
+    border: 1px solid #EBEBEB !important;
+    border-radius: 3px !important;
+}
+.search-card-img{
+  width:300px;
+  height:200px;
+  border-radius: 3px !important; 
+}
+.search-card-img img{
+  width:300px;
+  height:200px;
+  border-radius: 3px !important;
+}
+.search-card-detail{
+  width:585px;
+  height:200px;
+  padding:20px;
+  display: flex;
+  box-sizing: border-box;
+}
+.search-house-detail{
+  width:70%;
+  padding-right:10px;
+}
+.search-house-price{
+  width:30%;
+  border-left: 1px solid #f1f1f1;
+  box-sizing: border-box;
+  text-align: right;
+  position: relative;
+}
+.s-h-text{
+  color: #767676;
+  font-family: Circular, PingFang-SC, "Hiragino Sans GB", 微软雅黑, "Microsoft YaHei", "Heiti SC" !important;
+  font-size: 12px !important;
+  line-height: 1.33333em !important;
+  font-weight: 800 !important;
+}
+.s-h-name{
+  color: #484848 !important;
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-family: Circular, PingFang-SC, "Hiragino Sans GB", 微软雅黑, "Microsoft YaHei", "Heiti SC" !important;
+    font-size: 16px !important;
+    line-height: 1.375em !important;
+    font-weight: 800 !important;
+}
+.s-h-label-box{
+  margin-top:8px;
+}
+.s-h-label{
+    display: inline-block;
+    position: relative !important;
+    color: #484848 !important;
+    padding: 2.4px 8.8px !important;
+    border-radius: 15px !important;
+    background-color: #EAF7EA !important;
+    color: #484848 !important;
+    margin:3px !important;
+    word-wrap: break-word !important;
+    font-family: Circular, PingFang-SC, "Hiragino Sans GB", 微软雅黑, "Microsoft YaHei", "Heiti SC" !important;
+    font-size: 12px !important;
+    line-height: 1.33333em !important;
+    font-weight: 800 !important;
+}
+/* price 字体 样式 */
+._1ovgt1s0 {
+    color: #484848 !important;
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-family: Circular, PingFang-SC, "Hiragino Sans GB", 微软雅黑, "Microsoft YaHei", "Heiti SC" !important;
+    font-size: 18px !important;
+    line-height: 1.44444em !important;
+    font-weight: 800 !important;
+}
+._6rrm590 {
+    color: #484848 !important;
+    margin: 10px 0 !important;
+    word-wrap: break-word !important;
+    font-family: Circular, PingFang-SC, "Hiragino Sans GB", 微软雅黑, "Microsoft YaHei", "Heiti SC" !important;
+    font-size: 12px !important;
+    line-height: 1.33333em !important;
+    font-weight: 400 !important;
+    
+}
+.search-user-head{
+  position: absolute;
+  bottom:0;
+  right:0;
+  width:40px;
+  height:40px;
+}
+.search-user-head img{
+    width:40px;
+    height:40px;
+    background-color: #D8D8D8 !important;
+    border-radius: 50% !important;
+    border-width: 2px !important;
+    border-style: solid !important;
+    border-color: #ffffff !important;
+    overflow: hidden !important;
+    display: block !important;
+}
+</style>

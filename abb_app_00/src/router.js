@@ -16,6 +16,7 @@ import Story from './components/Abb/Story.vue'
 import Search_result from './components/Abb/Search_result.vue'
 import userdata from './views/userdata.vue'
 import userguide from './views/userguide.vue'
+import Search from './views/search/Search.vue'
 
 Vue.use(Router)
 import login from './views/login.vue'
@@ -60,6 +61,7 @@ export default new Router({
       ]
     },
     {path: '/',component: Index},
+    {path: '/Search',component: Search},
     {path:'/Story',component:Story},
     {path:'/Search_result',component:Search_result},   
     {path:'/userdata',component:userdata},    
