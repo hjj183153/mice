@@ -1,5 +1,6 @@
 <template>
 <!-- 地图地址 -->
+<!-- <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" /> -->
     <div class="div_bg">
         <div class="div_body" >
             <div>
@@ -32,7 +33,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="div_body3"></div>
+                <!-- 地图 -->
+                <div class="div_body3">
+                    <div id="container"></div>
+
+                </div>
                 <!-- 底部固定悬浮 -->
                     <div class="div_footer1" style="margin-left:-30px;">
                         <div>
@@ -55,6 +60,14 @@
         </div>
     </div>
 </template>
+<!-- <script src="https://webapi.amap.com/maps?v=1.4.15&key=27c19511702fb823ec66fcbe10e5b13f"></script> -->
+<!-- <script>
+        var map = new AMap.Map('container', {
+            resizeEnable: true, //是否监控地图容器尺寸变化
+            zoom:11, //初始化地图层级
+            center: [116.397428, 39.90923] //初始化地图中心点
+        });
+    </script> -->
 <script>
 export default {
      data(){return{
@@ -207,4 +220,8 @@ export default {
     font-weight: 600;
     color:#fff;
 }
+#container {
+          width: 100%;
+          height: 100%;
+        }
 </style>

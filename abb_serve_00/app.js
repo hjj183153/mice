@@ -1,6 +1,5 @@
 //1:引入第三方模块
 const express = require("express");
-const mysql = require("mysql");
 const cors = require("cors");
 const bodyParser=require("body-parser")
 const session = require("express-session");
@@ -35,10 +34,7 @@ server.use(bodyParser.urlencoded({
 server.listen(3000);
  
  //测试一下服务器端
-server.get("/test",(req,res)=>{
-  var uname=req.query.uname;
-  res.send({code:200,msg:uname})
-})
+
 
 server.use("/details",detailsRouter);
 server.use("/index",indexRouter);

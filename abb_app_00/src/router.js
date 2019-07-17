@@ -60,7 +60,7 @@ export default new Router({
         },
       ]
     },
-    {path: '/',component: Home},
+    {path: '/',component: Index},
     {path: '/Search',component: Search},
     {path:'/Story',component:Story},
     {path:'/Search_result',component:Search_result},   

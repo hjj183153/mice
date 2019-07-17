@@ -18,21 +18,38 @@
                 <h1 class="indextitle">夏季特惠房源</h1>
                 <p class="litletitle">低至 7 折，可叠加使用礼券</p>
                 <div class="btn-container">
-                    <button @click="changeblue(1)"  :class="{isblue:i==1}" class="my-btn">北京</button>
-                    <button @click="changeblue(2)"  :class="{isblue:i==2}" class="my-btn">上海</button>
-                    <button @click="changeblue(3)"  :class="{isblue:i==3}" class="my-btn">成都</button>
-                    <button @click="changeblue(4)"  :class="{isblue:i==4}" class="my-btn">重庆</button>
-                    <button @click="changeblue(5)"  :class="{isblue:i==5}" class="my-btn">广州</button>
-                    <button @click="changeblue(6)"  :class="{isblue:i==6}" class="my-btn">西安</button>
-                    <button @click="changeblue(7)"  :class="{isblue:i==7}" class="my-btn">南京</button>
+                    <button @click="changeblue(0)"  :class="{isblue:i==0}" class="my-btn">北京</button>
+                    <button @click="changeblue(1)"  :class="{isblue:i==1}" class="my-btn">上海</button>
+                    <button @click="changeblue(2)"  :class="{isblue:i==2}" class="my-btn">成都</button>
+                    <button @click="changeblue(3)"  :class="{isblue:i==3}" class="my-btn">重庆</button>
+                    <button @click="changeblue(4)"  :class="{isblue:i==4}" class="my-btn">广州</button>
+                    <button @click="changeblue(5)"  :class="{isblue:i==5}" class="my-btn">西安</button>
+                    <button @click="changeblue(6)"  :class="{isblue:i==6}" class="my-btn">南京</button>
                 </div>
+                <!-- 主题页图文 -->
                 <div>
-                    <!-- 主题页图文 -->
-                    <div>
-                        <a href="javascirpt:;">
-                            <img src="http://127.0.0.1:3000/img/img-index/index1.jpg" alt="">
-                        </a>
+                    <div><!--每层 弹性布局-->
+                        <div v-for="(item,key) of houselist" :key="key">每个房间内容
+                                <div>图
+                                    <a href="javascirpt:;">
+                                        <img :src="'http://127.0.0.1:3000/img'+item.House_imgurl" alt="">
+                                    </a>
+                                </div>
+                                <div>
+                                    <span>酒店房间</span><span>·</span><span>一张床</span>
+                                </div>
+                                <div>
+                                    <a href="javascirpt:;">
+
+                                    </a>
+                                </div>
+                                <div>--价格
+                                    <span><span></span></span></div>
+                                <div>五星房东</div>
+        
+                        </div> 
                     </div>
+                    
                 </div>
             </section>
 
@@ -46,12 +63,21 @@ export default {
     data(){
         return {
             Carousellist:[],
-            i:0
+            i:0,
+            houselist:[{
+                House_Bed:"",
+                House_Building:"",
+                House_imgurl:"",
+                House_name:"",
+                House_price:0,
+                House_tag:""
+            }]
             
         }
     },
     created(){
-        this.getcarouserimg()
+        this.getcarouserimg(),
+        this.changeblue(this.i)
     },
     methods: {
         getcarouserimg(){
@@ -62,6 +88,13 @@ export default {
         },
         changeblue(i){
             this.i=i;
+            var url="/index/cities";
+            var obj={i}
+            this.axios.get(url,{params:obj}).then(res=>{
+               // console.log(res.data.data[0].House_imgurl)
+                this.houselist=res.data.data
+                //console.log(22,this.houselist)
+            })
         }
     },
     
