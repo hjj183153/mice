@@ -190,7 +190,24 @@
                             </div>
                         </div>
                     </div>
-                </div>               
+                </div>    
+                <!-- 底部固定悬浮 -->
+                    <div class="div_footer1" style="margin-left:-30px;margin-top:-20px">
+                        <div>
+                            <div class="div_margin">
+                                <div style="height:0px;border:1px solid #dce0e0;width:487.2px;margin-bottom:20px;" ></div>
+                                <div>
+                                    <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 2.8em; width: 1em; display: block; fill: currentcolor;"><path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fill-rule="evenodd"></path></svg>
+                                    <div class="a_footer1"  @click="return1">返回</div>
+                                </div>
+                                <div>
+                                    <!-- <router-link :to="pageurl+?+add_page"> -->
+                                    <div class="next_btn" @click="submit">下一个</div>
+                                    <!-- </router-link> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>           
                 <!-- 空白底边 -->
                 <div style="height:20px;">
                 </div>
@@ -219,19 +236,26 @@ export default {
         }
     },
     props:{
-        Airbnb_House:{default:""},
-          add_page:{default:""}
+        //Airbnb_House:{default:""},
+        //  add_page:{default:""}
         },
      created(){
         this.loadMore1();
         
     },
     methods:{
+        submit(){          
+                this.$router.push("/add_become_a_host_room/bathrooms")    
+        },
+        return1(){
+            this.$router.push("/add_become_a_host_room/room")
+        },
         loadMore1(){
             // if(this.add_page>=1){
             //     this.Airbnb_House.House_people_num=4;
             //     this.Airbnb_House.House_bednum=1
-            // }            
+            // }          
+           // console.log(this.$route.query)  
         },
         // bedroom(){
         //     var select_bedroom=document.getElementById("select_bedroom")
@@ -275,8 +299,8 @@ export default {
                 this.peoplecount+=m;
             }   
             console.log(1);
-                this.Airbnb_House.House_people_num=this.peoplecount; 
-                console.log(Airbnb_House) ;     
+                // this.Airbnb_House.House_people_num=this.peoplecount; 
+                // console.log(Airbnb_House) ;     
         },
         btn_addbed(n){
             if(n==1){
@@ -517,7 +541,7 @@ export default {
 }
 #bed_count>span{
     display: block;
-    margin:10px auto;
+    margin:7px auto;
     font-weight: 600;
 }
 .div_body6{
@@ -546,13 +570,16 @@ export default {
 .div_body7_show p:first-child{
     font-size: 19px;
 }
-.div_body7_show div:first-child{
-    width:55%;
+.div_body7_show>div:first-child{
+    width:40%;
     float: left;
+}
+.div_body7_show>div>div:first-child{
+    float: right;
 }
 .div_body7_show>div:last-child{
     float: right;
-    width:30%;
+    width:58%;
 }
 .div_body7_show{
     margin-bottom:25px;
@@ -614,7 +641,58 @@ export default {
 }
 .count_addreduce>span{
     display: block;
-    margin:10px auto;
+    margin:7px auto;
     font-weight: 600;
+}
+.div_footer1{
+    height:102px;
+    width: 60%;
+    z-index: 100;
+    position: fixed;
+    bottom:0px;
+    background: #f8f8f8;
+}
+.div_footer1>div{
+    width: 912px;
+    height:82px;
+    box-sizing: border-box;
+    margin: 0px auto !important;
+}
+.div_footer1>div>div{
+    background: #fff;
+    width: 547.2px;
+    padding: 0px 30px 20px;
+    height:82px;
+}
+.div_footer1>div>div div:first-child{
+    float: right;
+}
+.div_footer1>div>div svg{
+    color:#008489;
+    float: left;
+    padding:13px 0; 
+}
+.a_footer1{
+    display: block;
+    float: left;
+    color:#008489;    
+    font-weight: bold;
+    padding:10px 7px;  
+}
+.a_footer1:hover{
+    text-decoration: underline;
+}
+.next_btn{
+    display: block;
+    float: right;
+    height:48px;
+    width: 96px;
+    padding: 12px 22px;
+    box-sizing: border-box;
+    background: #008489;
+    border-radius: 5%;
+    font-size: 16px;
+    font-weight: 600;
+    color:#fff;
 }
 </style>

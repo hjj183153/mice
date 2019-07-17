@@ -8,7 +8,7 @@
                 <el-input class="aaa" placeholder="任何目的地" v-model="input" clearable @change="search"></el-input>
             </div>
         <!--导航-->    
-        <el-menu :default-active="activeIndex" class="el-menu-demo floatright"  mode="horizontal" @select="handleSelect">
+        <el-menu :default-active="activeIndex" class="el-menu-demo"  mode="horizontal" @select="handleSelect">
             <el-submenu index="1" >
                 <template slot="title">人民币-￥</template>
                 <el-menu-item index="1-1">美元-$</el-menu-item>
@@ -78,9 +78,8 @@ export default {
 </script>
 <style scoped>
     #my-header{
-        min-width:1000px;
         display:flex;
-        justify-content: space-between
+        justify-content: space-between;
     }
    
    .search{
@@ -96,7 +95,6 @@ export default {
    }
    .el-menu-demo{
     background-color:transparent;
-    margin-right: -230px
    }
    .my-img{
        width: 160px;

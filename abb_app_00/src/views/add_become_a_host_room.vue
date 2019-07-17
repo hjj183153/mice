@@ -44,58 +44,32 @@
         </div>
         <!-- body -->
         <div>
-        <add_become_a_host_room1 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==0"></add_become_a_host_room1>     
-        <add_become_a_host_room2 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==1"></add_become_a_host_room2>     
-        <add_become_a_host_room3 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==2"></add_become_a_host_room3>     
-        <add_become_a_host_room4 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==3"></add_become_a_host_room4>     
-        <add_become_a_host_room5 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==4"></add_become_a_host_room5>     
-        <add_become_a_host_room6 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==5"></add_become_a_host_room6>     
-        <add_become_a_host_room7 :add_page="add_page" :Airbnb_House="Airbnb_House" v-show="add_page==6"></add_become_a_host_room7>     
+            <router-view/>
+
         </div>
-        <!-- 底部固定悬浮 -->
-        <div class="div_footer1">
-            <div>
-                <div class="div_margin">
-                    <div style="height:0px;border:1px solid #dce0e0;width:487.2px;margin:-20px 0 0;" ></div>
-                    <div>
-                        <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fill-rule="evenodd"></path></svg>
-                        <a href="" class="a_footer1">返回</a>
-                    </div>
-                    <div>
-                        <a href="#" class="next_btn" @click="submit">下一个</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
+        
     </div>
 </template>
 <script>
-//引入子组件
-import  add_become_a_host_room1 from './../components/Add/add_become_a_host_room1'
-import  add_become_a_host_room2 from './../components/Add/add_become_a_host_room2'
-import  add_become_a_host_room3 from './../components/Add/add_become_a_host_room3'
-import  add_become_a_host_room4 from './../components/Add/add_become_a_host_room4'
-import  add_become_a_host_room5 from './../components/Add/add_become_a_host_room5'
-import  add_become_a_host_room6 from './../components/Add/add_become_a_host_room6'
-import  add_become_a_host_room7 from './../components/Add/add_become_a_host_room7'
 export default {
     data(){
         return{
             Airbnb_House:{
-                House_Building:-1,
-                Rent_Type:-1,
-                House_people_num:-1,
-                House_bednum:-1,
-                House_restroom:-1,
+               House_Building:-1,
+               Rent_Type:-1,
+               House_people_num:-1,
+               House_bednum:-1,
+               House_restroom:-1,
             },
             alert_show:false,
             add_page:0,
+            pageurl:"/add_become_a_host_room/bedrooms"
     }},
-    methods:{
-        submit(){
-            console.log(this.Airbnb_House)
-            this.add_page++;
-        },
+    // created(){
+    //      this.$router.push("/room");
+    // },
+    methods:{       
         alert_show_click(){
             console.log(this.alert_show)
             this.alert_show=true;
@@ -110,14 +84,10 @@ export default {
             this.alert_show=false;           
         },        
     },
-    components:{
-        add_become_a_host_room1,
-        add_become_a_host_room2,
-        add_become_a_host_room3,
-        add_become_a_host_room4,
-        add_become_a_host_room5,
-        add_become_a_host_room6,
-        add_become_a_host_room7,
+    components:{        
+    },
+    mounted(){
+        this.$router.replace('/add_become_a_host_room')
     }
 }
 
@@ -200,12 +170,12 @@ export default {
 }
 .div_footer1>div>div{
     background: #fff;
-    width: 487.2px;
+    width: 547.2px;
     padding: 20px 30px;
     height:82px;
 }
 .div_footer1>div>div div:first-child{
-    float: left;
+    float: right;
 }
 .div_footer1>div>div svg{
     color:#008489;

@@ -91,7 +91,7 @@ CREATE TABLE Airbnb_House(
  House_number VARCHAR(128),#地址门牌号
  House_trip VARCHAR(128),#出行信息
  House_label VARCHAR(64),#标签信息
- House_imgurl VARCHAR(128)#缩略图
+ House_imgurl VARCHAR(128),#缩略图
  House_message VARCHAR(128)#房屋简短信息
 );
 
