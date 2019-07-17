@@ -18,6 +18,23 @@
                 <div class="font-title3" style="margin-top:40px;">
                     <p>好的房源标题可以增加房客的点击率，房屋名称可包含地标、位置、附近交通、房屋特色等信息。</p>
                 </div>
+                <!-- 底部固定悬浮 -->
+                    <div class="div_footer1" style="margin-left:-30px;">
+                        <div>
+                            <div class="div_margin">
+                                <div style="height:0px;border:1px solid #dce0e0;width:487.2px;margin-bottom:20px;" ></div>
+                                <div>
+                                    <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 2.8em; width: 1em; display: block; fill: currentcolor;"><path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fill-rule="evenodd"></path></svg>
+                                    <div class="a_footer1" @click="return1">返回</div>
+                                </div>
+                                <div>
+                                    <!-- <router-link :to="pageurl+?+add_page"> -->
+                                    <div class="next_btn" @click="submit">下一个</div>
+                                    <!-- </router-link> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
 
         
@@ -33,7 +50,14 @@ export default {
     props:{
         Airbnb_House:{House_name:""}
     },
-    methods:{
+    methods:{        
+         submit(){          
+            //  this.$router.push("/add_become_a_host_room/description")
+             },
+        return1(){
+                this.$router.push("/add_become_a_host_room/photos")    
+        },
+   
         House_namechange(){
             this.Airbnb_House.House_name=this.House_name;
         },
@@ -41,6 +65,7 @@ export default {
             this.namecount=50-this.House_name.length
         }
     },
+    
     // computed:{
     //     namecount(){            
     //         this.namecount=50-this.House_name.length
@@ -90,5 +115,56 @@ export default {
     box-sizing: border-box;
     color:#484848;
     font-size:100%;
+}
+.div_footer1{
+    height:102px;
+    width: 60%;
+    z-index: 100;
+    position: fixed;
+    bottom:0px;
+    background: #f8f8f8;
+}
+.div_footer1>div{
+    width: 912px;
+    height:82px;
+    box-sizing: border-box;
+    margin: 0px auto !important;
+}
+.div_footer1>div>div{
+    background: #fff;
+    width: 547.2px;
+    padding: 0px 30px 20px;
+    height:82px;
+}
+.div_footer1>div>div div:first-child{
+    float: right;
+}
+.div_footer1>div>div svg{
+    color:#008489;
+    float: left;
+    padding:13px 0; 
+}
+.a_footer1{
+    display: block;
+    float: left;
+    color:#008489;    
+    font-weight: bold;
+    padding:10px 7px;  
+}
+.a_footer1:hover{
+    text-decoration: underline;
+}
+.next_btn{
+    display: block;
+    float: right;
+    height:48px;
+    width: 96px;
+    padding: 12px 22px;
+    box-sizing: border-box;
+    background: #008489;
+    border-radius: 5%;
+    font-size: 16px;
+    font-weight: 600;
+    color:#fff;
 }
 </style>

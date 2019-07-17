@@ -54,7 +54,21 @@ router.get("/district",(req,res)=>{
     }
   })
 })
-
+//
+//上传房源图片接口
+// router.get("/Houseimg",(req,res)=>{
+//   var House_imgurl=req.query.House_imgurl;
+//   console.log(House_imgurl);
+//   var sql=`UPDATE Airbnb_House SET House_imgurl=?`;
+//   pool.query(sql,[House_imgurl],(err,result)=>{
+//     if(err){
+//       console.log(err);
+//       res.send({code:0});
+//     }else{
+//       res.send(result);
+//     }
+//   })
+// })
 
 
 
