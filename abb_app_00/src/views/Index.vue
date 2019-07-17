@@ -25,10 +25,6 @@
                     <button @click="changeblue(5)"  :class="{isblue:i==5}" class="my-btn">广州</button>
                     <button @click="changeblue(6)"  :class="{isblue:i==6}" class="my-btn">西安</button>
                     <button @click="changeblue(7)"  :class="{isblue:i==7}" class="my-btn">南京</button>
-                    <button @click="changeblue(8)"  :class="{isblue:i==8}" class="my-btn">南京</button>
-                    <button @click="changeblue(9)"  :class="{isblue:i==9}" class="my-btn">南京</button>
-                    <button @click="changeblue(10)"  :class="{isblue:i==10}" class="my-btn">南京</button>
-                    <button @click="changeblue(11)"  :class="{isblue:i==11}" class="my-btn">南京</button>
                 </div>
                 <div>
                     <!-- 主题页图文 -->
@@ -121,10 +117,11 @@ export default {
       box-sizing: border-box;
   }
   .my-btn:hover{
-      box-shadow:0 5px 10px 0px #222
+      box-shadow:0 2px 5px #888
   }
   .isblue{
-      background: #00848a
+      background: #00848a;
+      border:0;
   }
 
 </style>
