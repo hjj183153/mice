@@ -28,23 +28,23 @@
                 </div>
                 <!-- 主题页图文 -->
                 <div>
-                    <div><!--每层 弹性布局-->
-                        <div v-for="(item,key) of houselist" :key="key">每个房间内容
-                                <div>图
+                    <div class="flexbox"><!--每层 弹性布局-->
+                        <div class="box-item" v-for="(item,key) of houselist" :key="key"><!--每个房间内容--->   
+                                <div><!-- 图 -->
                                     <a href="javascirpt:;">
                                         <img :src="'http://127.0.0.1:3000/img'+item.House_imgurl" alt="">
                                     </a>
                                 </div>
                                 <div>
-                                    <span>酒店房间</span><span>·</span><span>一张床</span>
+                                    <span>{{item.House_Building}}</span> <span>·</span> <span>{{item.House_Bed}}</span>
                                 </div>
                                 <div>
                                     <a href="javascirpt:;">
-
+                                            {{item.House_name}}
                                     </a>
                                 </div>
-                                <div>--价格
-                                    <span><span></span></span></div>
+                                <div><!---价格--->
+                                    <span>{{item.House_price*item.House_tag}}</span><del>￥{{item.House_price}}</del>每晚</div>
                                 <div>五星房东</div>
         
                         </div> 
@@ -67,7 +67,7 @@ export default {
             houselist:[{
                 House_Bed:"",
                 House_Building:"",
-                House_imgurl:"",
+                House_imgurl:"/img-index/index1.jpg",
                 House_name:"",
                 House_price:0,
                 House_tag:""
@@ -84,6 +84,7 @@ export default {
             this.axios.get("/index/Carousel").then(result=>{
                 //console.log(result.data.data)
                 this.Carousellist=result.data.data
+                
             })
         },
         changeblue(i){
@@ -93,7 +94,6 @@ export default {
             this.axios.get(url,{params:obj}).then(res=>{
                // console.log(res.data.data[0].House_imgurl)
                 this.houselist=res.data.data
-                //console.log(22,this.houselist)
             })
         }
     },
@@ -122,7 +122,7 @@ export default {
      background-color: #d3dce6;
   }
   section{
-      width:900px;margin-top:100px;
+      width:1000px;margin-top:100px;
       margin:0 auto;
       overflow: hidden;
   }
@@ -156,5 +156,19 @@ export default {
       background: #00848a;
       border:0;
   }
-
+    .flexbox{
+        display: flex;
+        flex-wrap:wrap;
+        width:1000px;
+        justify-content: space-between;
+       
+    }
+    .box-item{
+        width:30%;
+       
+        margin:5px 
+    }
+    .flexbox img{
+        width:100%;border-radius: 5px;
+    }
 </style>
