@@ -172,7 +172,14 @@
               <el-tabs v-model="activeName" @tab-click="handleClick">
                 <el-tab-pane label="热点" name="first">热点</el-tab-pane>
                 <el-tab-pane label="行政区" name="second">
-                  <div></div>
+                  <div class="search-district" v-for="(item,index) of disList" :key="index">
+                    <a
+                      href="javascript:;"
+                      :data-latitude="item.District_latitude"
+                      :data-longitude="item.District_longitude"
+                      @click="SearchByArea($event)"
+                    >{{item.District_name}}</a>
+                  </div>
                 </el-tab-pane>
                 <el-tab-pane label="商圈" name="third">商圈</el-tab-pane>
                 <el-tab-pane label="景点" name="fourth">景点</el-tab-pane>
@@ -189,7 +196,7 @@
           </div>
         </div>
 
-        <div class="btn-box">
+        <!-- <div class="btn-box">
           <el-button
             plain
             id="SearchBtn"
@@ -271,7 +278,7 @@
               </span>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
     <div class="search-container">
@@ -315,6 +322,10 @@ export default {
       },
 
       windowHeight: "",
+      City_id: 2,
+      disList: "",
+      latitude:'',
+      longitude:'',
       dataList: "",
       mask: false,
       date: "",
@@ -379,23 +390,50 @@ export default {
   },
   methods: {
     //访问后台接口
-    SearchAxios(){
+    SearchAxios() {
       var url = "http://127.0.0.1:3000/search";
-      this.axios.get(url, {
-        params: {
-          House_City_id:"",
-          Time_start: "",
-          Time_end: "",
-          people: "",
-          children:"",
-          baby:"",
-          price:[this.price[0],this.price[1]],
-          District_name:"",
-        }
-      }).then(result => {
-        console.log(result.data);
-        this.dataList = result.data;
-      });
+      this.axios
+        .get(url, {
+          params: {
+            House_City_id: this.City_id,
+            Time_start: "",
+            Time_end: "",
+            people: "",
+            children: "",
+            baby: "",
+            price: [this.price[0], this.price[1]],
+            latitude:this.latitude,
+            longitude:this.longitude
+          }
+        })
+        .then(result => {
+          console.log(result.data);
+          this.dataList = result.data;
+        });
+    },
+    //获取区域
+    SearchDIS() {
+      var url = "http://127.0.0.1:3000/searchdis";
+      this.axios
+        .get(url, {
+          params: {
+            City_id: this.City_id,
+            District_name: ""
+          }
+        })
+        .then(result => {
+          console.log(result.data.data);
+          this.disList = result.data.data;
+        });
+    },
+    SearchByArea(e){
+      //区域纬度
+      console.log(e.target.dataset.latitude);
+      //区域经度
+      console.log(e.target.dataset.longitude);
+      this.latitude=e.target.dataset.latitude;
+      this.longitude=e.target.dataset.longitude;
+      this.SearchAxios();
     },
     //加载地图模块高度
     mapHeight() {
@@ -410,7 +448,7 @@ export default {
       // 创建Map实例
       var map = new BMap.Map("map");
       // 初始化地图,设置中心点坐标和地图级别
-      map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+      map.centerAndZoom(new BMap.Point(116.10, 39.93), 11);
       //添加地图类型控件
       map.addControl(
         new BMap.MapTypeControl({
@@ -427,7 +465,6 @@ export default {
       // var marker = new BMap.Marker(point);
       //  map.addOverlay(marker);
 
-      
       //创建测试用经纬度
       var x = [116.404, 116.414, 116.424]; // 测试用的3个点的经度
       var y = [39.915, 39.905, 39.895]; //测试用的3个点的纬度
@@ -442,8 +479,8 @@ export default {
         "欢迎使用百度地图！" +
         "<img src='http://map.baidu.com/img/logo-map.gif' border='0' />" +
         "</div>";
-      var obj1={
-        html:`<el-date-picker
+      var obj1 = {
+        html: `<el-date-picker
                 v-model="date"
                 type="daterange"
                 range-separator="至"
@@ -452,13 +489,13 @@ export default {
                 format="yyyy 年 MM 月 dd 日"
                 value-format="yyyy-MM-dd"
               ></el-date-picker>123`
-      }
-      var htm=obj1.html;
+      };
+      var htm = obj1.html;
 
       var point = new BMap.Point(116.404, 39.915);
       var myRichMarkerObject = new BMapLib.RichMarker(htm, point, {
-        anchor: new BMap.Size(0,-20),
-        enableDragging:false
+        anchor: new BMap.Size(0, -20),
+        enableDragging: false
       });
       map.addOverlay(myRichMarkerObject);
 
@@ -546,21 +583,21 @@ export default {
   },
   created() {
     //解决点击其他位置时关闭active
-    document.addEventListener('click',(e)=>{
+    document.addEventListener("click", e => {
       console.log(e.target);
       // if(!this.$refs.box.contains(e.target)){
       //   this.active[0]=false;
       // }
-      if(e.target!='button'){
+      if (e.target != "button") {
         // this.active = this.active.map((item, index, arr) => {
         //   return false;
         // });
       }
-    })
-    
+    });
+
     //访问接口
+    this.SearchDIS();
     this.SearchAxios();
-    
   }
 };
 </script>
@@ -698,6 +735,23 @@ span.el-checkbox__label {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+.search-district {
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  float: left;
+  margin: 5px 5px 5px;
+  box-sizing: border-box;
+  line-height: 40px;
+  /* border:1px solid #ccc;
+  border-radius: 10px; */
+}
+.search-district a {
+  color: rgb(72, 72, 72);
+}
+.search-district a:hover {
+  color: rgb(0, 132, 137);
 }
 /* .search-mask {
   position: fixed;
