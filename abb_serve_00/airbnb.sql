@@ -146,6 +146,42 @@ INSERT INTO Airbnb_user VALUES(NULL,"高圆圆","gaoyuanyuan","gaoyuanyuan@163.c
 INSERT INTO Airbnb_user VALUES(NULL,"杨幂","yangmi","yangmi@163.com",15660902592,0,'2018/1/5','2018/1/6','img/user/yangmi.jpeg');
 INSERT INTO Airbnb_user VALUES(NULL,"赵丽颖","zhaoliying","zhaoliying@163.com",15660902593,0,'2018/1/7','2018/1/8','img/user/zhaoliying.jpeg');
 INSERT INTO Airbnb_user VALUES(NULL,"郑凯","zhengkai","zhengkai@163.com",15660902594,1,'2018/1/9','2018/1/10','img/user/zhengkai.jpeg');
+INSERT INTO Airbnb_user VALUES(NULL,"无头像","wutouxiang","wutouxiang@163.com",15660902595,1,'2019/1/9','2019/1/10',NULL);
+#旅游指南表
+CREATE TABLE Airbnb_guide(
+  guide_id INT PRIMARY KEY AUTO_INCREMENT,
+  guide_country VARCHAR(64),
+  guide_imgurl VARCHAR(128)
+)
+#旅游指南数据
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_san_francisco_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_new_york_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_los_angeles_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_chicago_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_seattle_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_vancouver_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_boston_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_montreal_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_portland_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_philadelphia_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_san_diego_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_phoenix_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_d.c._carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_new_orleans_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_prague_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_budapest_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_stockholm_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_florence_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_amsterdam_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_berlin_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_rome_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_barcelona_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_copenhagen_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_melbourne_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_buenos_aires_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_london_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_sao_paulo_carousel@2x.jpg");
+INSERT INTO Airbnb_guide VALUES(NULL,"欧洲","https://z1.muscache.cn/airbnb/guidebook/v1_new_york_carousel@2x.jpg");
  #房屋图片数据
  INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('001', '1', NULL, 'https://z1.muscache.cn/im/pictures/f4043af9-eacb-47c2-b350-d6ad0e8e419b.jpg?aki_policy=large', 'https://z1.muscache.cn/im/pictures/f3e442f6-f07a-4a8e-a5c4-7b5d7495df0b.jpg?aki_policy=xx_large');
  INSERT INTO `airbnb_house_img` (`HouseImg_id`, `HouseImg_House_id`, `HouseImg_sm`, `HouseImg_md`, `HouseImg_lg`) VALUES ('002', '1', NULL, 'https://z1.muscache.cn/im/pictures/79c0a62a-72b4-4587-a556-a600ca25b0ec.jpg?aki_policy=large', NULL);

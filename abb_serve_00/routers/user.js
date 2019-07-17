@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
   }*/
   var sql =
     "SELECT user_name,user_pwd,user_email,user_phone,user_gender,user_reg_time,user_login_time,user_imgurl FROM Airbnb_user WHERE user_id=?";
-  pool.query(sql, [3], (err, result) => {
+  pool.query(sql, [1], (err, result) => {
     if (err) throw err;
     res.send({ code: 1, msg: "查询成功", data: result });
   });
@@ -30,11 +30,19 @@ router.get("/user_update", (req, res) => {
   }*/
   var sql =
     "UPDATE Airbnb_user SET user_name=?,user_email=?,user_phone=?,user_gender=? WHERE user_id=?";
-  pool.query(sql, [name, email, phone, sex, 3], (err, result) => {
+  pool.query(sql, [name, email, phone, sex, 1], (err, result) => {
     if (err) throw err;
     if (result.affectedRows > 1) {
       res.send({ code: 1, msg: "保存成功", data: result });
     }
   });
+});
+//获取旅游指南接口
+router.get("/guide",(req,res)=>{
+  var sql = "SELECT guide_id,guide_country,guide_imgurl FROM Airbnb_guide";
+  pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,msg:'查询成功',data:result});
+  })
 });
 module.exports = router;
