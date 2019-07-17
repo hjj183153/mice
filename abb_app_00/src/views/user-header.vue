@@ -93,9 +93,9 @@ export default {
         { href: "javascript:;", msg: "账号" },
         { href: "javascript:;", msg: "礼券中心" },
         { href: "javascript:;", msg: "邀请好友" },
-        { href: "javascript:;", msg: "我的旅行指南" },
+        { href: "userguide", msg: "我的旅行指南" },
         { href: "javascript:;", msg: "商务爱彼迎" },
-        { href: "javascript:;", msg: "退出" }
+        { href: "Index", msg: "退出" }
       ],
       show: false,
       user_imgurl: ""
