@@ -18,17 +18,17 @@
                 <h1 class="indextitle">夏季特惠房源</h1>
                 <p class="litletitle">低至 7 折，可叠加使用礼券</p>
                 <div class="btn-container">
-                    <button @click="changeblue(1)"  :style="{i==1?'background:blue':''}" class="my-btn">北京</button>
-                    <button @click="changeblue(2)"  :style="{i==2?(background:blue):''}" class="my-btn">上海</button>
-                    <button @click="changeblue(3)"  :style="{i==1?(background:blue):''}" class="my-btn">成都</button>
-                    <button @click="changeblue(4)"  :style="{i==1?(background:blue):''}" class="my-btn">重庆</button>
-                    <button @click="changeblue(5)"  :style="{i==1?(background:blue):''}" class="my-btn">广州</button>
-                    <button @click="changeblue(6)"  :style="{i==1?(background:blue):''}" class="my-btn">西安</button>
-                    <button @click="changeblue(7)"  :style="{i==1?(background:blue):''}" class="my-btn">南京</button>
-                    <button @click="changeblue(8)"  :style="{i==1?(background:blue):''}" class="my-btn">南京</button>
-                    <button @click="changeblue(9)"  :style="{i==1?(background:blue):''}" class="my-btn">南京</button>
-                    <button @click="changeblue(10)"  :style="{i==1?(background:blue):''}" class="my-btn">南京</button>
-                    <button @click="changeblue(11)"  :style="{i==1?(background:blue):''}" class="my-btn">南京</button>
+                    <button @click="changeblue(1)"  :class="{isblue:i==1}" class="my-btn">北京</button>
+                    <button @click="changeblue(2)"  :class="{isblue:i==2}" class="my-btn">上海</button>
+                    <button @click="changeblue(3)"  :class="{isblue:i==3}" class="my-btn">成都</button>
+                    <button @click="changeblue(4)"  :class="{isblue:i==4}" class="my-btn">重庆</button>
+                    <button @click="changeblue(5)"  :class="{isblue:i==5}" class="my-btn">广州</button>
+                    <button @click="changeblue(6)"  :class="{isblue:i==6}" class="my-btn">西安</button>
+                    <button @click="changeblue(7)"  :class="{isblue:i==7}" class="my-btn">南京</button>
+                    <button @click="changeblue(8)"  :class="{isblue:i==8}" class="my-btn">南京</button>
+                    <button @click="changeblue(9)"  :class="{isblue:i==9}" class="my-btn">南京</button>
+                    <button @click="changeblue(10)"  :class="{isblue:i==10}" class="my-btn">南京</button>
+                    <button @click="changeblue(11)"  :class="{isblue:i==11}" class="my-btn">南京</button>
                 </div>
                 <div>
                     <!-- 主题页图文 -->
@@ -51,6 +51,7 @@ export default {
         return {
             Carousellist:[],
             i:0
+            
         }
     },
     created(){
@@ -64,29 +65,18 @@ export default {
             })
         },
         changeblue(i){
-            this.isblue=i;
-
+            this.i=i;
         }
     },
     
 }
 </script>
 <style scoped>
-/* .abs{
-     position: absolute;
-    z-index:10;
-} */
+
 .position-abs{
      position: absolute; width:100%;
     z-index:10;
 }
-/* .block{
-    float: left;
-} */
-/* .clearfloat:after{
-    content: "",
-    display: inline;
-} */
     el-carousel__item h3 {
     color: #475669;
     font-size: 14px;
@@ -133,4 +123,8 @@ export default {
   .my-btn:hover{
       box-shadow:0 5px 10px 0px #222
   }
+  .isblue{
+      background: #00848a
+  }
+
 </style>
