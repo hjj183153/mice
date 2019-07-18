@@ -31,9 +31,9 @@
                     <div class="flexbox"><!--每层 弹性布局-->
                         <div class="box-item" v-for="(item,key) of houselist" :key="key"><!--每个房间内容-->   
                                 <div><!-- 图 -->
-                                    <a href="javascirpt:;">
+                                    <rounter-link to="/details">
                                         <img :src="'http://127.0.0.1:3000/img'+item.House_imgurl" alt="">
-                                    </a>
+                                    </rounter-link>
                                 </div>
                                 <div class="house-buliding">
                                     <span>{{item.House_Building}}</span> <span>·</span> <span>{{item.House_Bed}}</span>
