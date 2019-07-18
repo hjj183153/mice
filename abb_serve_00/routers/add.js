@@ -47,7 +47,7 @@ router.get("/district",(req,res)=>{
   var sql=`SELECT District_id,District_name,District_longitude,District_latitude,City_id FROM Airbnb_district WHERE City_id=?`;
   pool.query(sql,[id],(err,result)=>{
     if(err){
-      console.log(err);
+      //console.log(err);
       res.send({code:0});
     }else{
       res.send(result);
