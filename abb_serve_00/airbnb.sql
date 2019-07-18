@@ -84,6 +84,8 @@ CREATE TABLE Airbnb_House(
  House_Bed VARCHAR(128),#床类型
  House_restroom INT,#卫生间数量
  House_HouseAmenities VARCHAR(128),#便利设施
+ #添加新的字段
+ House_Aimg VARCHAR(10000), #便利设施图片
  House_Amenities VARCHAR(64),#设施
  House_Building VARCHAR(64),#建筑类型Airbnb_housingResources_Type
  House_detail VARCHAR(256),#详情
@@ -92,7 +94,10 @@ CREATE TABLE Airbnb_House(
  House_trip VARCHAR(128),#出行信息
  House_label VARCHAR(64),#标签信息
  House_imgurl VARCHAR(128),#缩略图
- House_message VARCHAR(128)#房屋简短信息
+ #添加新的字段
+ House_message VARCHAR(128),#房屋规则信息标题
+ House_rool VARCHAR(256) #房屋规则信息内容
+
 );
 
 #轮播图表liupan
@@ -197,23 +202,45 @@ CREATE TABLE Airbnb_story(
   user_name VARCHAR(30),
   user_img VARCHAR(200),#用户头像
   md_img VARCHAR(200),
+  story_family VARCHAR(20),
   city VARCHAR(50),
   give_like INT,/*--点赞*/
   give_comment INT,/*--评论*/
-  detail_top_title VARCHAR(1000),#故事集中图片中的标题
-  detail_title VARCHAR(1000),/*--文章简介标题,也是详情页的标题*/
-  detail_intr VARCHAR(10000)/*--文章简介正文*/
+  detail_title VARCHAR(1000)/*--文章简介标题,也是详情页的标题*/
 );
-INSERT INTO Airbnb_story VALUES(NULL,1,1,"Kiki","img/story/user_img_1.jpg","img/story/bg_img1_1.jpg","北京",0,0,"走进三里屯东三街的Róng Bar，一派复古的装饰。坐在舒适的露台点一杯「青梅煮酒」，论英雄何人，适合向往度假、寻求惬意的你！","将海鲜做到极致的大叔居酒屋","酒肴一瓢，主打日式海鲜料理，素净的木招牌在霄云路美食后街上众多日料店之中并不显眼。北京大叔的真性情酒肴一瓢的老板是位北京大叔，浑身透着北京人的健谈，今天最新鲜的海产是什么，值得一试的是什么，自进门起老板就热络招呼。对待食物老板又有着近乎严苛的匠人精神，每天只挑最新鲜的海产，严格把控上菜时间和顺序，在细节上绝不马虎。日式海鲜的一万种可能性,在酒肴一瓢，除了当日最新鲜的鱼生刺身，酒蒸、串烧、火锅，海产的可能性多到超乎想象。活章鱼七味烧，新鲜活章鱼去皮剔筋，客人自行在炭炉上烤制，边烤边吃，保证最新鲜的口感。活牡蛎炮烙，手掌大的牡蛎撒盐烤制，新鲜的牡蛎肉质厚实，入口微甜，对贝类无感的我都被征服了。滑蛋青蛤，不太常见的做法，鸡蛋将蛤蜊的鲜味提升了一个层次。老板总说自己的餐厅无非是一间大叔店罢了，登不上台面。在我看来，抱有如此热情和心思对待料理，才是食客们的宝藏之地。地址：朝阳区霄云路15号霄云美食街后街24门");
-INSERT INTO Airbnb_story VALUES(NULL,1,2,"Yummy","img/story/user_img_2.jpg","img/story/bg_img1_2.jpg","花莲",0,0,"走进亮马桥附近的Bar Ichikura，这里是日式的清吧。安静的氛围、安静的点一杯威士忌，适合既害怕寂寞又害怕热闹的你！","超级赞的民宿","台湾之旅结束快一年了 都没给暖心的房东评价 失职啊～房东姐姐跟公公婆婆打理的名宿 家很大还有一个巨大的院子 很漂亮 巨感觉 也很干净 依旧记得早上阳台望出去的美景和家里好多条狗狗 学建筑的同事也对房东姐姐的这家10多年的民宿赞叹不已 早上还有房东姐姐跟婆婆准备的暖心早餐 超级丰盛 一家人都很好说话 家里因为公公婆婆喜欢唱歌有成套的设备 超级赞～感谢姐姐当年帮我提箱子到楼上 小小的力气超大～有机会一定还要来打扰❤️ miss u 祝一切安好");
-INSERT INTO Airbnb_story VALUES(NULL,2,3,"Shujing","img/story/user_img_3.jpg","img/story/bg_img1_3.jpg","大阪",0,0,"走进亮马河岸Arrow Factory brewing Pub，拥挤的露台、热烈的House音乐、纯正的英式精酿，适合有着英伦情结、有点优雅也有点放肆的你！","高级版的庶民小吃“炸串”，会有不凡的惊喜","提起大阪小吃，我们第一个想到的是章鱼小丸子，但另一样代表性的庶民小吃却鲜有人提及，那就是“串かつ”，可译作炸串。同样是炸，跟天妇罗有什么区别呢？简单来说，天妇罗在日本属于舶来品归化后的和食；炸串则是如假包换的洋食，战后物资匮乏的年代，人们将食材边角料串在签子上，裹一层小麦粉或面包屑后油炸蘸调料吃。出于卫生考虑，炸串店都有个不成文的规矩，“酱料只能蘸一次”。大阪新世界是炸串发源地，随处可见100日元一串的小店。但高级炸串店也不是没有，甚至获得米其林一星的评价。这家餐厅叫“凡”，位于北新地一栋不起眼大厦的地下室。吧台中央是闪亮的大铜炉，一身专业料理人打扮的主厨半隐在铜炉后忙碌。不像法餐或怀石，炸串几乎没有摆盘可言，只是形状上略有变化，无非从圆形变成正方形、长方形而已。好处是就算知道大概食材，咬下去也还是会有惊喜，比如海鳗紫苏、莲藕牛肉末、芝士洋葱圈，外表都是清一色黄茸茸的样子。主厨通常会推荐最优吃法，群马葱适合直接吃，伊勢虾可以挤上柠檬蘸盐、丹波毛豆蘸黄芥末风味更佳。吃到一半才发现有个小心机，其实主厨上菜时把串签对准哪里，意思就是蘸哪种调料。高热量的油炸食品永远是释放压力的绝佳伴侣，冰啤酒一杯接一杯来，炸串用天妇罗无法实现的神秘感告诉食客，不要小看普普通通却可以天马行空的“油炸食品”噢！串かつ　凡地址：大阪府大阪市北区堂島1-3-16 堂島メリーセンタービル B1F营业时间：18:00~24:00人均：15000日元");
-INSERT INTO Airbnb_story VALUES(NULL,1,4,"Ling","img/story/user_img_4.jpg","img/story/bg_img1_4.jpg","胡志明市",0,0,"走进三里屯的MOKIHI NO.3，粗旷的古董家具打造了一个美式的空间。乡村音乐和多元的酒单，让人放松又随意，适合朋友相聚，也适合周末一个人的你！","居民楼里的“少女心”","这是隐藏在一栋居民楼里，整个结构跟香港有点相似。会觉得旧旧的, 但打开门的一瞬间，你会发现真的很少女。有种野兽的内心藏着颗少女心。绿色的窗、绿色沙发、绿色床垫、绿色的纱。（绿偏马卡龙的绿 ）有两张床位，靠一个楼梯斜街，上下铺。非常适合闺蜜入住。整个房间格局虽小，但利用的恰到好处。合理利用了整体空间。床位较大要属下铺，房东的心思也很细腻，用床帐营造一种烂漫感，加上小灯泡的闪闪灯光，完全抓住少女心的我。厨房跟床位隔着一块板，厨房的装扮则是各种不同花色的瓷砖拼接。 陈列台上该有的厨具一一不少。细看很多设备都是纯手工的，柜子、沙发、台面都是用几块木板拼接打钉，再统一刷漆。看着挺简单，倒是也想自己学学折腾下。房源地理位置也很不错，楼下就是范五老街，酒吧一条街。重点，隔音效果非常的好。一点都听不到楼下的动次打次。每天都能美美睡上一觉！");
+INSERT INTO `airbnb_story` (`stid`, `family_id`, `user_id`, `user_name`, `user_img`, `md_img`, `story_family`, `city`, `give_like`, `give_comment`, `detail_title`) VALUES
+(1, 1, 1, 'Kiki', 'img/story/user_img_1.jpg', 'img/story/bg_img1_1.jpg', '美食', '大阪', 13, 24, '将海鲜做到极致的大叔居酒屋'),
+(2, 1, 2, 'Yummy', 'img/story/user_img_2.jpg', 'img/story/bg_img1_2.jpg', '景点', '花莲', 16, 33, '超级赞的民宿'),
+(3, 2, 3, 'Shujing', 'img/story/user_img_3.jpg', 'img/story/bg_img1_3.jpg', '美食', '大阪', 24, 11, '高级版的庶民小吃“炸串”，会有不凡的惊喜'),
+(4, 1, 4, 'Ling', 'img/story/user_img_4.jpg', 'img/story/bg_img1_4.jpg', '房源', '胡志明市', 32, 18, '居民楼里的“少女心”'),
+(5, 2, 5,'Kank','img/story/user_img_5.jpg', 'img/story/bg_img1_5.jpg', '景点', '舟山', 17, 13, '舟山东极 - 两条路线环岛庙子湖'),
+(6, 2, 6,'Reyna','img/story/user_img_6.jpg', 'img/story/bg_img1_6.jpg', '房源', '重庆', 188, 12, '在重庆的半山腰发现了陶渊明式的“桃花源记”'),
+(7,2, 7,'Veronica','img/story/user_img_7.jpg', 'img/story/bg_img1_7.jpg', '景点', '厦门', 5, 2, '帝都赏花二十四景，长春园的荷花池'),
+(8,2, 8,'Polly330','img/story/user_img_8.jpg', 'img/story/bg_img1_8.jpg', '店铺', '上海', 28, 7, '给仙女食用的迷你汉堡'),
+(9,2, 9,'Reyna','img/story/user_img_9.jpg', 'img/story/bg_img1_9.jpg', '店铺', '上海', 18, 2, '好看哭了…这间Fresh的快闪店到底是什么神仙颜值啊‼️'),
+(10,2, 10,'Polly170','img/story/user_img_10.jpg', 'img/story/bg_img1_10.jpg', '美食', '清迈', 17, 0, '清迈清迈探店 | 慵懒的小城慵懒的下午茶'),
+(11,2, 11,'吃橙子的helan63','img/story/user_img_11.jpg', 'img/story/bg_img1_11.jpg', '文化', '深圳', 26, 8, '看展OOTD | 来深圳必打卡的何香凝美术馆'),
+(12,2, 12,'Polly182','img/story/user_img_12.jpg', 'img/story/bg_img1_12.jpg', '美食', '厦门', 34, 9, '百吃不腻的Pizza Express甜品更出彩'),
+(13,2, 13,'Polly114','img/story/user_img_13.jpg', 'img/story/bg_img1_13.jpg', '房源', '北京', 83, 10, '在北京，做个懂生活的朝阳群众'),
+(14,2, 14,'Polly115','img/story/user_img_14.jpg', 'img/story/bg_img1_14.jpg', '房源', '北京', 34, 6, '和屋主日夜时差 还是错不开最后的惊喜'),
+(15,2, 15,'Polly116','img/story/user_img_15.jpg', 'img/story/bg_img1_15.jpg', '房源', '北京', 52, 41, '北京在景山，住进画室里'),
+(16,2, 16,'Polly117','img/story/user_img_16.jpg', 'img/story/bg_img1_16.jpg', '房源', '北京', 34, 20, '和好朋友们的满意度假'),
+(17,2, 17,'Siming628','img/story/user_img_17.jpg', 'img/story/bg_img1_17.jpg', '美食', '北京', 63, 33, '跌落在旧时光，民国风的咖啡馆'),
+(18,2, 18,'Siming638','img/story/user_img_18.jpg', 'img/story/bg_img1_18.jpg', '美食', '北京', 45, 13, '莎士比亚出没的卫生间，汽修厂里的咖啡馆'),
+(19,2, 19,'Siming648','img/story/user_img_19.jpg', 'img/story/bg_img1_19.jpg', '美食', '北京', 35, 65, '终于来到百闻不如一见的Cafe Clark'),
+(20,2, 20,'Siming658','img/story/user_img_20.jpg', 'img/story/bg_img1_20.jpg', '美食', '北京', 255, 144, '把元素周期表喝到肚子里——精确到0.1g的咖啡馆'),
+(21,2, 21,'茄子10911','img/story/user_img_21.jpg', 'img/story/bg_img1_21.jpg', '文化', '北京', 109, 11, '这个展让你拍的照片在朋友圈C位出道'),
+(22,2, 22,'茄子10912','img/story/user_img_22.jpg', 'img/story/bg_img1_22.jpg', '文化', '北京', 139, 41, '与Paul Smith回看过往'),
+(23,2, 23,'茄子10913','img/story/user_img_23.jpg', 'img/story/bg_img1_23.jpg', '文化', '北京', 75, 62, '红遍ins的粉红墙和设计鬼才的“脑洞”都来北京了'),
+(24,2, 24,'茄子10914','img/story/user_img_24.jpg', 'img/story/bg_img1_24.jpg', '文化', '北京', 234, 51, '智珠寺有JamesTurrell在中国的第一件艺术');
+
 #精选故事种类
 CREATE TABLE Airbnb_story_family(
   fid INT PRIMARY KEY AUTO_INCREMENT,
-  family_name VARCHAR(30)
+  family_name VARCHAR(30),
+  story_num INT
 );
-INSERT INTO Airbnb_story_family VALUES(1,"房源"),(2,"景点"),(3,"美食"),(4,"文化"),(5,"活动"),(6,"店铺");
+INSERT INTO Airbnb_story_family VALUES(1,"房源",126),(2,"景点",161),(3,"美食",198),(4,"文化",24),(5,"活动",39),(6,"店铺",51);
 #精选故事详情图片
 CREATE TABLE Airbnb_story_pic(
   pid INT PRIMARY KEY AUTO_INCREMENT,

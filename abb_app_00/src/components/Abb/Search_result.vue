@@ -1,12 +1,16 @@
 <template>
   <div>
+    <div>
+      <my-header></my-header>
+    </div>
     <div class="data_main">
       <div class="result_title">
         <div class="result_left">
-          <div>北京</div>
+          <!-- 搜索结果城市名 -->
+          <div>{{state}}</div>
           <div>搜索结果</div>
         </div>
-        <div class="return_btn">返回故事</div>
+        <div class="return_btn" @click="return_story">返回故事</div>
       </div>
       <div style="margin:32px 0;">
         <div class="common_title">
@@ -19,8 +23,8 @@
                 <li id="carousel_first_li">
                   <div class="carousel_img"></div>
                   <div class="carousel_text">
-                    <div>景点</div>
-                    <div>158</div>
+                    <div>美食</div>
+                    <div>198</div>
                   </div>
                 </li>
                 <li>
@@ -33,29 +37,29 @@
                 <li>
                   <div class="carousel_img"></div>
                   <div class="carousel_text">
-                    <div>景点</div>
-                    <div>158</div>
+                    <div>房源</div>
+                    <div>126</div>
                   </div>
                 </li>
                 <li>
                   <div class="carousel_img"></div>
                   <div class="carousel_text">
-                    <div>景点</div>
-                    <div>158</div>
+                    <div>店铺</div>
+                    <div>51</div>
                   </div>
                 </li>
                 <li>
                   <div class="carousel_img"></div>
                   <div class="carousel_text">
-                    <div>景点</div>
-                    <div>158</div>
+                    <div>活动</div>
+                    <div>39</div>
                   </div>
                 </li>
                 <li>
                   <div class="carousel_img"></div>
                   <div class="carousel_text">
-                    <div>景点</div>
-                    <div>158</div>
+                    <div>文化</div>
+                    <div>24</div>
                   </div>
                 </li>
               </ul>
@@ -69,134 +73,173 @@
           </div>
         </div>
         <div class="common_title">
+          <div class="story_class">
+            住.有趣房东
+          </div>
+          <div class="careful_story">
+            <!-- 每一行4个 -->
+            <div style="margin-top:32px;">
+              <ul class="careful_story_list">
+                <li v-for="(item,m) of list_msg_live" :key="m">
+                  <a href="javascript:;">
+                    <div class="careful_story_top" :style="careStoryList(item,m)">
+                      <div>活动</div>
+                      <!-- 点赞 -->
+                      <div class="story_top_zan"></div>
+                    </div>
+                    <div class="careful_story_detail">
+                      <span>{{state}}</span>
+                      <span>{{item.detail_title}}</span>
+                    </div>
+                    <div class="careful_story_user">
+                      <!-- 头像 -->
+                      <div class="story_user_img">
+                        <img :src="'http://127.0.0.1:3000/'+item.user_img" alt="">
+                      </div>
+                      <!-- <div class="story_user_num"> -->
+                        <!-- 点赞 -->
+                        <div class="story_user_zan"></div>
+                        <!-- 数量 -->
+                        <div class="story_user_zan_number">{{item.give_like}}</div>
+                        <!-- 评论 -->
+                        <div class="story_user_com" id="story_user_com"></div>
+                        <!-- 数量 -->
+                        <div class="story_user_com_number">{{item.give_comment}}</div>
+                      <!-- </div> -->
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="common_title">
+          <div class="story_class">
+            食.咖啡店
+          </div>
+          <div class="careful_story">
+            <!-- 每一行4个 -->
+            <div style="margin-top:32px;">
+              <ul class="careful_story_list">
+                <li v-for="(item,m) of list_msg_food" :key="m">
+                  <a href="javascript:;">
+                    <div class="careful_story_top" :style="careStoryList(item,m)">
+                      <div>活动</div>
+                      <!-- 点赞 -->
+                      <div class="story_top_zan"></div>
+                    </div>
+                    <div class="careful_story_detail">
+                      <span>{{state}}</span>
+                      <span>{{item.detail_title}}</span>
+                    </div>
+                    <div class="careful_story_user">
+                      <!-- 头像 -->
+                      <div class="story_user_img">
+                        <img :src="'http://127.0.0.1:3000/'+item.user_img" alt="">
+                      </div>
+                      <!-- <div class="story_user_num"> -->
+                        <!-- 点赞 -->
+                        <div class="story_user_zan"></div>
+                        <!-- 数量 -->
+                        <div class="story_user_zan_number">{{item.give_like}}</div>
+                        <!-- 评论 -->
+                        <div class="story_user_com" id="story_user_com"></div>
+                        <!-- 数量 -->
+                        <div class="story_user_com_number">{{item.give_comment}}</div>
+                      <!-- </div> -->
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="common_title">
+          <div class="story_class">
+            玩.展览
+          </div>
+          <div class="careful_story">
+            <!-- 每一行4个 -->
+            <div style="margin-top:32px;">
+              <ul class="careful_story_list">
+                <li v-for="(item,m) of list_msg_active" :key="m">
+                  <a href="javascript:;">
+                    <div class="careful_story_top" :style="careStoryList(item,m)">
+                      <div>活动</div>
+                      <!-- 点赞 -->
+                      <div class="story_top_zan"></div>
+                    </div>
+                    <div class="careful_story_detail">
+                      <span>{{state}}</span>
+                      <span>{{item.detail_title}}</span>
+                    </div>
+                    <div class="careful_story_user">
+                      <!-- 头像 -->
+                      <div class="story_user_img">
+                        <img :src="'http://127.0.0.1:3000/'+item.user_img" alt="">
+                      </div>
+                      <!-- <div class="story_user_num"> -->
+                        <!-- 点赞 -->
+                        <div class="story_user_zan"></div>
+                        <!-- 数量 -->
+                        <div class="story_user_zan_number">{{item.give_like}}</div>
+                        <!-- 评论 -->
+                        <div class="story_user_com" id="story_user_com"></div>
+                        <!-- 数量 -->
+                        <div class="story_user_com_number">{{item.give_comment}}</div>
+                      <!-- </div> -->
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="common_title">
             <div class="story_class">
-              住.有趣房东
+              全部故事
             </div>
             <div class="careful_story">
-                <!-- 每一行4个 -->
-                <div style="margin-top:32px;">
-                  <ul class="careful_story_list">
-                    <li>
-                      <a href="javascript:;">
-                        <div class="careful_story_top">
-                          <div>活动</div>
-                          <!-- 点赞 -->
-                          <div class="story_top_zan"></div>
-                        </div>
-                        <div class="careful_story_detail">
-                          <span>巴厘岛</span>
-                          <span>旅行的意义，是一顿可以吃到中午的早餐。</span>
-                        </div>
-                        <div class="careful_story_user">
-                          <!-- 头像 -->
-                          <div class="story_user_img">
-                            <img src="../../../../abb_serve_00/public/img/story/user_img_1.jpg" alt="">
-                          </div>
-                          <!-- <div class="story_user_num"> -->
-                            <!-- 点赞 -->
-                            <div class="story_user_zan"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_zan_number">13</div>
-                            <!-- 评论 -->
-                            <div class="story_user_com" id="story_user_com"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_com_number">1</div>
-                          <!-- </div> -->
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:;">
-                        <div class="careful_story_top">
-                          <div>活动</div>
-                          <!-- 点赞 -->
-                          <div class="story_top_zan"></div>
-                        </div>
-                        <div class="careful_story_detail">
-                          <span>巴厘岛</span>
-                          <span>旅行的意义，是一顿可以吃到中午的早餐。</span>
-                        </div>
-                        <div class="careful_story_user">
-                          <!-- 头像 -->
-                          <div class="story_user_img">
-                            <img src="../../../../abb_serve_00/public/img/story/user_img_1.jpg" alt="">
-                          </div>
-                          <!-- <div class="story_user_num"> -->
-                            <!-- 点赞 -->
-                            <div class="story_user_zan"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_zan_number">13</div>
-                            <!-- 评论 -->
-                            <div class="story_user_com" id="story_user_com"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_com_number">1</div>
-                          <!-- </div> -->
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:;">
-                        <div class="careful_story_top">
-                          <div>活动</div>
-                          <!-- 点赞 -->
-                          <div class="story_top_zan"></div>
-                        </div>
-                        <div class="careful_story_detail">
-                          <span>巴厘岛</span>
-                          <span>旅行的意义，是一顿可以吃到中午的早餐。</span>
-                        </div>
-                        <div class="careful_story_user">
-                          <!-- 头像 -->
-                          <div class="story_user_img">
-                            <img src="../../../../abb_serve_00/public/img/story/user_img_1.jpg" alt="">
-                          </div>
-                          <!-- <div class="story_user_num"> -->
-                            <!-- 点赞 -->
-                            <div class="story_user_zan"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_zan_number">13</div>
-                            <!-- 评论 -->
-                            <div class="story_user_com" id="story_user_com"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_com_number">1</div>
-                          <!-- </div> -->
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:;">
-                        <div class="careful_story_top">
-                          <div>活动</div>
-                          <!-- 点赞 -->
-                          <div class="story_top_zan"></div>
-                        </div>
-                        <div class="careful_story_detail">
-                          <span>巴厘岛</span>
-                          <span>旅行的意义，是一顿可以吃到中午的早餐。</span>
-                        </div>
-                        <div class="careful_story_user">
-                          <!-- 头像 -->
-                          <div class="story_user_img">
-                            <img src="../../../../abb_serve_00/public/img/story/user_img_1.jpg" alt="">
-                          </div>
-                          <!-- <div class="story_user_num"> -->
-                            <!-- 点赞 -->
-                            <div class="story_user_zan"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_zan_number">13</div>
-                            <!-- 评论 -->
-                            <div class="story_user_com" id="story_user_com"></div>
-                            <!-- 数量 -->
-                            <div class="story_user_com_number">1</div>
-                          <!-- </div> -->
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <!-- 每一行4个 -->
+            <div style="margin-top:32px;">
+              <ul class="careful_story_list">
+                <li v-for="(item,m) of list_msg" :key="m">
+                  <a href="javascript:;">
+                    <div class="careful_story_top" :style="careStoryList(item,m)">
+                      <div>活动</div>
+                      <!-- 点赞 -->
+                      <div class="story_top_zan"></div>
+                    </div>
+                    <div class="careful_story_detail">
+                      <span>{{state}}</span>
+                      <span>{{item.detail_title}}</span>
+                    </div>
+                    <div class="careful_story_user">
+                      <!-- 头像 -->
+                      <div class="story_user_img">
+                        <img :src="'http://127.0.0.1:3000/'+item.user_img" alt="">
+                      </div>
+                      <!-- <div class="story_user_num"> -->
+                        <!-- 点赞 -->
+                        <div class="story_user_zan"></div>
+                        <!-- 数量 -->
+                        <div class="story_user_zan_number">{{item.give_like}}</div>
+                        <!-- 评论 -->
+                        <div class="story_user_com" id="story_user_com"></div>
+                        <!-- 数量 -->
+                        <div class="story_user_com_number">{{item.give_comment}}</div>
+                      <!-- </div> -->
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+    <div>
+      <my-footer></my-footer>
     </div>
   </div>
 </template>
@@ -206,32 +249,23 @@ export default {
     return{
       clickRightTime:0, //记录点击次数
       clickLeftTime:0,
-      i:0,
-      liWidth:256,
-      liCount:6,
-      class_carousel_ul:"",
+      state:"",
+      list_msg:[],
+      list_msg_live:[],
+      list_msg_food:[],
+      list_msg_active:[]
     }
   },
   methods: {
-    /*
-    btn_right(){
-      console.log("right");
-      move(1);
-      
+    //获取图片
+    careStoryList(item,i){
+      return "backgroundImage:"+"url(http://127.0.0.1:3000/"+item.md_img+")"
     },
-    btn_left(){
-      move(-1);
-      console.log("left");
-    }
-    */
-    //this.class_carousel_ul=document.getElementsByClassName("class_carousel_ul")[0];
     btn_right(){
       var btn_left_a=document.getElementsByClassName("btn_left")[0];
       this.clickRightTime++;
-      
-      console.log(this.clickRightTime);
+      //console.log(this.clickRightTime);
       var class_carousel_ul=document.getElementsByClassName("class_carousel_ul")[0];
-      console.log(class_carousel_ul);
       if(this.clickRightTime==1){
         //右按钮显示
         btn_left_a.style.display="block";
@@ -244,10 +278,7 @@ export default {
         var btnRight=document.getElementsByClassName("btn_right")[0];
         btnRight.style.display="none";
         this.clickRightTime-=2;
-      }
-      
-      console.log(this.clickRightTime);
-      
+      }   
     },
     btn_left(){
       var btn_right_a=document.getElementsByClassName("btn_right")[0];
@@ -256,16 +287,13 @@ export default {
       var class_carousel_ul=document.getElementsByClassName("class_carousel_ul")[0];
       if(this.clickLeftTime>=-2){
         class_carousel_ul.style.marginLeft=`${(-256*parseInt(this.clickLeftTime)-512)}px`
-
       }
       if(this.clickLeftTime==-1){
         //右按钮显示
         btn_right_a.style.display="block";
       }
       //获取当前元素的margin-left
-      //var marginL=class_carousel_ul.getAttribute("margin-left");
       var marginL=class_carousel_ul.style.marginLeft;//点击一次256px
-      //class_carousel_ul.style.marginLeft="-512px"
       console.log(marginL);
       // 点击两次，左按钮隐藏
       if(this.clickLeftTime==-2){
@@ -274,44 +302,50 @@ export default {
         this.clickLeftTime=0;
         console.log(this.clickLeftTime);
       }
+    },
+    return_story(){
+      //点击返回story.vue
+      this.$router.push("/story");
     }
-
   },
   created(){
-    /*
-    function moveTo(to){
-      console.log("moveTo1");
-      var class_carousel_ul=document.getElementsByClassName("class_carousel_ul")[0];
-      if(i==0){
-        if(to>i){
-          class_carousel_ul.className="transition"
-        }else{
-          class_carousel_ul.className="";
-          class_carousel_ul.style.marginLeft=-liWidth*liCount+"px";
-          setTimeout(function(){
-            moveTo(liCount-1);
-          },100);
-          return;
+    var city1 = this.$route.query.city;
+    console.log(city1);
+    this.state=city1;
+    var url="/story/search_result";
+      var obj={city:this.state};
+      this.axios.get(url,{params:obj}).then(result=>{
+        console.log(22222,result.data.data);
+        var res_msg=result.data.data;
+        //当前城市变量绑定查询到的城市
+        //this.state=result.data.data.city;
+        this.list_msg=res_msg;
+        //1.住 list_msg_live
+        for(var index1=0;index1<res_msg.length;index1++){
+          if(this.list_msg[index1].story_family=="房源"){
+            this.list_msg_live.push(res_msg[index1]);
+          }
         }
-      }
-      i=to;
-      class_carousel_ul.style.marginLeft=-i*liWidth+"px";
-      if(i==liCount){
-        i=0;
-        setTimeout(function(){
-          class_carousel_ul.className="";
-          class_carousel_ul.style.marginLeft=0;
-        },3000)
-      }
+        //2.美食 list_msg_food
+        //查询获取的数据中story_family为美食d的数据，push到list_msg_food数组中
+        for(var index2=0;index2<res_msg.length;index2++){
+          if(this.list_msg[index2].story_family=="美食"){
+            this.list_msg_food.push(res_msg[index2]);
+          }
+        }
+        console.log(this.list_msg_food);
+        //3.玩.展览 活动 list_msg_active
+        for(var index3=0;index3<res_msg.length;index3++){
+          if(this.list_msg[index3].story_family=="文化"){
+            this.list_msg_active.push(res_msg[index3]);
+          }
+        }
+        console.log(res_msg);
+      })
     }
-    function move(n){
-      moveTo(i+n);
-      console.log("move2");
-    }*/
-  }
 }
 </script>
-<style>
+<style scoped>
 #btn_left_1{
   display:none;
 }
@@ -415,13 +449,30 @@ ul.class_carousel_ul>li{
 .class_carousel_ul .carousel_img{
   width:96px;
   height:72px;
-  background-image:url(../../../../abb_serve_00/public/img/story/story_search_list_1.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
   top:0;
   left:0px;
+}
+.class_carousel_ul li:first-child>.carousel_img{
+  background-image:url(http://127.0.0.1:3000/img/story/story_search_list_1.jpg);
+}
+.class_carousel_ul li:nth-child(2)>.carousel_img{
+  background-image:url(http://127.0.0.1:3000/img/story/story_search_list_2.jpg);
+}
+.class_carousel_ul li:nth-child(3)>.carousel_img{
+  background-image:url(http://127.0.0.1:3000/img/story/story_search_list_3.jpg);
+}
+.class_carousel_ul li:nth-child(4)>.carousel_img{
+  background-image:url(http://127.0.0.1:3000/img/story/story_search_list_4.jpg);
+}
+.class_carousel_ul li:nth-child(5)>.carousel_img{
+  background-image:url(http://127.0.0.1:3000/img/story/story_search_list_5.jpg);
+}
+.class_carousel_ul li:nth-child(6)>.carousel_img{
+  background-image:url(http://127.0.0.1:3000/img/story/story_search_list_6.jpg);
 }
 .class_carousel_ul .carousel_text{
   position: absolute;
@@ -463,15 +514,17 @@ ul.class_carousel_ul>li{
 ul.careful_story_list{
   display:flex;
   justify-content: space-between;
+  flex-wrap:wrap;
 }
 ul.careful_story_list>li{
   width:242px;
   position: relative;
+  margin-bottom:16px;
 }
 ul.careful_story_list>li .careful_story_top{
   width:242px;
   height: 242px;
-  background-image:url("http://127.0.0.1:3000/img/story/bg_img1_1.jpg");
+  /* background-image:url("http://127.0.0.1:3000/img/story/bg_img1_1.jpg"); */
   background-position: center center;
   background-size: cover; 
   background-repeat: no-repeat;/**/
@@ -505,14 +558,14 @@ ul.careful_story_list>li>img{
   top:8px;
   width:24px;
   height: 24px;
-  background-image: url(../../../../abb_serve_00/public/img/story/zan1_while.png);
+  background-image: url(http://127.0.0.1:3000/img/story/zan1_while.png);
   background-size: cover;
   background-position: center center;
   border-radius: 4px;
   
 }
 /* .story_top_zan:hover{
-  background-image: url(../../../../abb_serve_00/public/img/story/zan1_blank.png);
+  background-image: url(http://127.0.0.1:3000/img/story/zan1_blank.png);
 }当点赞时，变颜色，再点一次，更换颜色 
 */
 .careful_story_detail{
@@ -561,7 +614,7 @@ ul.careful_story_list>li>img{
 .story_user_zan,.story_user_com{
   width:15px;
   height: 15px;
-  background-image: url(../../../../abb_serve_00/public/img/story/zan_black.png);
+  background-image: url(http://127.0.0.1:3000/img/story/zan_black.png);
   background-size: cover;
   background-position: center center;
   margin-top:3px;
@@ -569,7 +622,7 @@ ul.careful_story_list>li>img{
 .story_user_com{
   width:13px;
   height: 13px;
-  background-image: url(../../../../abb_serve_00/public/img/story/comment_black1.png);
+  background-image: url(http://127.0.0.1:3000/img/story/comment_black1.png);
   margin-top:5px;
 }
 .story_user_zan_number,.story_user_com_number{

@@ -145,6 +145,7 @@ export default {
   min-width: 1450px;
   display: flex;
   justify-content: space-between;
+  z-index: 999;
 }
 .search {
   padding-top: 15px;
