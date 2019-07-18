@@ -8,7 +8,6 @@
             id="SearchBtn"
             v-on:click="change($event,0)"
             :style="active[0]?isActive:noActive"
-            ref="box"
           >日期</el-button>
           <div class="search-condition" v-show="active[0]">
             <div class="search-condition-detail">
@@ -24,7 +23,7 @@
             </div>
             <div class="search-ctrl">
               <span>
-                <a href="javascript:;">取消</a>
+                <a href="javascript:;" @click="closeaccess">取消</a>
               </span>
               <span>
                 <a href="javascript:;" @click="access">确定</a>
@@ -80,10 +79,10 @@
             </div>
             <div class="search-ctrl">
               <span>
-                <a href="javascript:;">取消</a>
+                <a href="javascript:;" @click="closeaccess">取消</a>
               </span>
               <span>
-                <a href="javascript:;">确定</a>
+                <a href="javascript:;" @click="access">确定</a>
               </span>
             </div>
           </div>
@@ -106,10 +105,10 @@
             </div>
             <div class="search-ctrl">
               <span>
-                <a href="javascript:;">取消</a>
+                <a href="javascript:;" @click="closeaccess">取消</a>
               </span>
               <span>
-                <a href="javascript:;">确定</a>
+                <a href="javascript:;" @click="access">确定</a>
               </span>
             </div>
           </div>
@@ -129,10 +128,10 @@
             </div>
             <div class="search-ctrl">
               <span>
-                <a href="javascript:;">取消</a>
+                <a href="javascript:;" @click="closeaccess">取消</a>
               </span>
               <span>
-                <a href="javascript:;">确定</a>
+                <a href="javascript:;" @click="access">确定</a>
               </span>
             </div>
           </div>
@@ -151,10 +150,10 @@
             </div>
             <div class="search-ctrl">
               <span>
-                <a href="javascript:;">取消</a>
+                <a href="javascript:;" @click="closeaccess">取消</a>
               </span>
               <span>
-                <a href="javascript:;">确定</a>
+                <a href="javascript:;" @click="access">确定</a>
               </span>
             </div>
           </div>
@@ -187,10 +186,10 @@
             </div>
             <div class="search-ctrl">
               <span>
-                <a href="javascript:;">取消</a>
+                <a href="javascript:;" @click="closeaccess">取消</a>
               </span>
               <span>
-                <a href="javascript:;">确定</a>
+                <a href="javascript:;" @click="access">确定</a>
               </span>
             </div>
           </div>
@@ -296,6 +295,7 @@
             :House_tag="item.House_tag"
             :House_type="item.House_type"
             :House_detail="item.House_detail"
+            :House_id="item.House_id"
           ></SearchCard>
         </div>
       </div>
@@ -322,10 +322,10 @@ export default {
       },
 
       windowHeight: "",
-      City_id: 2,
+      City_id: 1,
       disList: "",
-      latitude:'',
-      longitude:'',
+      latitude: "",
+      longitude: "",
       dataList: "",
       mask: false,
       date: "",
@@ -396,14 +396,14 @@ export default {
         .get(url, {
           params: {
             House_City_id: this.City_id,
-            Time_start: "",
-            Time_end: "",
+            Time_start: this.date[0],
+            Time_end: this.date[1],
             people: "",
             children: "",
             baby: "",
             price: [this.price[0], this.price[1]],
-            latitude:this.latitude,
-            longitude:this.longitude
+            latitude: this.latitude,
+            longitude: this.longitude
           }
         })
         .then(result => {
@@ -417,8 +417,7 @@ export default {
       this.axios
         .get(url, {
           params: {
-            City_id: this.City_id,
-            District_name: ""
+            City_id: this.City_id
           }
         })
         .then(result => {
@@ -426,29 +425,40 @@ export default {
           this.disList = result.data.data;
         });
     },
-    SearchByArea(e){
+    SearchByArea(e) {
       //区域纬度
       console.log(e.target.dataset.latitude);
       //区域经度
       console.log(e.target.dataset.longitude);
-      this.latitude=e.target.dataset.latitude;
-      this.longitude=e.target.dataset.longitude;
+      this.latitude = e.target.dataset.latitude;
+      this.longitude = e.target.dataset.longitude;
       this.SearchAxios();
     },
     //加载地图模块高度
     mapHeight() {
       this.windowHeight = window.screen.availHeight;
-      console.log(this.windowHeight + "px");
+      //console.log(this.windowHeight + "px");
       var mapbox = document.getElementById("mapBox");
       mapbox.style.height = this.windowHeight + "px";
     },
     //创建地图
     createMap() {
+      var City_jd = 0;
+      var City_wd = 0;
+      this.City_id = 1;
+      if (this.City_id == 1) {
+        City_jd = 121.47;
+        City_wd = 31.23;
+      }
+      if (this.City_id == 2) {
+        City_jd = 116.4;
+        City_wd = 39.9;
+      }
       /* eslint-disable */
       // 创建Map实例
       var map = new BMap.Map("map");
       // 初始化地图,设置中心点坐标和地图级别
-      map.centerAndZoom(new BMap.Point(116.10, 39.93), 11);
+      map.centerAndZoom(new BMap.Point(City_jd, City_wd), 11);
       //添加地图类型控件
       map.addControl(
         new BMap.MapTypeControl({
@@ -456,15 +466,14 @@ export default {
         })
       );
       // 设置地图显示的城市 此项是必须设置的
-      map.setCurrentCity("北京");
+      //map.setCurrentCity("北京");
       //开启鼠标滚轮缩放
       map.enableScrollWheelZoom(true);
-
       // //标注
       // var point = new BMap.Point(116.404, 39.915); // 创建标注
       // var marker = new BMap.Marker(point);
       //  map.addOverlay(marker);
-
+      /*
       //创建测试用经纬度
       var x = [116.404, 116.414, 116.424]; // 测试用的3个点的经度
       var y = [39.915, 39.905, 39.895]; //测试用的3个点的纬度
@@ -474,23 +483,17 @@ export default {
         var marker = new BMap.Marker(point); //根据点来创建点状覆盖物
         map.addOverlay(marker); //把这个覆盖物加载到地图上
       }
+      */
+      console.log(123);
+      console.log(this.dataList);
       var htm =
         "<div style='background:#E7F0F5;color:#0082CB;border:1px solid #333'>" +
         "欢迎使用百度地图！" +
         "<img src='http://map.baidu.com/img/logo-map.gif' border='0' />" +
         "</div>";
-      var obj1 = {
-        html: `<el-date-picker
-                v-model="date"
-                type="daterange"
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                format="yyyy 年 MM 月 dd 日"
-                value-format="yyyy-MM-dd"
-              ></el-date-picker>123`
-      };
-      var htm = obj1.html;
+      var htmls = `<div id='minitag' class='minitag' click='tobig()'><span>￥999</span><div class='sanjiaos'></div></div>`;
+      var htmlg = `<main id="main"><div id="banner"><div id="btn-left"></div><ul id="ul-imgs" style="width:1400px; margin-left:0px;"><li><a href="javascript:;"><img src="./img/7bf9c0ef-3e6a-4e74-b9b4-3653fafeb02e.jpg"></a></li><li><a href="javascript:;"><img src="./img/e20b958d-fee5-482e-b958-bf8dee1c3dff.jpg"></a></li><li><a href="javascript:;"><img src="./img/e20b958d-fee5-482e-b958-bf8dee1c3dff.jpg"></a></li><li><a href="javascript:;"><img src="./img/e20b958d-fee5-482e-b958-bf8dee1c3dff.jpg"></a></li><li><a href="javascript:;"><img src="./img/7bf9c0ef-3e6a-4e74-b9b4-3653fafeb02e.jpg"></a></li></ul><ul id="ul-idxs"><li class="active"></li><li></li><li></li><li></li></ul><div id="btn-right"></div></div><div class='minidetail'><a href="javascript:;"><div class='minidetail-text'><span class='minihouse'>独立房间·1室1卫1床</span><span class='mininame'>利欧的房间 - 美梦</span></div></a><div class='miniprice'><span>￥158每晚</span></div><div class='miniheadimg'><img src="./img/a23a2645-fc2b-44db-bfc6-2f9cae228b56.jpg" alt=""></div><div class='sanjiao'></div></div></main>`;
+      var htm = htmlg;
 
       var point = new BMap.Point(116.404, 39.915);
       var myRichMarkerObject = new BMapLib.RichMarker(htm, point, {
@@ -516,6 +519,15 @@ export default {
       map.addEventListener("dragend", function() {
         var center = map.getCenter();
         console.log("地图中心点变更为：" + center.lng + ", " + center.lat);
+        this.latitude = center.lat;
+        this.longitude = center.lng;
+        console.log(this.longitude, this.latitude);
+        
+        // this.SearchAxios.apply(this.that,[]);
+        // this.that.SearchAxios();
+
+
+         console.log(this.that);
       });
 
       /* eslint-enable */
@@ -524,7 +536,7 @@ export default {
     change(event, index) {
       //获取点击对象
       //console.log(index);
-      console.log(event.target);
+      //console.log(event.target);
       if (this.active[index]) {
         this.active = this.active.map((item, index, arr) => {
           return false;
@@ -535,12 +547,6 @@ export default {
         });
         this.active[index] = true;
       }
-
-      // if(index<=6){
-      //   this.mask=true;
-      // }else{
-      //   this.mask=!this.mask;
-      // }
     },
     //筛选条件方法,计数器改变
     handleChange(value) {
@@ -569,32 +575,143 @@ export default {
       //获取日期筛选条件
       console.log(this.date);
       //获取人数
-      console.log("成人" + this.num1, "儿童" + this.num2, "婴儿" + this.num3);
+      //console.log("成人" + this.num1, "儿童" + this.num2, "婴儿" + this.num3);
       //获取房间类型
-      console.log(this.checkList);
+      //console.log(this.checkList);
       //获取价格
-      console.log("低" + this.price[0], "高" + this.price[1]);
+      //console.log("低" + this.price[0], "高" + this.price[1]);
+      this.SearchAxios();
+      this.active = this.active.map((item, index, arr) => {
+        return false;
+      });
+    },
+    closeaccess() {
+      this.active = this.active.map((item, index, arr) => {
+        return false;
+      });
+    },
+    //minicarousel
+    minicarousel() {
+      var i = 0;
+      var LIWIDTH = 280;
+      var DURATION = 500;
+      var LICOUNT = 4;
+      var ulImgs = document.getElementById("ul-imgs");
+      var ulIdxs = document.getElementById("ul-idxs");
+      var lis = ulIdxs.children;
+      function moveTo(to) {
+        if (to == undefined) {
+          to = i + 1;
+        }
+        if (i == 0) {
+          if (to > i) {
+            ulImgs.className = "transition";
+          } else {
+            ulImgs.className = "";
+            ulImgs.style.marginLeft = -LIWIDTH * LICOUNT + "px";
+            setTimeout(function() {
+              moveTo(LICOUNT - 1);
+            }, 100);
+            return;
+          }
+        }
+        i = to;
+        ulImgs.style.marginLeft = -i * LIWIDTH + "px";
+        for (var li of lis) {
+          li.className = "";
+        }
+        console.log(i);
+        if (i == LICOUNT) {
+          i = 0;
+          setTimeout(function() {
+            ulImgs.className = "";
+            ulImgs.style.marginLeft = 0;
+          }, DURATION);
+        }
+        lis[i].className = "active";
+      }
+
+      var btnLeft = document.getElementById("btn-left");
+      var btnRight = document.getElementById("btn-right");
+      var canClick = true;
+      btnRight.onclick = function() {
+        move(1);
+      };
+      function move(n) {
+        if (canClick) {
+          console.log(i + n);
+          moveTo(i + n);
+          canClick = false;
+          setTimeout(function() {
+            canClick = true;
+          }, DURATION + 100);
+        }
+      }
+      btnLeft.onclick = function() {
+        move(-1);
+      };
+      // var interval=3000;
+      // var timer=setInterval(function(){
+      //   moveTo()
+      // },3000);
+      // var banner=document.getElementById("banner");
+      // banner.onmouseover=function(){
+      //   clearInterval(timer);
+      // }
+      // banner.onmouseout=function(){
+      //   timer=setInterval(function(){
+      //     moveTo()
+      //   },3000);
+      // }
+      var ulIdxs = document.getElementById("ul-idxs");
+      var canClick = true;
+      ulIdxs.onclick = function(e) {
+        if (canClick) {
+          var li = e.target;
+          if (li.nodeName == "LI") {
+            if (li.className !== "active") {
+              for (var i = 0; i < lis.length; i++) {
+                if (lis[i] == li) {
+                  break;
+                }
+              }
+              moveTo(i);
+              setTimeout(function() {
+                canClick = true;
+              }, DURATION);
+            }
+          }
+        }
+      };
     }
+    //minicarousel
+    // closeBox(event){
+    //   //解决点击其他位置时关闭active
+    //   document.addEventListener("click", event => {
+    //     console.log(event.target);
+    //     if(event.target){
+    //       this.active = this.active.map((item, index, arr) => {
+    //         return false;
+    //       });
+    //     }
+    //   });
+    // },
   },
 
   mounted() {
     this.mapHeight();
     this.createMap();
+    this.minicarousel();
+    // this.closeBox();
   },
   created() {
-    //解决点击其他位置时关闭active
-    document.addEventListener("click", e => {
-      console.log(e.target);
-      // if(!this.$refs.box.contains(e.target)){
-      //   this.active[0]=false;
-      // }
-      if (e.target != "button") {
-        // this.active = this.active.map((item, index, arr) => {
-        //   return false;
-        // });
-      }
-    });
-
+    console.log(this.$route.query.lid);
+    if (!this.$route.query.lid || this.$route.query.lid == "北京") {
+      this.City_id = 2;
+    }
+    if (this.$route.query.lid == "上海") {
+      this.City_id = 1;
+    }
     //访问接口
     this.SearchDIS();
     this.SearchAxios();
@@ -674,7 +791,7 @@ export default {
 }
 .search-index {
   width: 60%;
-  overflow-y: scroll;
+  border-right: 10px solid #cccccc;
 }
 .search-map-box {
   width: 40%;
@@ -750,9 +867,6 @@ span.el-checkbox__label {
 .search-district a {
   color: rgb(72, 72, 72);
 }
-.search-district a:hover {
-  color: rgb(0, 132, 137);
-}
 /* .search-mask {
   position: fixed;
   top: 48px;
@@ -762,9 +876,173 @@ span.el-checkbox__label {
   height: 100%;
   z-index:10;
 } */
-
 /* .search {
   transform: translate(0);
 } */
+.search-district a:hover {
+  color: rgb(0, 132, 137);
+}
+
+/* minicarousel */
+</style>
+
+<style>
+#main {
+  display: none;
+  width: 280px;
+  margin: 0 auto;
+}
+#banner {
+  display: block;
+  width: 280px;
+  overflow: hidden;
+  position: relative;
+}
+#ul-imgs {
+  list-style: none;
+}
+#ul-imgs.transition {
+  transition: all 0.5s linear;
+}
+#ul-imgs > li {
+  width: 280px;
+  float: left;
+}
+#ul-imgs img {
+  width: 280px;
+}
+#ul-idxs {
+  width: 64px;
+  margin: 0 auto;
+  list-style: none;
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  margin-left: -32px;
+}
+#ul-idxs > li {
+  float: left;
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+#ul-idxs > li.active {
+  background-color: #008489;
+}
+#btn-left,
+#btn-right {
+  /* display: none; */
+  width: 20px;
+  height: 36px;
+  position: absolute;
+  top: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px 20px;
+  cursor: pointer;
+}
+#btn-left {
+  left: 10px;
+  top: 50%;
+  margin-top: -18px;
+  background-image: url(./img/left_ar.png);
+}
+#btn-right {
+  right: 10px;
+  top: 50%;
+  margin-top: -18px;
+  background-image: url(./img/right_ar.png);
+}
+#btn-left:hover,
+#btn-right:hover {
+  display: block;
+}
+.minidetail {
+  padding: 12px;
+  width: 280px;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  border-top: none;
+}
+.minidetail a {
+  color: #484848;
+  text-decoration: none;
+}
+.minidetail-text span {
+  display: block;
+  padding: 2px 0;
+}
+.minihouse {
+  font-size: 12px;
+  color: #767676;
+}
+.mininame {
+  font-size: 16px;
+  font-weight: 700;
+}
+.miniprice {
+  padding: 2px 0;
+  font-size: 14px;
+  color: #484848;
+}
+.miniheadimg {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 40px;
+  height: 40px;
+}
+.miniheadimg img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+.sanjiao {
+  position: absolute;
+  background: #ffffff;
+  width: 20px;
+  height: 20px;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -10px;
+  transform-origin: 10px 10px;
+  transform: rotate(45deg);
+  border-right: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+}
+/* 小标记 */
+.minitag {
+  width: 60px;
+  position: relative;
+  padding: 4px 5px;
+  box-sizing: border-box;
+  border: 1px solid #bbbbbb;
+  color: #222222;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  transition: all 0.5s;
+}
+.minitag:hover {
+  background: #008489;
+  color: #ffffff;
+}
+.sanjiaos {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-top: none;
+  border-left: none;
+  width: 8px;
+  height: 8px;
+  transform-origin: 2px 2px;
+  transform: rotate(45deg);
+}
 </style>
 

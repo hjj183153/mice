@@ -7,7 +7,9 @@ USE Airbnb;
 #城市表
 CREATE TABLE Airbnb_City(
  City_id INT PRIMARY KEY AUTO_INCREMENT,
- City_name VARCHAR(64) UNIQUE
+ City_name VARCHAR(64) UNIQUE,
+ City_longitude VARCHAR(64) UNIQUE,#经度
+ City_latitude VARCHAR(64) UNIQUE,#纬度
 );
 
 #房屋时间表
