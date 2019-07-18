@@ -9,7 +9,7 @@
                 </svg>
             </div>
             <div>
-                <h3>步骤1： 先填写基本信息</h3>
+                <h3>请填写房源信息</h3>
             </div>
         </div>
         <!-- 头部进度条 -->
@@ -154,57 +154,7 @@ export default {
     border-top-right-radius: none;
     border-bottom-right-radius: none;
 }
-.div_footer1{
-    height:82px;
-    width: 100%;
-    z-index: 100;
-    position: fixed;
-    bottom:0px;
-    background: #f8f8f8;
-}
-.div_footer1>div{
-    width: 912px;
-    height:82px;
-    box-sizing: border-box;
-    margin: 0px auto !important;
-}
-.div_footer1>div>div{
-    background: #fff;
-    width: 547.2px;
-    padding: 20px 30px;
-    height:82px;
-}
-.div_footer1>div>div div:first-child{
-    float: right;
-}
-.div_footer1>div>div svg{
-    color:#008489;
-    float: left;
-    padding:13px 0; 
-}
-.a_footer1{
-    display: block;
-    float: left;
-    color:#008489;    
-    font-weight: bold;
-    padding:10px 7px;  
-}
-.a_footer1:hover{
-    text-decoration: underline;
-}
-.next_btn{
-    display: block;
-    float: right;
-    height:48px;
-    width: 96px;
-    padding: 12px 22px;
-    box-sizing: border-box;
-    background: #008489;
-    border-radius: 5%;
-    font-size: 16px;
-    font-weight: 600;
-    color:#fff;
-}
+
 /* icon弹框 */
 .icon_alert{
     position: fixed;
