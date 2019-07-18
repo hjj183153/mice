@@ -60,11 +60,7 @@ export default {
         activeIndex: '1',
         input:"",
         }
-    },
-    watch:{
-        input(){
-            console.log(this.input)
-        }
+    
     },
    methods: {
       handleSelect(key, keyPath) {
@@ -72,6 +68,7 @@ export default {
       },
       search(){
           console.log(this.input)
+          this.$router.push("/Search/?lid="+this.input)
       }
     }
 }

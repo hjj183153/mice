@@ -1,7 +1,7 @@
 <template>
-<!-- 地址填写 -->
+    <!-- 地址填写 -->
     <div class="div_bg">
-        <div class="div_body" >
+        <div class="div_body">
             <div>
                 <div class="div_title font_title1">
                     <p>您的房源位于什么地方？</p>
@@ -17,213 +17,197 @@
                     </select>
                 </div>
                 <div class="div_body2" v-show="cityid!=-1">
-                    <p  class="select_title">市(区)</p>
+                    <p class="select_title">市(区)</p>
                     <select name="sasdd" id="asdsd" v-model="districtid" @change="district_change()">
                         <option value="-1">请选择</option>
-                        <option :value="d.District_id" v-for="(d,i) of district" :key="i" v-text="d.District_name"></option>
+                        <option :value="d.District_id" v-for="(d,i) of district" :key="i" v-text="d.District_name">
+                        </option>
                     </select>
                 </div>
                 <div class="div_body3">
                     <p class="select_title">详细地址（无需再写省市）</p>
                     <div>
-                        <input type="text" v-model="House_address" @change="addresschange" class="input_text" placeholder="例如：崂山国际花园1号楼">
+                        <input type="text" v-model="House_address" @change="addresschange" class="input_text"
+                            placeholder="例如：崂山国际花园1号楼">
                     </div>
                 </div>
                 <div class="div_body4">
                     <p class="select_title">门牌号（仅告知预订的房客）</p>
                     <div>
-                        <input type="text"  v-model="House_number" @change="numberchange" class="input_text" placeholder="例如：1单元1202室">
+                        <input type="text" v-model="House_number" @change="numberchange" class="input_text"
+                            placeholder="例如：1单元1202室">
                     </div>
                 </div>
                 <!-- 底部固定悬浮 -->
-                    <div class="div_footer1" style="margin-left:-30px;">
-                        <div>
-                            <div class="div_margin">
-                                <div style="height:0px;border:1px solid #dce0e0;width:487.2px;margin-bottom:20px;" ></div>
-                                <div>
-                                    <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 2.8em; width: 1em; display: block; fill: currentcolor;"><path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fill-rule="evenodd"></path></svg>
-                                    <div class="a_footer1" @click="return1">返回</div>
-                                </div>
-                                <div>
+                <div class="div_footer1">
+                    <div>
+                        <div class="div_margin">
+                            <div></div>
+                            <div>
+                                <div class="div_return_submit">
+                                    <div class="div_div_svg_return1">
+                                        <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true"
+                                            focusable="false"
+                                            style="height: 2.8em; width: 1em; display: block; fill: currentcolor;">
+                                            <path
+                                                d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z"
+                                                fill-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="return_btn" @click="return1">返回</div>
                                     <div class="next_btn" @click="submit">下一个</div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
+                </div>
 
 
-            </div>                
+            </div>
         </div>
     </div>
 </template>
 <script>
-export default {
-    data(){return{
-        city:{},
-        district:{District_name:"",District_id:""},
-        cityid:-1,
-        districtid:-1,
-        House_address:"",
-        House_number:"",
-    }},
-    props:{
-        Airbnb_House:{House_City_id:-1,House_District_id:-1}
-    },
-    created(){
-        this.loadMore()
-    },
-    
-    methods:{
-         submit(){          
-                this.$router.push("/add_become_a_host_room/location2")    
+    export default {
+        data() {
+            return {
+                city: {},
+                district: {
+                    District_name: "",
+                    District_id: ""
+                },
+                cityid: -1,
+                districtid: -1,
+                House_address: "",
+                House_number: "",
+            }
         },
-        return1(){
-            this.$router.push("/add_become_a_host_room/bathrooms")
+        props: {
+            Airbnb_House: {
+                House_City_id: -1,
+                House_District_id: -1
+            }
         },
-        loadMore(){
-            this.axios.get("http://127.0.0.1:3000/add/City").then(result=>{                
-                //console.log(result.data)
-                this.city=result.data;                
-            })                              
+        created() {
+            this.loadMore()
         },
-        district_select(n){
-            //console.log(n);
-            this.axios.get("http://127.0.0.1:3000/add/district",{params:{"id":n}}).then(result=>{                
-                //console.log(result.data)
-                this.district=result.data; 
-            })         
-                this.Airbnb_House.House_City_id=this.cityid;
+
+        methods: {
+            submit() {
+                this.$router.push("/add_become_a_host_room/location2")
+            },
+            return1() {
+                this.$router.push("/add_become_a_host_room/bathrooms")
+            },
+            loadMore() {
+                this.axios.get("http://127.0.0.1:3000/add/City").then(result => {
+                    //console.log(result.data)
+                    this.city = result.data;
+                })
+            },
+            district_select(n) {
+                //console.log(n);
+                this.axios.get("http://127.0.0.1:3000/add/district", {
+                    params: {
+                        "id": n
+                    }
+                }).then(result => {
+                    //console.log(result.data)
+                    this.district = result.data;
+                })
+                this.Airbnb_House.House_City_id = this.cityid;
                 //console.log(this.Airbnb_House.House_City_id)            
-        },
-        district_change(){
-                this.Airbnb_House.House_District_id=this.districtid;
+            },
+            district_change() {
+                this.Airbnb_House.House_District_id = this.districtid;
                 //console.log(this.Airbnb_House.House_District_id)
-        },
-        addresschange(){
-            this.Airbnb_House.House_address=this.House_address;
-           // console.log(this.Airbnb_House.House_address)
-        },
-        numberchange(){
-            this.Airbnb_House.House_number=this.House_number;
-            //console.log(this.Airbnb_House.House_number)
-        },
+            },
+            addresschange() {
+                this.Airbnb_House.House_address = this.House_address;
+                // console.log(this.Airbnb_House.House_address)
+            },
+            numberchange() {
+                this.Airbnb_House.House_number = this.House_number;
+                //console.log(this.Airbnb_House.House_number)
+            },
+        }
     }
-}
 </script>
 <style scoped>
-.div_bg{
-    background: #f8f8f8;
-}
-.div_body{
-    width:912px;
-    margin: auto;
-    font-size: 16px;
-    padding-top:74px;
-}
-.div_body>div{
-    width:60%;
-    box-sizing: border-box;
-    padding: 30px 30px 16px 30px;
-    padding-bottom: 102px;
-    background: #fff;
-}
-.div_title{
-    padding: 32px 0 24px;
-}
-.font_title1{
-    font-size:24px;
-    font-weight: 800;
-    line-height: 1.25em;
-    color:#484848;
-    padding: 32px 0 10px;
-}
-.font-title3{    
-    font-weight: 400;
-    line-height: 1.375em;
-    color:rgb(72,72,72);
-    margin-bottom: 32px;
-}
-.select_title{
-    padding: 9px 0 8px;
-    font-size:19px;
-    color:#484848;
-}
-select{
-    font-size:19px;
-    padding:19px;
-    color:#484848;
-    border:1px solid #aaa;
-    border-radius:2px;
-    width:100%;
-}
-.input_text{
-    background: #fff5f2;
-    font-size: 18px;
-    line-height: 27px;
-    color:#484848;
-    padding: 15px;
-    width: 100%;
-    border-radius: 2px;
-    font-weight: 400;
-    font-family: Arial;
-    box-sizing: border-box;
-}
-.div_body3>div{
-    border:1px solid #f8e5df;
-}
-.div_body4>div{
-    border:1px solid #f8e5df;
-}
+    .div_bg {
+        background: #f8f8f8;
+    }
 
-.div_footer1{
-    height:102px;
-    width: 60%;
-    z-index: 100;
-    position: fixed;
-    bottom:0px;
-    background: #f8f8f8;
-}
-.div_footer1>div{
-    width: 912px;
-    height:82px;
-    box-sizing: border-box;
-    margin: 0px auto !important;
-}
-.div_footer1>div>div{
-    background: #fff;
-    width: 547.2px;
-    padding: 0px 30px 20px;
-    height:82px;
-}
-.div_footer1>div>div div:first-child{
-    float: right;
-}
-.div_footer1>div>div svg{
-    color:#008489;
-    float: left;
-    padding:13px 0; 
-}
-.a_footer1{
-    display: block;
-    float: left;
-    color:#008489;    
-    font-weight: bold;
-    padding:10px 7px;  
-}
-.a_footer1:hover{
-    text-decoration: underline;
-}
-.next_btn{
-    display: block;
-    float: right;
-    height:48px;
-    width: 96px;
-    padding: 12px 22px;
-    box-sizing: border-box;
-    background: #008489;
-    border-radius: 5%;
-    font-size: 16px;
-    font-weight: 600;
-    color:#fff;
-}
+    .div_body {
+        width: 912px;
+        margin: auto;
+        font-size: 16px;
+        padding-top: 74px;
+    }
+
+    .div_body>div {
+        width: 60%;
+        box-sizing: border-box;
+        padding: 30px 30px 16px 30px;
+        padding-bottom: 102px;
+        background: #fff;
+    }
+
+    .div_title {
+        padding: 32px 0 24px;
+    }
+
+    .font_title1 {
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 1.25em;
+        color: #484848;
+        padding: 32px 0 10px;
+    }
+
+    .font-title3 {
+        font-weight: 400;
+        line-height: 1.375em;
+        color: rgb(72, 72, 72);
+        margin-bottom: 32px;
+    }
+
+    .select_title {
+        padding: 9px 0 8px;
+        font-size: 19px;
+        color: #484848;
+    }
+
+    select {
+        font-size: 19px;
+        padding: 19px;
+        color: #484848;
+        border: 1px solid #aaa;
+        border-radius: 2px;
+        width: 100%;
+    }
+
+    .input_text {
+        background: #fff5f2;
+        font-size: 18px;
+        line-height: 27px;
+        color: #484848;
+        padding: 15px;
+        width: 100%;
+        border-radius: 2px;
+        font-weight: 400;
+        font-family: Arial;
+        box-sizing: border-box;
+    }
+
+    .div_body3>div {
+        border: 1px solid #f8e5df;
+    }
+
+    .div_body4>div {
+        border: 1px solid #f8e5df;
+    }
+
+   
 </style>

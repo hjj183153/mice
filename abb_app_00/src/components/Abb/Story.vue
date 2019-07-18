@@ -21,52 +21,10 @@
             热门目的地
           </div>
           <ul class="hot_city_list">
-            <li>
+            <li v-for="(item3,p) of hot_place1" :key="p">
               <a href="javascript:;">
-                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
-                <p>东京</p>
-              </a>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
-                <p>东京</p>
-              </a>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
-                <p>东京</p>
-              </a>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
-                <p>东京</p>
-              </a>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
-                <p>东京</p>
-              </a>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
-                <p>东京</p>
-              </a>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
-                <p>东京</p>
-              </a>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <div><img src="http://127.0.0.1:3000/img/story/hot_place_1dongjing.jpg" alt=""></div>
-                <p>东京</p>
+                <div><img :src="'http://127.0.0.1:3000/'+item3.hot_place_img" ></div>
+                <p>{{item3.hot_city}}</p>
               </a>
             </li>
           </ul>
@@ -1152,7 +1110,8 @@ export default {
       s:0,
       timeout:  null,
       restaurants: [],
-      state: ''
+      state: '',
+      hot_place1:[]
     };
   },
   methods: {
@@ -1184,12 +1143,6 @@ export default {
       this.s++;
       
     },
-    /* .story_top_zan:hover{
-  background-image: url(http://127.0.0.1:3000/img/story/zan1_blank.png);
-}当点赞时，变颜色，再点一次，更换颜色 
-*/
-
-
     // 键盘回车实现搜索查询，将input内容追加到数组中，然后在页面中显示，并跳转到相应的搜索页面
       insearch(){
         //当输入数据和当前数组中元素内容不同时，在数组开头追加元素，
@@ -1262,24 +1215,22 @@ export default {
     this.restaurants = this.loadAll();
   },
   created(){
+    //1.请求主页面
     var url="/story";
     this.axios.get(url).then(result=>{
       console.log(result.data);
       //通过sel_list[]数组来接收数据，显示在页面上
       this.sel_list=result.data;
-      console.log(this.sel_list[0].md_img,this.careStoryTop.backgroundImage );//img/story/bg_img1_1.jpg
-      //实现背景图片动态生成
-      var careful_story_top1=document.getElementsByClassName("careful_story_top");
-      
-      //this.careStoryTop.backgroundImage="url(http://127.0.0.1:3000/"+this.sel_list[0].md_img+")";
-      //var careful_story_top2=document.getElementById("careful_story_top");
-      var careful_story_top2=document.getElementsByClassName("careful_story_top")[1];
-      console.log(careful_story_top2);
-      
+      //console.log(this.sel_list[0].md_img,this.careStoryTop.backgroundImage );
     });
-
-
+    //2.请求热门目的地
+    var url2="/story/hot_place";
+    this.axios.get(url2).then(result=>{
+      console.log(result.data.data);
+      this.hot_place1=result.data.data;
+    })
   },
+  //二次获取焦点
   directives: {
     focus: {
         inserted: function (el) {

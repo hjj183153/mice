@@ -31,9 +31,9 @@
                     <div class="flexbox"><!--每层 弹性布局-->
                         <div class="box-item" v-for="(item,key) of houselist" :key="key"><!--每个房间内容-->   
                                 <div><!-- 图 -->
-                                    <a href="javascirpt:;">
+                                    <router-link to="/details">
                                         <img :src="'http://127.0.0.1:3000/img'+item.House_imgurl" alt="">
-                                    </a>
+                                    </router-link>
                                 </div>
                                 <div class="house-buliding">
                                     <span>{{item.House_Building}}</span> <span>·</span> <span>{{item.House_Bed}}</span>
@@ -44,7 +44,7 @@
                                     </a>
                                 </div>"
                                 <div class="house-name"><!---价格-->
-                                    <span>{{item.House_price*item.House_tag}}</span><del class="delprice">￥{{item.House_price}}</del><span class="delprice">每晚</span></div>
+                                    <span>{{(item.House_price*item.House_tag).toFixed(2)}}</span><del class="delprice">￥{{item.House_price.toFixed(2)}}</del><span class="delprice">每晚</span></div>
                                 <div>
                                     <el-rate
                                     v-model="value"
@@ -56,8 +56,8 @@
                                   五星房东</div>
         
                         </div> 
-                        <a class="getmore" href="javascript:;">查看更多房源></a>
                     </div>
+                    <router-link class="getmore" to="/Search">查看更多房源></router-link>
                     
                 </div>
 
@@ -90,7 +90,7 @@
                                     </a>
                                 </div>"
                                 <div class="house-name"><!---价格-->
-                                    <span>{{item.House_price*item.House_tag}}</span><del class="delprice">￥{{item.House_price}}</del><span class="delprice">每晚</span></div>
+                                    <span>{{(item.House_price*item.House_tag).toFixed(2)}}</span><del class="delprice">￥{{item.House_price.toFixed(2)}}</del><span class="delprice">每晚</span></div>
                                 <div>
                                     <el-rate
                                     v-model="value"
@@ -102,11 +102,38 @@
                                   五星房东</div>
         
                         </div> 
-                        <a class="getmore" href="javascript:;">查看更多房源></a>
                     </div>
+                    <a class="getmore" href="javascript:;">查看更多房源></a>
                     
                 </div>
 
+                
+                    <!--                 精选故事                    -->
+                    <h1 class="indextitle">精彩旅行故事</h1>
+                <!-- 主题页图文 -->
+                <div>
+                    <div class="flexbox"><!--每层 弹性布局-->
+                        <div class="box-item-story" v-for="(item,key) of houselist2" :key="key"><!--每个房间内容-->   
+                                <div><!-- 图 -->
+                                    <a href="javascirpt:;">
+                                        <img :src="'http://127.0.0.1:3000/img'+item.House_imgurl" alt="">
+                                    </a>
+                                </div>
+                                <div class="house-buliding">
+                                    <span>{{item.House_Building}}</span> <span>·</span> <span>{{item.House_Bed}}</span>
+                                </div>
+                                <div>
+                                    <a class="house-name" href="javascirpt:;">
+                                            {{item.House_name}}
+                                    </a>
+                                </div>"
+                                <div class="house-name"><!---价格-->
+                                    <span>{{(item.House_price*item.House_tag).toFixed(2)}}</span><del class="delprice">￥{{item.House_price.toFixed(2)}}</del><span class="delprice">每晚</span></div>        
+                        </div> 
+                    </div>
+                    <a class="getmore" href="javascript:;">更多精彩故事></a>
+                    
+                </div>
 
             </section>
 
@@ -140,6 +167,7 @@ export default {
                 House_price:0,
                 House_tag:""
             }],
+            sel_list:[],
             
         }
     },
@@ -170,10 +198,19 @@ export default {
             var url="/index/cities2";
             var obj={j}
             this.axios.get(url,{params:obj}).then(res=>{
-               console.log(res.data.data[0].House_imgurl)
+              // console.log(res.data.data[0].House_imgurl)
                 this.houselist2=res.data.data
             })
         },
+        getstory(){
+            var url="/story";
+            this.axios.get(url).then(result=>{
+            console.log(result.data);
+            //通过sel_list[]数组来接收数据，显示在页面上
+            this.sel_list=result.data;
+      //console.log(this.sel_list[0].md_img,this.careStoryTop.backgroundImage );
+    });
+        }
     },
     
 }
@@ -267,5 +304,10 @@ export default {
         color:#008489;
         font:14px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC";
         font-weight: 600;
+        padding:40px 0;display: inline-block;
+    }
+    .box-item-story{
+        width:20%;
+        margin:5px  
     }
 </style>
