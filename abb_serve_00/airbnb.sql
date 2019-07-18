@@ -189,7 +189,7 @@ CREATE TABLE Airbnb_guide(
   guide_id INT PRIMARY KEY AUTO_INCREMENT,
   guide_country VARCHAR(64),
   guide_imgurl VARCHAR(128)
-)
+);
 #旅游指南数据gyh
 INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_san_francisco_carousel@2x.jpg");
 INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_new_york_carousel@2x.jpg");
