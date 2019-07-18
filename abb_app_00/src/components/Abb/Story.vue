@@ -1,12 +1,10 @@
 <template>
   <div>
-    <!-- 引入头组件 -->
-    <!-- <div> -->
-      <!-- <headerComponent></headerComponent> -->
-    <!-- </div> -->
-    <!-- <ul class="infinite-list" v-infinite-scroll="load">
-          <li v-for="i in count" class="infinite-list-item">{{ i }}</li>
-        </ul> -->
+    <div>
+      <!-- 引入头组件 -->
+      <my-header></my-header>
+     
+    </div>
     <!-- 以下是搜索界面 -->
     <div class="search_story search_active" id="search_story_main">
       <div style="margin-top:32px;">
@@ -1134,12 +1132,15 @@
         </el-tabs>
         
     </div> 
+    <div>
+      <my-footer></my-footer>
+    </div>
   </div>
 
 
 </template>
 <script>
-// import headerComponent from 'MyHeader.vue'
+// import MyHeader from '/MyHeader.vue'
 export default {
   // components:{headerComponent},
   data() {
