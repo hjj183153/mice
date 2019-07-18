@@ -86,7 +86,7 @@ export default {
             })
             this.axios.get("http://127.0.0.1:3000/add/Rent_Type").then(result=>{
                 this.Rent_Type=result.data;
-                console.log(this.Rent_Type)
+                //console.log(this.Rent_Type)
             })
             //setTimeout(function(){this.Rentselect(0);},3000)
             // console.log(add_page)
@@ -95,13 +95,14 @@ export default {
             // }  
         },
         submit(){
-            console.log(11)           
+           // console.log(11)           
                 this.$router.push("/add_become_a_host_room/bedrooms?id=6")
                 // this.$router.push({path:'/add_become_a_host_room/bedrooms' , params: { add_page:this.add_page }})
                 // this.$router.params.this.Airbnb_House       
         },
          return1(){
              this.$router.push("/index")
+            //  this.$router.go(-1)
         },
         show(){
             var div=document.getElementById("housingResources");
