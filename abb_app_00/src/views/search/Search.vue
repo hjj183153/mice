@@ -322,8 +322,8 @@ export default {
       },
 
       windowHeight: "",
-      City_id: 1,
-      disList: "",
+      City_id:1,
+      disList:"",
       latitude: "",
       longitude: "",
       dataList: "",
@@ -443,6 +443,7 @@ export default {
     },
     //创建地图
     createMap() {
+      console.log(this.dataList);
       var City_jd = 0;
       var City_wd = 0;
       this.City_id = 1;
@@ -454,6 +455,7 @@ export default {
         City_jd = 116.4;
         City_wd = 39.9;
       }
+      this.SearchAxios();
       /* eslint-disable */
       // 创建Map实例
       var map = new BMap.Map("map");
@@ -485,7 +487,6 @@ export default {
       }
       */
       console.log(123);
-      console.log(this.dataList);
       var htm =
         "<div style='background:#E7F0F5;color:#0082CB;border:1px solid #333'>" +
         "欢迎使用百度地图！" +
@@ -515,8 +516,9 @@ export default {
       map.addEventListener("click", function() {
         console.log("您点击了地图。");
       });
+      let that = this;
       //拖拽地图事件
-      map.addEventListener("dragend", function() {
+      map.addEventListener("dragend",function() {
         var center = map.getCenter();
         console.log("地图中心点变更为：" + center.lng + ", " + center.lat);
         this.latitude = center.lat;
@@ -524,10 +526,9 @@ export default {
         console.log(this.longitude, this.latitude);
         
         // this.SearchAxios.apply(this.that,[]);
-        // this.that.SearchAxios();
-
-
-         console.log(this.that);
+        // this.SearchAxios();
+        that.SearchAxios();
+        //console.log(this.that);
       });
 
       /* eslint-enable */
@@ -697,12 +698,10 @@ export default {
     //   });
     // },
   },
-
   mounted() {
     this.mapHeight();
     this.createMap();
     this.minicarousel();
-    // this.closeBox();
   },
   created() {
     console.log(this.$route.query.lid);
