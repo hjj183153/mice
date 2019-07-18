@@ -7,7 +7,7 @@
         <div style="font-size:15px;">由爱彼迎房东为您精选每座城市的最佳去处。从咖啡馆、公园，到鲜为人知的隐秘景点，应有尽有，现在就来探索吧。</div>
       </div>
       <div class="guide_bottom">
-        <div style="font-size:30px;margin-bottom:20px;"></div>
+        <div style="font-size:30px;margin-bottom:20px;">北美洲</div>
         <el-row>
           <el-col :span="12">
             <div class="grid-content bg-purple-dark bigimg" style="background-image:url(https://z1.muscache.cn/airbnb/guidebook/v1_san_francisco_carousel@2x.jpg)">
@@ -116,7 +116,7 @@
             </el-row>
           </el-col>
         </el-row>
-        <div style="font-size:30px;margin-bottom:20px;"></div>
+        <div style="font-size:30px;margin-bottom:20px;">欧洲</div>
         <el-row>
           <el-col :span="6">
             <el-row>
@@ -232,23 +232,10 @@
 <script>
 export default {
   data() {
-    return {
-      list:[]
-    };
-  },
-  created() {
-    this.getguide();
+    return {};
   },
   methods: {
-    getguide(){
-      this.axios.get("user/guide").then(result=>{
-        this.list=result.data.data;
-        console.log(this.list[0].guide_country);
-        console.log(this.list[14].guide_country);
-        console.log(this.list[0].guide_imgurl);
-        console.log(this.list)
-      })
-    }
+
   }
 };
 </script>
