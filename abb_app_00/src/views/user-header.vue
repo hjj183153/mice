@@ -122,8 +122,12 @@ export default {
     loader() {
       this.axios.get("user/").then(result => {
         if (result.data.code > 0) {
-          this.user_imgurl =
+          if(result.data.data[0].user_imgurl==null){
+            this.user_imgurl=`https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png`;
+          }else{
+            this.user_imgurl =
             `http://127.0.0.1:3000/` + result.data.data[0].user_imgurl;
+          }
         } else {
           this.$alert("您还没有登录,请登录!", "消息提示");
         }
