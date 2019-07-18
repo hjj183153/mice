@@ -40,7 +40,25 @@
                             <div v-text="Rent_Type[2].Rent_about"></div>
                         </div>
                     </div>
+                    
                 </div>
+                <!-- 底部固定悬浮 -->
+                    <div class="div_footer1" style="margin-left:-30px;margin-top:-20px">
+                        <div>
+                            <div class="div_margin">
+                                <div style="height:0px;border:1px solid #dce0e0;width:487.2px;margin-bottom:20px;" ></div>
+                                <div>
+                                    <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 2.8em; width: 1em; display: block; fill: currentcolor;"><path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fill-rule="evenodd"></path></svg>
+                                    <div class="a_footer1" @click="return1">返回</div>
+                                </div>
+                                <div>
+                                    <!-- <router-link :to="pageurl+?+add_page"> -->
+                                    <div class="next_btn" @click="submit">下一个</div>
+                                    <!-- </router-link> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
             
         </div>
@@ -54,10 +72,10 @@ export default {
             Rent_Type:[{Rent_name:""},{Rent_name:""},{Rent_name:""}],
         }
     },
-    props:{
-        Airbnb_House:{default:""},
-         add_page:{default:""}
-        },                  
+    // props:{
+    //     Airbnb_House:{default:""},
+    //      add_page:{default:""}
+    //     },                  
     created(){
         this.loadMore();
     },    
@@ -68,13 +86,23 @@ export default {
             })
             this.axios.get("http://127.0.0.1:3000/add/Rent_Type").then(result=>{
                 this.Rent_Type=result.data;
-                
+                //console.log(this.Rent_Type)
             })
             //setTimeout(function(){this.Rentselect(0);},3000)
             // console.log(add_page)
             // if(this.add_page>=0){
             //     this.Airbnb_House.Rent_Type=0;
             // }  
+        },
+        submit(){
+           // console.log(11)           
+                this.$router.push("/add_become_a_host_room/bedrooms?id=6")
+                // this.$router.push({path:'/add_become_a_host_room/bedrooms' , params: { add_page:this.add_page }})
+                // this.$router.params.this.Airbnb_House       
+        },
+         return1(){
+             this.$router.push("/index")
+            //  this.$router.go(-1)
         },
         show(){
             var div=document.getElementById("housingResources");
@@ -93,7 +121,7 @@ export default {
                 divc.style.background="rgb(242,242,242)"
             }
             divs[i].style.background="rgb(178,218,219)"
-            this.Airbnb_House.House_Building=i;
+            //this.Airbnb_House.House_Building=i;
         },
         Rentselect(i){
             var Rent_Type=document.getElementById("Rent_Type")
@@ -102,7 +130,7 @@ export default {
                 Rent_Typec.style.background="rgb(242,242,242)"
             }
             Rent_Types[i].style.background="rgb(178,218,219)"
-            this.Airbnb_House.House_type=i;
+           // this.Airbnb_House.House_type=i;
         }
     }
 }
@@ -205,6 +233,57 @@ export default {
 /*默认选中第一个*/
 .Rent_Type_select{
     background: rgb(178,218,219);
+}
+.div_footer1{
+    height:102px;
+    width: 60%;
+    z-index: 100;
+    position: fixed;
+    bottom:0px;
+    background: #f8f8f8;
+}
+.div_footer1>div{
+    width: 912px;
+    height:82px;
+    box-sizing: border-box;
+    margin: 0px auto !important;
+}
+.div_footer1>div>div{
+    background: #fff;
+    width: 547.2px;
+    padding: 0px 30px 20px;
+    height:82px;
+}
+.div_footer1>div>div div:first-child{
+    float: right;
+}
+.div_footer1>div>div svg{
+    color:#008489;
+    float: left;
+    padding:13px 0; 
+}
+.a_footer1{
+    display: block;
+    float: left;
+    color:#008489;    
+    font-weight: bold;
+    padding:10px 7px;  
+}
+.a_footer1:hover{
+    text-decoration: underline;
+}
+.next_btn{
+    display: block;
+    float: right;
+    height:48px;
+    width: 96px;
+    padding: 12px 22px;
+    box-sizing: border-box;
+    background: #008489;
+    border-radius: 5%;
+    font-size: 16px;
+    font-weight: 600;
+    color:#fff;
 }
 </style>
 

@@ -339,7 +339,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 #btn_left_1{
   display:none;
 }
