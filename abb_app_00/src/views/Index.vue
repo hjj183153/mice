@@ -15,7 +15,7 @@
         </div>
             <!-- 中间主体部分 -->
             <section>
-                <h1 class="indextitle">夏季特惠房源</h1>
+                <h1 class="indextitle">夏季特惠房源</h1>   <!--夏季特惠房源-->
                 <p class="litletitle">低至 7 折，可叠加使用礼券</p>
                 <div class="btn-container">
                     <button @click="changeblue(0)"  :class="{isblue:i==0}" class="my-btn">北京</button>
@@ -28,29 +28,113 @@
                 </div>
                 <!-- 主题页图文 -->
                 <div>
-                    <div><!--每层 弹性布局-->
-                        <div v-for="(item,key) of houselist" :key="key">每个房间内容
-                                <div>图
+                    <div class="flexbox"><!--每层 弹性布局-->
+                        <div class="box-item" v-for="(item,key) of houselist" :key="key"><!--每个房间内容-->   
+                                <div><!-- 图 -->
+                                    <router-link to="/details">
+                                        <img :src="'http://127.0.0.1:3000/img'+item.House_imgurl" alt="">
+                                    </router-link>
+                                </div>
+                                <div class="house-buliding">
+                                    <span>{{item.House_Building}}</span> <span>·</span> <span>{{item.House_Bed}}</span>
+                                </div>
+                                <div>
+                                    <a class="house-name" href="javascirpt:;">
+                                            {{item.House_name}}
+                                    </a>
+                                </div>"
+                                <div class="house-name"><!---价格-->
+                                    <span>{{(item.House_price*item.House_tag).toFixed(2)}}</span><del class="delprice">￥{{item.House_price.toFixed(2)}}</del><span class="delprice">每晚</span></div>
+                                <div>
+                                    <el-rate
+                                    v-model="value"
+                                    disabled
+                                    show-score
+                                    text-color="#ff9900"
+                                    score-template="{value}">
+                                  </el-rate>
+                                  五星房东</div>
+        
+                        </div> 
+                    </div>
+                    <router-link class="getmore" to="/Search">查看更多房源></router-link>
+                    
+                </div>
+
+                    <!--                 热门目的地                     -->
+                    <h1 class="indextitle">热门目的地 </h1>
+                <div class="btn-container">
+                    <button @click="changeblue2(0)"  :class="{isblue:j==0}" class="my-btn">北京</button>
+                    <button @click="changeblue2(1)"  :class="{isblue:j==1}" class="my-btn">上海</button>
+                    <button @click="changeblue2(2)"  :class="{isblue:j==2}" class="my-btn">成都</button>
+                    <button @click="changeblue2(3)"  :class="{isblue:j==3}" class="my-btn">重庆</button>
+                    <button @click="changeblue2(4)"  :class="{isblue:j==4}" class="my-btn">广州</button>
+                    <button @click="changeblue2(5)"  :class="{isblue:j==5}" class="my-btn">西安</button>
+                    <button @click="changeblue2(6)"  :class="{isblue:j==6}" class="my-btn">南京</button>
+                </div>
+                <!-- 主题页图文 -->
+                <div>
+                    <div class="flexbox"><!--每层 弹性布局-->
+                        <div class="box-item" v-for="(item,key) of houselist2" :key="key"><!--每个房间内容-->   
+                                <div><!-- 图 -->
                                     <a href="javascirpt:;">
                                         <img :src="'http://127.0.0.1:3000/img'+item.House_imgurl" alt="">
                                     </a>
                                 </div>
-                                <div>
-                                    <span>酒店房间</span><span>·</span><span>一张床</span>
+                                <div class="house-buliding">
+                                    <span>{{item.House_Building}}</span> <span>·</span> <span>{{item.House_Bed}}</span>
                                 </div>
                                 <div>
-                                    <a href="javascirpt:;">
-
+                                    <a class="house-name" href="javascirpt:;">
+                                            {{item.House_name}}
                                     </a>
-                                </div>
-                                <div>--价格
-                                    <span><span></span></span></div>
-                                <div>五星房东</div>
+                                </div>"
+                                <div class="house-name"><!---价格-->
+                                    <span>{{(item.House_price*item.House_tag).toFixed(2)}}</span><del class="delprice">￥{{item.House_price.toFixed(2)}}</del><span class="delprice">每晚</span></div>
+                                <div>
+                                    <el-rate
+                                    v-model="value"
+                                    disabled
+                                    show-score
+                                    text-color="#ff9900"
+                                    score-template="{value}">
+                                  </el-rate>
+                                  五星房东</div>
         
                         </div> 
                     </div>
+                    <a class="getmore" href="javascript:;">查看更多房源></a>
                     
                 </div>
+
+                
+                    <!--                 精选故事                    -->
+                    <h1 class="indextitle">精彩旅行故事</h1>
+                <!-- 主题页图文 -->
+                <div>
+                    <div class="flexbox"><!--每层 弹性布局-->
+                        <div class="box-item-story" v-for="(item,key) of houselist2" :key="key"><!--每个房间内容-->   
+                                <div><!-- 图 -->
+                                    <a href="javascirpt:;">
+                                        <img :src="'http://127.0.0.1:3000/img'+item.House_imgurl" alt="">
+                                    </a>
+                                </div>
+                                <div class="house-buliding">
+                                    <span>{{item.House_Building}}</span> <span>·</span> <span>{{item.House_Bed}}</span>
+                                </div>
+                                <div>
+                                    <a class="house-name" href="javascirpt:;">
+                                            {{item.House_name}}
+                                    </a>
+                                </div>"
+                                <div class="house-name"><!---价格-->
+                                    <span>{{(item.House_price*item.House_tag).toFixed(2)}}</span><del class="delprice">￥{{item.House_price.toFixed(2)}}</del><span class="delprice">每晚</span></div>        
+                        </div> 
+                    </div>
+                    <a class="getmore" href="javascript:;">更多精彩故事></a>
+                    
+                </div>
+
             </section>
 
 
@@ -64,26 +148,40 @@ export default {
         return {
             Carousellist:[],
             i:0,
+            j:1,
+            value:5,
+            city:"北京",
             houselist:[{
                 House_Bed:"",
                 House_Building:"",
-                House_imgurl:"",
+                House_imgurl:"/img-index/index1.jpg",
                 House_name:"",
                 House_price:0,
                 House_tag:""
-            }]
+            }],
+            houselist2:[{
+                House_Bed:"",
+                House_Building:"",
+                House_imgurl:"/img-index/index2.jpg",
+                House_name:"",
+                House_price:0,
+                House_tag:""
+            }],
+            sel_list:[],
             
         }
     },
     created(){
         this.getcarouserimg(),
         this.changeblue(this.i)
+        this.changeblue2(this.j)
     },
     methods: {
         getcarouserimg(){
             this.axios.get("/index/Carousel").then(result=>{
                 //console.log(result.data.data)
                 this.Carousellist=result.data.data
+                
             })
         },
         changeblue(i){
@@ -93,8 +191,25 @@ export default {
             this.axios.get(url,{params:obj}).then(res=>{
                // console.log(res.data.data[0].House_imgurl)
                 this.houselist=res.data.data
-                //console.log(22,this.houselist)
             })
+        },
+        changeblue2(j){
+            this.j=j;
+            var url="/index/cities2";
+            var obj={j}
+            this.axios.get(url,{params:obj}).then(res=>{
+              // console.log(res.data.data[0].House_imgurl)
+                this.houselist2=res.data.data
+            })
+        },
+        getstory(){
+            var url="/story";
+            this.axios.get(url).then(result=>{
+            console.log(result.data);
+            //通过sel_list[]数组来接收数据，显示在页面上
+            this.sel_list=result.data;
+      //console.log(this.sel_list[0].md_img,this.careStoryTop.backgroundImage );
+    });
         }
     },
     
@@ -122,13 +237,14 @@ export default {
      background-color: #d3dce6;
   }
   section{
-      width:900px;margin-top:100px;
+      width:1000px;margin-top:100px;
       margin:0 auto;
       overflow: hidden;
   }
   .indextitle{
       color:#484848;padding:10px;
-      font:24px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC"
+      font-weight: 800!important;
+      font:20px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC"
   }
   .litletitle{
       padding:10px;
@@ -156,5 +272,42 @@ export default {
       background: #00848a;
       border:0;
   }
-
+    .flexbox{
+        display: flex;
+        flex-wrap:wrap;
+        width:1000px;
+        justify-content: space-between;
+       
+    }
+    .box-item{
+        width:30%;
+       
+        margin:5px 
+    }
+    .flexbox img{
+        width:100%;border-radius: 5px;
+    }
+    .house-buliding{
+        color:#714e33;
+        font:10px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC";
+        font-weight: 600
+    }
+    .house-name{
+        color:#484848;
+        font:14px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC";
+    }
+    .delprice{
+        color:#484848;
+        font:12px  Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC";
+    }
+    .getmore{
+        color:#008489;
+        font:14px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC";
+        font-weight: 600;
+        padding:40px 0;display: inline-block;
+    }
+    .box-item-story{
+        width:20%;
+        margin:5px  
+    }
 </style>
