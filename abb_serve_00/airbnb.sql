@@ -184,13 +184,13 @@ INSERT INTO Airbnb_user VALUES(NULL,"杨幂","yangmi","yangmi@163.com",156609025
 INSERT INTO Airbnb_user VALUES(NULL,"赵丽颖","zhaoliying","zhaoliying@163.com",15660902593,0,'2018/1/7','2018/1/8','img/user/zhaoliying.jpeg');
 INSERT INTO Airbnb_user VALUES(NULL,"郑凯","zhengkai","zhengkai@163.com",15660902594,1,'2018/1/9','2018/1/10','img/user/zhengkai.jpeg');
 INSERT INTO Airbnb_user VALUES(NULL,"无头像","wutouxiang","wutouxiang@163.com",15660902595,1,'2019/1/9','2019/1/10',NULL);
-#旅游指南表
+#旅游指南表gyh
 CREATE TABLE Airbnb_guide(
   guide_id INT PRIMARY KEY AUTO_INCREMENT,
   guide_country VARCHAR(64),
   guide_imgurl VARCHAR(128)
 )
-#旅游指南数据
+#旅游指南数据gyh
 INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_san_francisco_carousel@2x.jpg");
 INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_new_york_carousel@2x.jpg");
 INSERT INTO Airbnb_guide VALUES(NULL,"北美洲","https://z1.muscache.cn/airbnb/guidebook/v1_los_angeles_carousel@2x.jpg");
