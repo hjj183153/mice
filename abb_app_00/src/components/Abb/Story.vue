@@ -3,7 +3,6 @@
     <div>
       <!-- 引入头组件 -->
       <my-header></my-header>
-     
     </div>
     <!-- 以下是搜索界面 -->
     <div class="search_story search_active" id="search_story_main">
@@ -88,7 +87,7 @@
         <div class="story_title">
           <span>故事</span>
           <a href="javascript:;" id="search_story1" @click="search_story1">搜索故事
-            <img src="../../../../abb_serve_00/public/img/story/story_search.png" alt="">
+            <img src="http://127.0.0.1:3000/img/story/story_search.png" alt="">
           </a>
         </div>
         <!-- 导航栏 -->
@@ -1132,7 +1131,7 @@
         </el-tabs>
         
     </div> 
-    <div>
+    <div id="footer">
       <my-footer></my-footer>
     </div>
   </div>
@@ -1186,7 +1185,7 @@ export default {
       
     },
     /* .story_top_zan:hover{
-  background-image: url(../../../../abb_serve_00/public/img/story/zan1_blank.png);
+  background-image: url(http://127.0.0.1:3000/img/story/zan1_blank.png);
 }当点赞时，变颜色，再点一次，更换颜色 
 */
 
@@ -1245,13 +1244,18 @@ export default {
       var main=document.getElementById("main");
       main.style.display="none";
       search_story_main.style.display="block";
+      //页脚部分隐藏
+      var foot=document.getElementById("footer");
+      foot.style.display="none";
     },
     cancel_seachStory(){
       var search_story_main=document.getElementById("search_story_main");
       var main=document.getElementById("main");
-      
       main.style.display="block";
       search_story_main.style.display="none";
+      //页脚部分显示
+      var foot=document.getElementById("footer");
+      foot.style.display="block";
     }
   },
   mounted() {
@@ -1672,7 +1676,7 @@ ul.careful_story_list>li>img{
   
 }
 /* .story_top_zan:hover{
-  background-image: url(../../../../abb_serve_00/public/img/story/zan1_blank.png);
+  background-image: url(http://127.0.0.1:3000/img/story/zan1_blank.png);
 }当点赞时，变颜色，再点一次，更换颜色 
 */
 .careful_story_detail{

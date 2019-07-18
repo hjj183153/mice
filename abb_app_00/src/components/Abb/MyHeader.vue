@@ -38,7 +38,7 @@
                 </el-menu-item>
             </el-submenu>
             <el-menu-item index="4">
-                <a href="javascript:;" target="_blank">故事</a>
+                <router-link to="Story" target="_blank">故事</router-link>
             </el-menu-item>
             <el-menu-item index="5">
                 <a href="javascript:;" target="_blank">帮助</a>

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div>
+      <my-header></my-header>
+    </div>
     <div class="data_main">
       <div class="result_title">
         <div class="result_left">
@@ -234,6 +237,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <my-footer></my-footer>
     </div>
   </div>
 </template>
@@ -552,14 +558,14 @@ ul.careful_story_list>li>img{
   top:8px;
   width:24px;
   height: 24px;
-  background-image: url(../../../../abb_serve_00/public/img/story/zan1_while.png);
+  background-image: url(http://127.0.0.1:3000/img/story/zan1_while.png);
   background-size: cover;
   background-position: center center;
   border-radius: 4px;
   
 }
 /* .story_top_zan:hover{
-  background-image: url(../../../../abb_serve_00/public/img/story/zan1_blank.png);
+  background-image: url(http://127.0.0.1:3000/img/story/zan1_blank.png);
 }当点赞时，变颜色，再点一次，更换颜色 
 */
 .careful_story_detail{
@@ -608,7 +614,7 @@ ul.careful_story_list>li>img{
 .story_user_zan,.story_user_com{
   width:15px;
   height: 15px;
-  background-image: url(../../../../abb_serve_00/public/img/story/zan_black.png);
+  background-image: url(http://127.0.0.1:3000/img/story/zan_black.png);
   background-size: cover;
   background-position: center center;
   margin-top:3px;
@@ -616,7 +622,7 @@ ul.careful_story_list>li>img{
 .story_user_com{
   width:13px;
   height: 13px;
-  background-image: url(../../../../abb_serve_00/public/img/story/comment_black1.png);
+  background-image: url(http://127.0.0.1:3000/img/story/comment_black1.png);
   margin-top:5px;
 }
 .story_user_zan_number,.story_user_com_number{
