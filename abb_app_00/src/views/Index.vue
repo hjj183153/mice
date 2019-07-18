@@ -29,25 +29,34 @@
                 <!-- 主题页图文 -->
                 <div>
                     <div class="flexbox"><!--每层 弹性布局-->
-                        <div class="box-item" v-for="(item,key) of houselist" :key="key"><!--每个房间内容--->   
+                        <div class="box-item" v-for="(item,key) of houselist" :key="key"><!--每个房间内容-->   
                                 <div><!-- 图 -->
                                     <a href="javascirpt:;">
                                         <img :src="'http://127.0.0.1:3000/img'+item.House_imgurl" alt="">
                                     </a>
                                 </div>
-                                <div>
+                                <div class="house-buliding">
                                     <span>{{item.House_Building}}</span> <span>·</span> <span>{{item.House_Bed}}</span>
                                 </div>
                                 <div>
-                                    <a href="javascirpt:;">
+                                    <a class="house-name" href="javascirpt:;">
                                             {{item.House_name}}
                                     </a>
-                                </div>
-                                <div><!---价格--->
-                                    <span>{{item.House_price*item.House_tag}}</span><del>￥{{item.House_price}}</del>每晚</div>
-                                <div>五星房东</div>
+                                </div>"
+                                <div class="house-name"><!---价格-->
+                                    <span>{{item.House_price*item.House_tag}}</span><del class="delprice">￥{{item.House_price}}</del><span class="delprice">每晚</span></div>
+                                <div>
+                                    <el-rate
+                                    v-model="value"
+                                    disabled
+                                    show-score
+                                    text-color="#ff9900"
+                                    score-template="{value}">
+                                  </el-rate>
+                                  五星房东</div>
         
                         </div> 
+                        <a class="getmore" href="javascript:;">查看更多房源></a>
                     </div>
                     
                 </div>
@@ -64,6 +73,8 @@ export default {
         return {
             Carousellist:[],
             i:0,
+            value:5,
+            city:"北京",
             houselist:[{
                 House_Bed:"",
                 House_Building:"",
@@ -88,6 +99,8 @@ export default {
             })
         },
         changeblue(i){
+            this.city=this.innerHTML
+            console.log(this.TEXT)
             this.i=i;
             var url="/index/cities";
             var obj={i}
@@ -128,7 +141,8 @@ export default {
   }
   .indextitle{
       color:#484848;padding:10px;
-      font:24px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC"
+      font-weight: 800!important;
+      font:20px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC"
   }
   .litletitle{
       padding:10px;
@@ -170,5 +184,23 @@ export default {
     }
     .flexbox img{
         width:100%;border-radius: 5px;
+    }
+    .house-buliding{
+        color:#714e33;
+        font:10px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC";
+        font-weight: 600
+    }
+    .house-name{
+        color:#484848;
+        font:14px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC";
+    }
+    .delprice{
+        color:#484848;
+        font:12px  Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC";
+    }
+    .getmore{
+        color:#008489;
+        font:14px Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC";
+        font-weight: 600;
     }
 </style>

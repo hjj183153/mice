@@ -194,7 +194,7 @@ div.my-footer>div>h3{
 }
 .mywid1{
     width: 10%;
-   padding-left:100px
+   padding-left:5%
 }
 .mywid2{
     width: 90%;
