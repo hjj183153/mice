@@ -189,7 +189,6 @@ INSERT INTO `airbnb_story` (`stid`, `family_id`, `user_id`, `user_name`, `user_i
 (22,2, 22,'茄子10912','img/story/user_img_22.jpg', 'img/story/bg_img1_22.jpg', '文化', '北京', 139, 41, '与Paul Smith回看过往'),
 (23,2, 23,'茄子10913','img/story/user_img_23.jpg', 'img/story/bg_img1_23.jpg', '文化', '北京', 75, 62, '红遍ins的粉红墙和设计鬼才的“脑洞”都来北京了'),
 (24,2, 24,'茄子10914','img/story/user_img_24.jpg', 'img/story/bg_img1_24.jpg', '文化', '北京', 234, 51, '智珠寺有JamesTurrell在中国的第一件艺术');
-
 #精选故事种类
 CREATE TABLE Airbnb_story_family(
   fid INT PRIMARY KEY AUTO_INCREMENT,
@@ -197,7 +196,25 @@ CREATE TABLE Airbnb_story_family(
   story_num INT
 );
 INSERT INTO Airbnb_story_family VALUES(1,"房源",126),(2,"景点",161),(3,"美食",198),(4,"文化",24),(5,"活动",39),(6,"店铺",51);
-
+#热门目的地
+CREATE TABLE Airbnb_hot_place(
+  hotid INT PRIMARY KEY AUTO_INCREMENT,
+  hot_place_img VARCHAR(64),
+  hot_city VARCHAR(64)
+);
+INSERT INTO Airbnb_hot_place VALUES
+(NULL,'img/story/hot_place_1.jpg','东京'),
+(NULL,'img/story/hot_place_2.jpg','大阪'),
+(NULL,'img/story/hot_place_3.jpg','京都'),
+(NULL,'img/story/hot_place_4.jpg','巴黎'),
+(NULL,'img/story/hot_place_5.jpg','台北'),
+(NULL,'img/story/hot_place_6.jpg','成都'),
+(NULL,'img/story/hot_place_7.jpg','洛杉矶'),
+(NULL,'img/story/hot_place_8.jpg','伦敦'),
+(NULL,'img/story/hot_place_9.jpg','曼谷'),
+(NULL,'img/story/hot_place_10.jpg','北京'),
+(NULL,'img/story/hot_place_11.jpg','上海'),
+(NULL,'img/story/hot_place_12.jpg','香港');
 #精选故事详情图片
 CREATE TABLE Airbnb_story_pic(
   pid INT PRIMARY KEY AUTO_INCREMENT,
