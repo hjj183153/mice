@@ -15,11 +15,11 @@
             <div class="topright">
                 <div class="rightimg" v-for="(item,i) of houseData" :key="i" >
                     <img :src="item.HouseImg_md" @mouseover="imgLg" @mouseout="imgSm" @click="show">
-                    <div class="imgshadow" v-show="s!=i"></div>
+                    <div class="imgshadow"></div>
                 </div>
             </div>
             <button class="share" @click="share"><img src="http://127.0.0.1:3000/img/details/share.png">分享</button>
-            <button class="save"><img src="http://127.0.0.1:3000/img/details/save.png">保存</button>
+            <button class="save" @click="save" ><img src="http://127.0.0.1:3000/img/details/save.png">保存</button>
             <button class="lookimg" @click="show">查看图片</button>
         </div>
         <div class="main">
@@ -68,7 +68,7 @@
                                 <span>Hi,很开心在这个美好的季节与你相遇,分享家和生活,你想知道的都在下面啦:
                                 </span>
                             </div>
-                            <div style="margin-top:50px"><a style="font-size:18px" href="">更多房源介绍</a></div>
+                            <div style="margin-top:50px"><a style="font-size:18px" @click="more">更多房源介绍</a></div>
                         </div>
                         <div class="line"></div>
                         <div class="rooms">
@@ -87,18 +87,18 @@
                             </div>
                         </div>
                         <div class="amenities">
-                            <div class="amenity">
+                            <div class="amenity" v-for="(amenity,i) of amenities" :key="i">
                                 <div>
-                                    <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" style="height: 24px; width: 24px; fill: currentcolor;"><path d="m12 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 5a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm5.92-5.78a.5.5 0 1 1 -.84.55c-1.19-1.81-3.07-2.77-5.08-2.77s-3.89.96-5.08 2.78a.5.5 0 0 1 -.84-.55c1.38-2.1 3.58-3.23 5.92-3.23s4.54 1.13 5.92 3.23zm2.98-3.03a.5.5 0 1 1 -.79.61c-1.66-2.14-5.22-3.8-8.11-3.8-2.83 0-6.26 1.62-8.12 3.82a.5.5 0 0 1 -.76-.65c2.05-2.42 5.75-4.17 8.88-4.17 3.19 0 7.05 1.8 8.9 4.19zm2.95-2.33a.5.5 0 0 1 -.71-.02c-2.94-3.07-6.71-4.84-11.14-4.84s-8.2 1.77-11.14 4.85a.5.5 0 0 1 -.72-.69c3.12-3.27 7.14-5.16 11.86-5.16s8.74 1.89 11.86 5.16a.5.5 0 0 1 -.02.71z" fill-rule="evenodd"></path>
+                                    <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" style="height: 24px; width: 24px; fill: currentcolor;"><path :d="aimgs[i]" fill-rule="evenodd"></path>
                                     </svg>
                                 </div>
-                                <div>无线网络</div>
+                                <div>{{amenity}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="speak" style="height:500px">
                         <h1>评价</h1>
-
+                        
                     </div>
                     <div class="leftdate" style="height:500px">
                         <h1>可定日期</h1>
@@ -127,41 +127,115 @@
                 </div>
                 <div class="mainright">
                     <div class="rightdate">
-
+                        <div class="price">
+                            <p> <span>￥{{parseInt(houseData[0].House_price*0.9)}}</span>&nbsp;<s style="font-size:14px;color: #aaa">￥{{houseData[0].House_price}}</s>&nbsp;<span style="font-size:14px;color: #000">每晚</span> </p>
+                            <div>
+                                <el-rate v-model="value" disabled show-score text-color="#ff9900" score-template="{value}">
+                                </el-rate>
+                            </div>
+                        </div>
+                        <div class="dated">
+                            日期
+                            <div>
+                                <mydate class="mydate"></mydate>
+                            </div>
+                        </div>
+                        <div class="people">
+                            人数
+                            <div> 
+                                <div style="padding: 15px;height:20px">
+                                    1人
+                                </div>
+                                <div class="changenum">
+                                    <div class="changenum1">
+                                        <div>成人</div>
+                                        <div>
+                                            <div><svg viewBox="0 0 24 24" role="img" aria-label="subtract" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect></svg></div>
+                                            <div> 1 </div>
+                                            <div><svg viewBox="0 0 24 24" role="img" aria-label="add" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect><rect height="12" rx="1" width="2" x="11" y="6"></rect></svg></div>
+                                        </div>
+                                    </div>
+                                    <div class="changenum1">
+                                        <div>儿童<p style="font-size:10px;color:#666">2 - 12岁</p></div>
+                                        <div>
+                                            <div><svg viewBox="0 0 24 24" role="img" aria-label="subtract" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect></svg></div>
+                                            <div> 1 </div>
+                                            <div><svg viewBox="0 0 24 24" role="img" aria-label="add" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect><rect height="12" rx="1" width="2" x="11" y="6"></rect></svg></div>
+                                        </div>
+                                    </div>
+                                    <div class="changenum1">
+                                        <div>婴儿<p style="font-size:10px;color:#666">2岁以下</p></div>
+                                        <div>
+                                            <div><svg viewBox="0 0 24 24" role="img" aria-label="subtract" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect></svg></div>
+                                            <div> 1 </div>
+                                            <div><svg viewBox="0 0 24 24" role="img" aria-label="add" focusable="false" style="height: 1em; width: 1em; display: block; fill: currentcolor;"><rect height="2" rx="1" width="12" x="6" y="11"></rect><rect height="12" rx="1" width="2" x="11" y="6"></rect></svg></div>
+                                        </div>
+                                    </div>
+                                    <div class="changenum1" style="padding:0px 15px">
+                                        <p style="font-size:10px;color:#666">最多2位房客，婴幼儿不计算在内。</p>
+                                    </div>
+                                    <div class="changenum1" style="padding-left: 80%">
+                                        <el-button type="danger" size="mini" @click="people">关闭</el-button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="yuding" >预定 </div>
                     </div>
                 </div>
             </div>
-            
-            
         </div>
-        
     </div>
 </template>
 <script>
+//引入子组件
+import  mydate from './../components/Abb/Date'
 export default {
     data(){
         return {
             houseData:[{HouseImg_lg:""}],
             houseId:1,
-            s:-1,
             changeBlack:0,
             labels:[],
             roomnum:[],
             messages:[],
             rools:[],
-            amenities:[]
+            amenities:[],
+            aimgs:[],
+            value:4.3,
+            bed2count:0
         }
   },
     methods: {
-        imgLg(e,sh){
+        bed_count(m){
+            var btn_reduce2=document.getElementById("btn_reduce2")
+            var btn_add2=document.getElementById("btn_add2")              
+            if(z==1){
+                if(this.bed2count<8){
+                   btn_reduce2.style.opacity="1" 
+                   this.bed2count+=z;
+                }else if(this.bed2count==8){
+                    btn_add2.style.opacity="0.3"
+                    this.bed2count+=z;
+                }
+            }else{
+                if(this.bed2count>1){
+                    this.bed2count+=z;
+                    btn_add2.style.opacity="1"
+                }else if(this.bed2count==1){
+                    btn_reduce2.style.opacity="0.3"
+                    this.bed2count+=z;
+                }              
+            }
+                console.log(this.bed2count)             
+        },
+        imgLg(e){
             e.target.style.width="105%";
             var shadow=e.target.parentElement
         },
         imgSm(e){
             e.target.style.width="100%"
-        },
-        mainnavclick(){
-
         },
         show () {
             const viewer = this.$el.querySelector('.images').$viewer
@@ -186,9 +260,9 @@ export default {
                 save.style.position="fixed";
                 share.style.right="265px";
                 save.style.right="150px";
-                rightdate.style="position:fixed;top:80px;width:28%;right:150px"
+                rightdate.style="position:fixed;top:80px;width:26%;right:150px"
             }else if(scrollTop>=3200){
-                rightdate.style="position:absolute;top:2700px;width:90%;right:0px"
+                rightdate.style="position:absolute;top:2700px;width:83.5%;right:0px"
             }else{
                 mainnav.style.position="";
                 mainnav.style.borderBottom="0";
@@ -198,17 +272,17 @@ export default {
                 save.style.position="absolute";
                 share.style.right="140px";
                 save.style.right="25px";
-                rightdate.style="position:absolute;top:-30px;width:90%;right:0px"
+                rightdate.style="position:absolute;top:-30px;width:83.5%;right:0px"
             }
-            if(scrollTop>=911&&scrollTop<1455){
+            if(scrollTop>=1550&&scrollTop<2000){
                 this.changeBlack=1;
-            }else if(scrollTop>=1455&&scrollTop<2010){
+            }else if(scrollTop>=2000&&scrollTop<2600){
                 this.changeBlack=2;
-            }else if(scrollTop>=2010&&scrollTop<2562){
+            }else if(scrollTop>=2600&&scrollTop<3001){
                 this.changeBlack=3;
-            }else if(scrollTop>=2562&&scrollTop<3105){
+            }else if(scrollTop>=3000&&scrollTop<3605){
                 this.changeBlack=4;
-            }else if(scrollTop>=3105){
+            }else if(scrollTop>=3605){
                 this.changeBlack=5;
             }else{
                 this.changeBlack=0;
@@ -217,27 +291,73 @@ export default {
         toggle(b){
             this.changeBlack=b;
             if(b==0){
-                document.documentElement.scrollTop=400;
+                document.documentElement.scrollTop=350;
             }else if(b==1){
-                document.documentElement.scrollTop=911;
+                document.documentElement.scrollTop=1550;
             }else if(b==2){
-                document.documentElement.scrollTop=1455;
+                document.documentElement.scrollTop=2000;
             }else if(b==3){
-                document.documentElement.scrollTop=2010;
+                document.documentElement.scrollTop=2600;
             }else if(b==4){
-                document.documentElement.scrollTop=2562;
+                document.documentElement.scrollTop=3000;
             }else if(b==5){
-                document.documentElement.scrollTop=3105;
+                document.documentElement.scrollTop=3605;
             }
             
         },
         share() {
-            this.$alert(`<div><h2>分享</h2><div>`, '标题名称');
+            this.$alert("微信","分享");
+        },
+        more(){
+            this.$alert("概要：Hi,很开心在这个美好的季节与你相遇,分享家和生活,你想知道的都在下面啦:｢Sunny｣位于二环里人气旺盛的｢崇文门商圈｣楼下便是帝都老牌商业街,新世界百货､国瑞城购物中心｡而我的房子更像是隐秘城市的一处后花园｡｢超大的私人露天阳台非常惬意｣,7层楼高视野非常广阔~躺在被大片绿植拥抱的露台中央,轻轻摇晃躺椅,微风吹过,飘来薄荷柠檬加冰的清凉水汽,此时再来放一点夏日电音,忍不住在自己露台上放肆跳起来~是二环里最独一无二的享受之家了!｢卧室｣的落地玻璃大窗与露台相连,房间里淡蓝色的地中海元素带来度假气息,可住2人｡阳光和风景一揽入怀,躺在绵软的大床上,拥有一个自然醒的早晨｡+位置极好:- 楼下300米就是老牌商圈【崇文门】,新世界百货､国瑞城,上百家美食餐厅､超市､购物逛街､夜宵撸串都没问题｡- 10分钟车程或步行:天安门､国博､王府井大街､东交民巷､天坛､北京站- 紧邻超多著名医院:惠民儿童､两广中医､同仁堂､协和､北京医院- 600米5/7号线【磁器口】站,直达北京西站､东四､欢乐谷房间100%“一客一扫”,居住愉快~", '关于此房源');
+            
+        },
+        save() {
+            this.$prompt('名称', '保存到心愿单', {
+            confirmButtonText: '创建',
+            cancelButtonText: '取消',
+            inputPattern: /^\w+$/,
+            inputErrorMessage: '请输入名称'
+            }).then(({ value }) => {
+            this.$message({
+                type: 'success',
+                message: '创建成功，你的心愿单名称为: ' + value
+            });
+            }).catch(() => {
+            this.$message({
+                type: 'info',
+                message: '取消创建'
+            });       
+            });
+        },
+        people(){
+            var people=document.querySelector(".people>div");
+            if(people.style.height=="300px"){
+                people.style.height="50px"
+            }
         }
     },
     mounted() {
       window.addEventListener('scroll', this.scroll);
-
+      var date=document.querySelector(".rightdate .dated .mydate")
+        //console.log(date.value)
+      var pnum=document.querySelector(".people>div>div:first-child")
+      var people=document.querySelector(".people>div")
+      var yuding=document.querySelector(".mainright .yuding")
+      pnum.onclick=function(){
+        people.style.borderColor="#008489";
+        //console.log(people)
+        if(people.style.height=="310px"){
+            people.style.height="50px"
+            setTimeout(function(){
+                yuding.style.opacity="1" 
+            },500)
+                       
+        }else{
+            people.style.height="310px"
+                yuding.style.opacity="0" 
+        }
+      }
     },
     created() {
         var url="details";
@@ -245,19 +365,21 @@ export default {
         this.axios.get(url,{params:obj}).then(result=>{
             this.houseData=result.data.data;
             this.labels=result.data.data[0].House_label.split(",");
-            console.log(this.messages)
+            //console.log(this.messages)
             var num=this.houseData[0].House_bednum;
             for(var i=1;i<=num;i++){
                 this.roomnum.push(i)
             }
             this.messages=this.houseData[0].House_message.split(",");
             this.rools=this.houseData[0].House_rool.split(",");
-            this.amenities=this.houseData[0].House_amenities.split(",");
-            //console.log(this.roomsum)
+            this.amenities=this.houseData[0].House_HouseAmenities.split(",");
+            this.aimgs=this.houseData[0].House_Aimg.split(",");
+            //console.log(this.aimgs)
         })
-        
     },
-    
+    components:{
+        mydate
+    }
 }
 </script>
 <style  scoped>
@@ -430,12 +552,13 @@ export default {
     .main_main .housename{
     }
     .main_main .rightdate{
-        width:90%;
-        height: 500px;
+        width:83.5%;
+        height:350px;
         border:1px solid #ddd;
         position: absolute;
         top:-30px;
         right: 0px;
+        position: relative;
     }
     .mainleft .housetags{
         width:70%;
@@ -544,19 +667,83 @@ export default {
     }
     .details .houserool .rools div:last-child{
         width:75%;
-        font-weight: 400
+        font-weight:400
     }
     .details .amenities{
         display: flex;
         justify-content: space-between
     }
     .details .amenity{
-        width: 50px;
+        width:60px;
         height:70px;
         margin: 30px 10px;
     }
     .details .amenity div{
         text-align: center;
         margin: 10px 0;
+    }
+    .mainright .rightdate{
+        padding: 20px;
+        
+    }
+    .mainright .price{
+        border-bottom: 1px solid #ddd;
+        color:#008489;
+        padding-bottom: 10px;
+        margin: 0 auto
+    }
+    .mainright .price p:first-child{
+        font-weight: 800;
+        font-size: 22px;
+    }
+    .mainright .price p:last-child{
+        font-weight: 600;
+        font-size:14px;
+        color: #000
+    }
+    .mainright .dated{
+        margin-top:20px;
+    }
+    .mainright .dated>div{
+        width: 100%;
+        margin: 10px 0;
+    }
+    .mainright .people>div{
+        margin-top:10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        height:50px;
+        overflow: hidden;
+        transition:height 1s;
+    }
+    .mainright .people .changenum{
+        border-top: 2px solid #008489;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .mainright .people .changenum1{
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .mainright .people .changenum1>div:last-child{
+        width:30%
+    }
+    .mainright .people .changenum1>div:last-child{
+        display: flex;
+        width: 40%;
+    }
+    .mainright .yuding{
+        position: absolute;
+        bottom:30px;
+        width: 90%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        color: #fff;
+        font-size: 20px;
+        background: #ff5a5f;
+        border-radius: 5px;
+        cursor: pointer;
     }
 </style>

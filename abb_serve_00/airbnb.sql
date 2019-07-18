@@ -62,6 +62,8 @@ CREATE TABLE Airbnb_House(
  House_Bed VARCHAR(128),#床类型
  House_restroom INT,#卫生间数量
  House_HouseAmenities VARCHAR(128),#便利设施
+ #添加新的字段
+ House_Aimg VARCHAR(10000), #便利设施图片
  House_Amenities VARCHAR(64),#设施
  House_Building VARCHAR(64),#建筑类型Airbnb_housingResources_Type
  House_detail VARCHAR(256),#详情
@@ -70,7 +72,10 @@ CREATE TABLE Airbnb_House(
  House_trip VARCHAR(128),#出行信息
  House_label VARCHAR(64),#标签信息
  House_imgurl VARCHAR(128),#缩略图
- House_message VARCHAR(128)#房屋简短信息
+ #添加新的字段
+ House_message VARCHAR(128),#房屋规则信息标题
+ House_rool VARCHAR(256) #房屋规则信息内容
+
 );
 
 #轮播图表liupan
