@@ -5,6 +5,10 @@ import store from './store'
 import MyHeader from './components/Abb/MyHeader'
 import MyFooter from './components/Abb/MyFooter'
 import userHeader from './views/user-header'
+import VueLazyload from 'vue-lazyload'  //引入这个懒加载插件
+
+
+
 Vue.component("my-header",MyHeader);
 Vue.component("my-footer",MyFooter);
 Vue.component("user-header",userHeader);
@@ -21,6 +25,8 @@ import 'viewerjs/dist/viewer.css'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(Viewer)
+//懒加载
+Vue.use(VueLazyload)
 new Vue({
   router,
   store,
