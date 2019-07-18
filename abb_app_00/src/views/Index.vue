@@ -15,7 +15,7 @@
         </div>
             <!-- 中间主体部分 -->
             <section>
-                <h1 class="indextitle">夏季特惠房源</h1>
+                <h1 class="indextitle">夏季特惠房源</h1>   <!--夏季特惠房源-->
                 <p class="litletitle">低至 7 折，可叠加使用礼券</p>
                 <div class="btn-container">
                     <button @click="changeblue(0)"  :class="{isblue:i==0}" class="my-btn">北京</button>
@@ -60,6 +60,54 @@
                     </div>
                     
                 </div>
+
+                    <!--                 热门目的地                     -->
+                    <h1 class="indextitle">热门目的地 </h1>
+                <div class="btn-container">
+                    <button @click="changeblue2(0)"  :class="{isblue:j==0}" class="my-btn">北京</button>
+                    <button @click="changeblue2(1)"  :class="{isblue:j==1}" class="my-btn">上海</button>
+                    <button @click="changeblue2(2)"  :class="{isblue:j==2}" class="my-btn">成都</button>
+                    <button @click="changeblue2(3)"  :class="{isblue:j==3}" class="my-btn">重庆</button>
+                    <button @click="changeblue2(4)"  :class="{isblue:j==4}" class="my-btn">广州</button>
+                    <button @click="changeblue2(5)"  :class="{isblue:j==5}" class="my-btn">西安</button>
+                    <button @click="changeblue2(6)"  :class="{isblue:j==6}" class="my-btn">南京</button>
+                </div>
+                <!-- 主题页图文 -->
+                <div>
+                    <div class="flexbox"><!--每层 弹性布局-->
+                        <div class="box-item" v-for="(item,key) of houselist2" :key="key"><!--每个房间内容-->   
+                                <div><!-- 图 -->
+                                    <a href="javascirpt:;">
+                                        <img :src="'http://127.0.0.1:3000/img'+item.House_imgurl" alt="">
+                                    </a>
+                                </div>
+                                <div class="house-buliding">
+                                    <span>{{item.House_Building}}</span> <span>·</span> <span>{{item.House_Bed}}</span>
+                                </div>
+                                <div>
+                                    <a class="house-name" href="javascirpt:;">
+                                            {{item.House_name}}
+                                    </a>
+                                </div>"
+                                <div class="house-name"><!---价格-->
+                                    <span>{{item.House_price*item.House_tag}}</span><del class="delprice">￥{{item.House_price}}</del><span class="delprice">每晚</span></div>
+                                <div>
+                                    <el-rate
+                                    v-model="value"
+                                    disabled
+                                    show-score
+                                    text-color="#ff9900"
+                                    score-template="{value}">
+                                  </el-rate>
+                                  五星房东</div>
+        
+                        </div> 
+                        <a class="getmore" href="javascript:;">查看更多房源></a>
+                    </div>
+                    
+                </div>
+
+
             </section>
 
 
@@ -73,6 +121,7 @@ export default {
         return {
             Carousellist:[],
             i:0,
+            j:1,
             value:5,
             city:"北京",
             houselist:[{
@@ -82,13 +131,22 @@ export default {
                 House_name:"",
                 House_price:0,
                 House_tag:""
-            }]
+            }],
+            houselist2:[{
+                House_Bed:"",
+                House_Building:"",
+                House_imgurl:"/img-index/index2.jpg",
+                House_name:"",
+                House_price:0,
+                House_tag:""
+            }],
             
         }
     },
     created(){
         this.getcarouserimg(),
         this.changeblue(this.i)
+        this.changeblue2(this.j)
     },
     methods: {
         getcarouserimg(){
@@ -99,8 +157,6 @@ export default {
             })
         },
         changeblue(i){
-            this.city=this.innerHTML
-            console.log(this.TEXT)
             this.i=i;
             var url="/index/cities";
             var obj={i}
@@ -108,7 +164,16 @@ export default {
                // console.log(res.data.data[0].House_imgurl)
                 this.houselist=res.data.data
             })
-        }
+        },
+        changeblue2(j){
+            this.j=j;
+            var url="/index/cities2";
+            var obj={j}
+            this.axios.get(url,{params:obj}).then(res=>{
+               console.log(res.data.data[0].House_imgurl)
+                this.houselist2=res.data.data
+            })
+        },
     },
     
 }
