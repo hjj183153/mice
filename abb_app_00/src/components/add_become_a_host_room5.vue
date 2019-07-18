@@ -50,8 +50,8 @@
                     </div>
                 </div>
                 <!-- 地图 -->
-                <div class="div_body3" style="width:100%;height:800px;">
-                    <div id="container" style="width:100%;height:800px;"></div>
+                <div class="div_body3" style="width:100%;height:800px;border:1px solid red">
+                    <!-- <div id="container" style="width:100%;height:800px;"></div> -->
 
                 </div>
                 <!-- 底部固定悬浮 -->
@@ -85,22 +85,34 @@
 </template>
 
 <script>
-
-</script>
-<script>
     export default {
         data() {
             return {
                 div_location: "false",
-                districtid: 18,
+                district_id: 3,
                 position: {},
+
             }
         },
         props: {
-
+            Airbnb_House: {
+                default: ""
+            }
         },
-        created() {
-            this.load1(this.districtid);
+        created: {
+            load() {
+                var id = this.district_id
+                console.log(district_id)
+                this.axios.get('http://127.0.0.1:3000/add/districtid', {
+                    params: {
+                        "id": id
+                    }
+                }).then(result => {
+                    console.log(result.data)
+                    this.position = result.data;
+                    console.log(position)
+                })
+            }
         },
         methods: {
             submit() {
@@ -109,49 +121,22 @@
             return1() {
                 this.$router.push("/add_become_a_host_room/location")
             },
-            load1() {
-                var did = this.districtid;
-                this.axios.get("http://127.0.0.1:3000/add/dd", {
-                    params: {
-                        "did": did
-                    }
-                }).then(result => {
-                    this.position = result.data;
-                })
-            },
-            getLocation() { // 从高德地图api获取浏览器定位
-                var map = new AMap.Map('container', {
-                    zoom: 11, //级别
-                    center: [this.position[0].District_longitude, this.position[0].District_latitude],
-                    viewMode: '3D' //使用3D视图
-                });
-            },
-            // logMapinfo() {
-            //     //显示地图层级与中心点信息
-            //     function logMapinfo() {
-            //         var zoom = map.getZoom(); //获取当前地图级别
-            //         var center = map.getCenter(); //获取当前地图中心位置
+            //     getLocation() { // 从高德地图api获取浏览器定位
+            //         var map = new AMap.Map('container', {
+            //             zoom: 11, //级别
+            //             center: [116.397428, 39.90923], //中心点坐标
+            //             viewMode: '3D' //使用3D视图
 
-            //         document.querySelector("#map-zoom").innerText = zoom;
-            //         document.querySelector("#map-center").innerText = center.toString();
-            //     };
-
-            //     //绑定地图移动与缩放事件
-            //     map.on('moveend', logMapinfo);
-            //     map.on('zoomend', logMapinfo);
-            // }
-        },
-
-        mounted() {
-            setTimeout(() => {
-                this.getLocation()
-            }, 200)
-
-
-        },
-
+            //         });
+            //     }
+            // },
+            // mounted() {
+            //     // this.getLocation()
+            // },
+        }
     }
 </script>
+
 <style scoped>
     .div_bg {
         background: #f8f8f8;
