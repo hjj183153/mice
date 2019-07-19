@@ -5,7 +5,7 @@
         <el-carousel trigger="click" height="200px">
           <el-carousel-item v-for="item in 4" :key="item">
             <h3 class="small">
-              <img src="./img/7bf9c0ef-3e6a-4e74-b9b4-3653fafeb02e.jpg" alt />
+              <img :src="`http://127.0.0.1:3000/img${House_imgurl}`" alt />
             </h3>
           </el-carousel-item>
         </el-carousel>
@@ -51,7 +51,8 @@ export default {
     House_tag: "",
     House_type: "",
     House_detail: "",
-    House_id:""
+    House_id:"",
+    House_imgurl:""
   },
   data() {
     return {

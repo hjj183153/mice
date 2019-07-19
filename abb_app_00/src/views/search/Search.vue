@@ -1,6 +1,6 @@
 <template>
 <div>
-  <!-- <user-header></user-header> -->
+  <user-header></user-header>
   <div class="search">
     <div class="search-nav-container _i8vcof">
       <div>
@@ -284,7 +284,7 @@
     </div>
     <div class="search-container">
       <div class="search-index">
-        <h3 class="search-num">超过300个房源</h3>
+        <h3 id='datanum' class="search-num">超过300个房源</h3>
         <div class="search-subject">
           <SearchCard
             v-for="(item,i) of dataList"
@@ -297,7 +297,9 @@
             :House_tag="item.House_tag"
             :House_type="item.House_type"
             :House_detail="item.House_detail"
-            :House_id="item.House_id"></SearchCard>
+            :House_id="item.House_id"
+            :House_imgurl="item.House_imgurl"
+            ></SearchCard>
         </div>
       </div>
       <div id="mapBox" class="search-map-box">
@@ -409,8 +411,16 @@ export default {
           }
         })
         .then(result => {
-          console.log(result.data);
+          //console.log(result.data);
           this.dataList = result.data;
+          console.log(this.dataList);
+          if(this.dataList==''){
+            var datanum=document.getElementById('datanum');
+            datanum.innerHTML='未有符合条件房源,请重新筛选'
+          }else{
+            var datanum=document.getElementById('datanum');
+            datanum.innerHTML='超过300条房源'
+          }
           //console.log(that);
           this.drawMap(that);
         });

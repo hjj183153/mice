@@ -271,8 +271,8 @@ CREATE TABLE Airbnb_district(
  City_id INT
 );
 #城市表 数据 zm
-INSERT INTO Airbnb_City VALUES(NULL,'上海');
-INSERT INTO Airbnb_City VALUES(NULL,'北京');
+INSERT INTO Airbnb_City VALUES(NULL,'上海','121.47','31.23');
+INSERT INTO Airbnb_City VALUES(NULL,'北京','116.4','39.9');
 #地区表 数据 zm
 INSERT INTO Airbnb_district VALUES
 (NULL,'静安区','121.45','31.23','1'),
