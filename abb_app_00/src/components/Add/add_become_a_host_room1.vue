@@ -126,13 +126,14 @@
             },
             submit() {
                 // console.log(11)           
-                this.$router.push("/add_become_a_host_room/bedrooms?id=6")
+                // this.$router.push("/add_become_a_host_room/bedrooms?id=6")
+                this.$emit('change',2);
+                this.$router.push("/add_become_a_host_room/bedrooms")
                 // this.$router.push({path:'/add_become_a_host_room/bedrooms' , params: { add_page:this.add_page }})
                 // this.$router.params.this.Airbnb_House       
             },
             return1() {
-                this.$router.push("/index")
-                //  this.$router.go(-1)
+                 this.$router.go(-1)
             },
             show() {
                 var div = document.getElementById("housingResources");

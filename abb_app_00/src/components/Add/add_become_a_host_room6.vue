@@ -14,7 +14,7 @@
                 </div>
                 <div class="div_body1"></div>
                 <div class="div_body2"></div>
-                <div class="div_body3">
+                <div class="div_body3" id="photo_add">
                     <el-upload class="upload-demo" drag action="http://127.0.0.1:3000/add/" multiple>
                         <i class="el-icon-upload"></i>
                         <div class="el-upload__text p_font1">上传图片或者把它们拖进框内</div>
@@ -66,8 +66,12 @@
                 default: ""
             }
         },
+        created(){
+            new Vue().$mount('#photo_add')
+        },
         methods: {
             submit() {
+                this.$emit('change',7);
                 this.$router.push("/add_become_a_host_room/description")
             },
             return1() {

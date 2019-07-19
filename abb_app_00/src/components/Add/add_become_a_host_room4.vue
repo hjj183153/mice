@@ -95,6 +95,7 @@
 
         methods: {
             submit() {
+                this.$emit('change',5);
                 this.$router.push("/add_become_a_host_room/location2")
             },
             return1() {

@@ -301,6 +301,7 @@
         },
         methods: {
             submit() {
+                this.$emit('change',3);
                 this.$router.push("/add_become_a_host_room/bathrooms")
             },
             return1() {
