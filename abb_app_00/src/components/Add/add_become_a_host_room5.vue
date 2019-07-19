@@ -1,7 +1,8 @@
 <template>
     <!-- 地图地址 -->
 
-    <div class="div_bg">
+    <div class="div_bg" style="background: #f8f8f8;">
+            <div class="div_bgfff"></div>
         <div class="div_body">
             <div>
                 <div class="div_title font_title1">
@@ -54,29 +55,30 @@
                     <div id="container" style="width:100%;height:800px;"></div>
 
                 </div>
-               <!-- 底部固定悬浮 -->
-        <div class="div_footer1">
-                <div>
-                    <div class="div_margin" style="width:100%;">
-                        <div></div>
-                        <div>
-                            <div class="div_return_submit">
-                                <div class="div_div_svg_return1">
-                                    <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false"
-                                    style="height: 2.8em; width: 1em; display: block; fill: currentcolor;">
-                                    <path
-                                        d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z"
-                                        fill-rule="evenodd"></path>
-                                    </svg>
-                                </div>                           
-                                <div class="return_btn" @click="return1">返回</div>
-                                <div class="next_btn" @click="submit">下一个</div>
+                <!-- 底部固定悬浮 -->
+                <div class="div_footer1">
+                    <div>
+                        <div class="div_margin" style="width:100%;">
+                            <div></div>
+                            <div>
+                                <div class="div_return_submit">
+                                    <div class="div_div_svg_return1">
+                                        <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true"
+                                            focusable="false"
+                                            style="height: 2.8em; width: 1em; display: block; fill: currentcolor;">
+                                            <path
+                                                d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z"
+                                                fill-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="return_btn" @click="return1">返回</div>
+                                    <div class="next_btn" @click="submit">下一个</div>
+                                </div>
                             </div>
+
                         </div>
-    
                     </div>
                 </div>
-            </div>
 
             </div>
 
@@ -85,9 +87,7 @@
     </div>
 </template>
 
-<script>
 
-</script>
 <script>
     export default {
         data() {
@@ -96,16 +96,14 @@
                 districtid: 18,
                 position: {},
             }
-        },
-        props: {
-
-        },
+        },        
         created() {
             this.load1(this.districtid);
 
         },
         methods: {
             submit() {
+                this.$emit('change',6);
                 this.$router.push("/add_become_a_host_room/photos")
             },
             return1() {

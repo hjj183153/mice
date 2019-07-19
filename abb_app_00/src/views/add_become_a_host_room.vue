@@ -14,14 +14,14 @@
         </div>
         <!-- 头部进度条 -->
         <div class="div_header2">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div v-show="showbar>=1"></div>
+            <div v-show="showbar>=2"></div>
+            <div v-show="showbar>=3"></div>
+            <div v-show="showbar>=4"></div>
+            <div v-show="showbar>=5"></div>
+            <div v-show="showbar>=6"></div>
+            <div v-show="showbar>=7"></div>
+            <div v-show="showbar>=8"></div>
 
         </div>
         <!-- 点击左上角图标弹出弹框 -->
@@ -44,7 +44,7 @@
         </div>
         <!-- body -->
         <div>
-            <router-view/>
+            <router-view @change="change"></router-view>
 
         </div>
         
@@ -64,12 +64,17 @@ export default {
             },
             alert_show:false,
             add_page:0,
-            pageurl:"/add_become_a_host_room/bedrooms"
+            pageurl:"/add_become_a_host_room/bedrooms",
+            showbar:1
     }},
     // created(){
     //      this.$router.push("/room");
     // },
-    methods:{       
+    methods:{
+        change(show){
+            //console.log(show)
+            this.showbar=show;
+        },       
         alert_show_click(){
             console.log(this.alert_show)
             this.alert_show=true;
@@ -140,15 +145,37 @@ export default {
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
     height:10px;
+    background-color: #008489;
+    position:absolute;
 }
 .div_header2>div:first-child{
     background-color: #008489;
     width: 3%;
-    float:left;
+    left:0px;
 }
-.div_header2>div:first-child~div{
+.div_header2>div:nth-child(2){
     width: 14.28571428571429%;
-    float:left;
+    left:0px;
+}
+.div_header2>div:nth-child(3){
+    width: calc(14.28571428571429% * 2);
+    left:0px;
+}
+.div_header2>div:nth-child(4){
+    width: calc(14.28571428571429% * 3);
+    left:0px;
+}
+.div_header2>div:nth-child(5){
+    width: calc(14.28571428571429% * 4);
+    left:0px;
+}
+.div_header2>div:nth-child(6){
+    width: calc(14.28571428571429% * 5);
+    left:0px;
+}
+.div_header2>div:nth-child(7){
+    width: calc(14.28571428571429% * 6);
+    left:0px;
 }
 .div_header2>div:last-child{
     border-top-right-radius: none;

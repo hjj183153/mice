@@ -70,24 +70,24 @@ CREATE TABLE Airbnb_House(
  House_imgurl VARCHAR(128)
 );
 #轮播图表
- House_City_id INT,#城市id
- House_District_id INT,#区域id
- House_name VARCHAR(128),#房屋名
+ House_City_id INT,#城市id4
+ House_District_id INT,#区域id4
+ House_name VARCHAR(128),#房屋名7
  House_User_id INT,#用户id
- House_longitude VARCHAR(64),#经度
- House_latitude VARCHAR(64),#纬度
- House_people_num INT,#可住人数
- House_type VARCHAR(64),#房源类型    
+ House_longitude VARCHAR(64),#经度5
+ House_latitude VARCHAR(64),#纬度5
+ House_people_num INT,#可住人数2
+ House_type VARCHAR(64),#房源类型 1   
  House_price INT,#价格
  House_tag VARCHAR(64),#标签
- House_bednum INT,#床铺数量
- House_Bed VARCHAR(128),#床类型
- House_restroom INT,#卫生间数量
+ House_bednum INT,#床铺数量2
+ House_Bed VARCHAR(128),#床类型2
+ House_restroom INT,#卫生间数量3
  House_HouseAmenities VARCHAR(128),#便利设施
  #添加新的字段
  House_Aimg VARCHAR(10000), #便利设施图片
  House_Amenities VARCHAR(64),#设施
- House_Building VARCHAR(64),#建筑类型Airbnb_housingResources_Type
+ House_Building VARCHAR(64),#建筑类型Airbnb_housingResources_Type 1
  House_detail VARCHAR(256),#详情
  House_address VARCHAR(128),#地址
  #添加新的字段
@@ -96,7 +96,7 @@ CREATE TABLE Airbnb_House(
  House_number VARCHAR(128),#地址门牌号
  House_trip VARCHAR(128),#出行信息
  House_label VARCHAR(64),#标签信息
- House_imgurl VARCHAR(128),#缩略图
+ House_imgurl VARCHAR(128),#缩略图6
  #添加新的字段
  House_message VARCHAR(128),#房屋规则信息标题
  House_rool VARCHAR(256) #房屋规则信息内容

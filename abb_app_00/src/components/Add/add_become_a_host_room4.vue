@@ -1,6 +1,7 @@
 <template>
     <!-- 地址填写 -->
-    <div class="div_bg">
+    <div class="div_bg" style="background: #f8f8f8;">
+            <div class="div_bgfff"></div>
         <div class="div_body">
             <div>
                 <div class="div_title font_title1">
@@ -83,18 +84,18 @@
                 House_number: "",
             }
         },
-        props: {
-            Airbnb_House: {
-                House_City_id: -1,
-                House_District_id: -1
-            }
-        },
+        
         created() {
             this.loadMore()
         },
 
         methods: {
             submit() {
+                localStorage.setItem("House_City_id", this.cityid)
+                localStorage.setItem("House_District_id", this.districtid)
+                localStorage.setItem("House_address", this.House_address)
+                localStorage.setItem("House_number", this.House_number)
+                this.$emit('change',5);
                 this.$router.push("/add_become_a_host_room/location2")
             },
             return1() {
@@ -116,19 +117,20 @@
                     //console.log(result.data)
                     this.district = result.data;
                 })
-                this.Airbnb_House.House_City_id = this.cityid;
+                // this.Airbnb_House.H
+                ouse_City_id = this.cityid;
                 //console.log(this.Airbnb_House.House_City_id)            
             },
             district_change() {
-                this.Airbnb_House.House_District_id = this.districtid;
+                // this.Airbnb_House.House_District_id = this.districtid;
                 //console.log(this.Airbnb_House.House_District_id)
             },
             addresschange() {
-                this.Airbnb_House.House_address = this.House_address;
+                // this.Airbnb_House.House_address = this.House_address;
                 // console.log(this.Airbnb_House.House_address)
             },
             numberchange() {
-                this.Airbnb_House.House_number = this.House_number;
+                // this.Airbnb_House.House_number = this.House_number;
                 //console.log(this.Airbnb_House.House_number)
             },
         }
