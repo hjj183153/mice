@@ -5,6 +5,7 @@
       <div class="data_left">
         <ul>
           <li v-for="(elem,i) of list" :key="i">
+            <!-- <a :class="{black:changeBlack==i}" @click="toggle(i)">{{elem.msg}}</a> -->
             <a :href="`#`+elem.urly">{{elem.msg}}</a>
           </li>
         </ul>
@@ -29,9 +30,7 @@
               </el-form-item>
               <el-form-item label="出生日期">
                 <el-date-picker align="right" type="date" placeholder="选择日期"></el-date-picker>
-                <div
-                  class="text-muted"
-                >此数据将帮助我们更好地为您提供服务，除必要的内部使用外，我们不会将您的信息透露给房东或其他用户。您必须年满 18 周岁才能使用爱彼迎的网站和服务。</div>
+                <div class="text-muted">此数据将帮助我们更好地为您提供服务，除必要的内部使用外，我们不会将您的信息透露给房东或其他用户。您必须年满 18 周岁才能使用爱彼迎的网站和服务。</div>
               </el-form-item>
               <el-form-item label="电子邮件地址">
                 <el-input v-model="email"></el-input>
@@ -158,36 +157,26 @@
                 <div class="select">
                   <select id="user_preference_time_zone" name="user_preference[time_zone]">
                     <option value></option>
-                    <option
-                      value="International Date Line West"
-                    >(GMT-11:00) International Date Line West</option>
+                    <option value="International Date Line West">(GMT-11:00) International Date Line West</option>
                     <option value="Midway Island">(GMT-11:00) Midway Island</option>
                     <option value="Samoa">(GMT-11:00) Samoa</option>
                     <option value="Hawaii">(GMT-10:00) Hawaii</option>
                     <option value="Alaska">(GMT-09:00) Alaska</option>
-                    <option
-                      value="Pacific Time (US &amp; Canada)"
-                    >(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                    <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
                     <option value="Tijuana">(GMT-08:00) Tijuana</option>
                     <option value="Arizona">(GMT-07:00) Arizona</option>
                     <option value="Chihuahua">(GMT-07:00) Chihuahua</option>
                     <option value="Mazatlan">(GMT-07:00) Mazatlan</option>
-                    <option
-                      value="Mountain Time (US &amp; Canada)"
-                    >(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                    <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
                     <option value="America/Chicago">(GMT-06:00) America/Chicago</option>
                     <option value="Central America">(GMT-06:00) Central America</option>
-                    <option
-                      value="Central Time (US &amp; Canada)"
-                    >(GMT-06:00) Central Time (US &amp; Canada)</option>
+                    <option value="Central Time (US &amp; Canada)">(GMT-06:00) Central Time (US &amp; Canada)</option>
                     <option value="Guadalajara">(GMT-06:00) Guadalajara</option>
                     <option value="Mexico City">(GMT-06:00) Mexico City</option>
                     <option value="Monterrey">(GMT-06:00) Monterrey</option>
                     <option value="Saskatchewan">(GMT-06:00) Saskatchewan</option>
                     <option value="Bogota">(GMT-05:00) Bogota</option>
-                    <option
-                      value="Eastern Time (US &amp; Canada)"
-                    >(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                    <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
                     <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
                     <option value="Lima">(GMT-05:00) Lima</option>
                     <option value="Quito">(GMT-05:00) Quito</option>
@@ -333,9 +322,7 @@
                 </div>
                 <div class="text-muted">
                   对于欧盟用户以及征收增值税国家/地区的用户，我们收取的服务费将被征收增值税。如果您居住的国家/地区需要征收增值税，在输入有效的增值税号后，您将不会被收取该税费。
-                  <a
-                    href="javascript:;"
-                  >查看关于增值税的常见问题</a>
+                  <a href="javascript:;">查看关于增值税的常见问题</a>
                 </div>
               </el-form-item>
               <el-form-item label="紧急联系人">
@@ -380,9 +367,8 @@
                 <img :src="user_imgurl" />
               </div>
               <div class="uphone_right">
-                <div
-                  class="text-muted"
-                >清晰的正面脸部照片是房东和房客互相认识对方的重要途径。您能想象把自己的房子租给一只猫吗？ 请确保使用能够清楚显示您面部的照片，并确认其中不包含任何您不希望其他房东或房客看到的个人或敏感信息。</div>
+                <div class="text-muted">清晰的正面脸部照片是房东和房客互相认识对方的重要途径。您能想象把自己的房子租给一只猫吗？
+                  请确保使用能够清楚显示您面部的照片，并确认其中不包含任何您不希望其他房东或房客看到的个人或敏感信息。</div>
                 <div>
                   <!-- 选择图片 -->
                   <input type="file" accept="image/*" @change="chooseImg" />
@@ -427,178 +413,191 @@
   </div>
 </template>
 <script>
-export default {
-  data() {
-    return {
-      list: [
-        { urly: "userdata", msg: "编辑个人资料" },
-        { urly: "second", msg: "照片" },
-        { urly: "three", msg: "信任和验证" },
-        { urly: "four", msg: "评价" },
-        { urly: "five", msg: "推荐语" }
-      ],
-      name: "",
-      email: "",
-      phone: "",
-      sex: "",
-      user_login_time: "",
-      user_reg_time: "",
-      user_imgurl: "",
-      base64: ""
-    };
-  },
-  created() {
-    this.getuser();
-  },
-  methods: {
-    getuser() {
-      this.axios.get("user/").then(result => {
-        if (result.data.code > 0) {
-          this.name = result.data.data[0].user_name;
-          this.email = result.data.data[0].user_email;
-          this.phone = result.data.data[0].user_phone;
-          this.sex = result.data.data[0].user_gender;
-          this.user_login_time = result.data.data[0].user_login_time;
-          this.user_reg_time = result.data.data[0].user_reg_time;
-          if(result.data.data[0].user_imgurl==null){
-            this.user_imgurl = `https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png`;
-          }else{
-            this.user_imgurl =
-            `http://127.0.0.1:3000/` + result.data.data[0].user_imgurl;
-          }
-        } else {
-          this.$alert("您还没有登录,请登录!", "消息提示");
-        }
-      });
-    },
-    open() {
-      this.$confirm("此操作将保存您修改的数据, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-        center: true
-      })
-        .then(() => {
-          this.$message({
-            type: "success",
-            message: "保存成功!"
-          });
-          this.axios
-            .get("user/user_update", {
-              params: {
-                name: this.name,
-                email: this.email,
-                phone: this.phone,
-                sex: this.sex
-              }
-            })
-            .then(result => {
-              console.log(result);
-            });
-        })
-        .catch(() => {
-          this.$message({
-            type: "info",
-            message: "已取消保存"
-          });
-        });
-    },
-    chooseImg(event) {
-      var file = event.target.files[0];
-      var reader = new FileReader();
-      var img = new Image();
-      // 读取图片
-      reader.readAsDataURL(file);
-      // 读取完毕后的操作
-      reader.onloadend = e => {
-        img.src = e.target.result;
-        // 这里的e.target就是reader
-        // console.log(reader.result)
-        // reader.result就是图片的base64字符串
-        this.base64 = reader.result;
+  export default {
+    data() {
+      return {
+        list: [
+          { urly: "userdata", msg: "编辑个人资料" },
+          { urly: "second", msg: "照片" },
+          { urly: "", msg: "信任和验证" },
+          { urly: "", msg: "评价" },
+          { urly: "", msg: "推荐语" }
+        ],
+        name: "",
+        email: "",
+        phone: "",
+        sex: "",
+        user_login_time: "",
+        user_reg_time: "",
+        user_imgurl: "",
+        base64: ""
       };
     },
-    open1() {
-      this.$confirm("您本次将要上传本张图片, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-        center: true
-      })
-        .then(() => {
-          this.$message({
-            type: "success",
-            message: "上传成功!"
-          });
-        })
-        .catch(() => {
-          this.$message({
-            type: "info",
-            message: "已取消上传"
-          });
+    created() {
+      this.getuser();
+    },
+    methods: {
+      getuser() {
+        this.axios.get("user/").then(result => {
+          if (result.data.code > 0) {
+            this.name = result.data.data[0].user_name;
+            this.email = result.data.data[0].user_email;
+            this.phone = result.data.data[0].user_phone;
+            this.sex = result.data.data[0].user_gender;
+            this.user_login_time = result.data.data[0].user_login_time;
+            this.user_reg_time = result.data.data[0].user_reg_time;
+            if (result.data.data[0].user_imgurl == null) {
+              this.user_imgurl = `https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png`;
+            } else {
+              this.user_imgurl =
+                `http://127.0.0.1:3000/` + result.data.data[0].user_imgurl;
+            }
+          } else {
+            this.$alert("您还没有登录,请登录!", "消息提示");
+          }
         });
+      },
+      open() {
+        this.$confirm("此操作将保存您修改的数据, 是否继续?", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+          center: true
+        })
+          .then(() => {
+            this.$message({
+              type: "success",
+              message: "保存成功!"
+            });
+            this.axios
+              .get("user/user_update", {
+                params: {
+                  name: this.name,
+                  email: this.email,
+                  phone: this.phone,
+                  sex: this.sex
+                }
+              })
+              .then(result => {
+                console.log(result);
+              });
+          })
+          .catch(() => {
+            this.$message({
+              type: "info",
+              message: "已取消保存"
+            });
+          });
+      },
+      chooseImg(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        var img = new Image();
+        // 读取图片
+        reader.readAsDataURL(file);
+        // 读取完毕后的操作
+        reader.onloadend = e => {
+          img.src = e.target.result;
+          // 这里的e.target就是reader
+          // console.log(reader.result)
+          // reader.result就是图片的base64字符串
+          this.base64 = reader.result;
+        };
+      },
+      open1() {
+        this.$confirm("您本次将要上传本张图片, 是否继续?", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+          center: true
+        })
+          .then(() => {
+            this.$message({
+              type: "success",
+              message: "上传成功!"
+            });
+          })
+          .catch(() => {
+            this.$message({
+              type: "info",
+              message: "已取消上传"
+            });
+          });
+      }
     }
-  }
-};
+  };
 </script>
 <style scoped>
-.user_data {
-  width: 1056px;
-  margin: 0 auto;
-  margin-top: 20px;
-}
-.data_left {
-  width: 20%;
-  float: left;
-  position: fixed;
-}
-.data_right {
-  width: 80%;
-  float: right;
-}
-.data_left ul li {
-  margin-bottom: 15px;
-}
-.data_left ul li:hover {
-  cursor: pointer;
-}
-.title {
-  height: 42.6px;
-  background: #edefed;
-  line-height: 42.6px;
-  padding-left: 20px;
-  margin-bottom: 20px;
-}
-.text-muted {
-  color: #767676;
-}
-.data_first {
-  border: 1px solid rgba(191, 191, 191, 0.2);
-  box-sizing: border-box;
-  margin-bottom: 30px;
-}
-.uphone {
-  display: flex;
-  justify-content: center;
-  height: 300px;
-}
-.uphone .uphone_left {
-  width: 40%;
-  line-height: 300px;
-  text-align: center;
-}
-.uphone .uphone_left img {
-  height: 300px;
-}
-.uphone .uphone_right {
-  width: 60%;
-  text-align: center;
-}
-.uphone .uphone_right div.text-muted {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.aa {
-  height: 150px;
-}
+  .user_data {
+    width: 1056px;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  .data_left {
+    width: 20%;
+    float: left;
+    position: fixed;
+  }
+
+  .data_right {
+    width: 80%;
+    float: right;
+  }
+
+  .data_left ul li {
+    margin-bottom: 15px;
+  }
+
+  .data_left ul li:hover {
+    cursor: pointer;
+  }
+
+  .title {
+    height: 42.6px;
+    background: #edefed;
+    line-height: 42.6px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .text-muted {
+    color: #767676;
+  }
+
+  .data_first {
+    border: 1px solid rgba(191, 191, 191, 0.2);
+    box-sizing: border-box;
+    margin-bottom: 30px;
+  }
+
+  .uphone {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+  }
+
+  .uphone .uphone_left {
+    width: 40%;
+    line-height: 300px;
+    text-align: center;
+  }
+
+  .uphone .uphone_left img {
+    height: 300px;
+  }
+
+  .uphone .uphone_right {
+    width: 60%;
+    text-align: center;
+  }
+
+  .uphone .uphone_right div.text-muted {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .aa {
+    height: 150px;
+  }
 </style>
