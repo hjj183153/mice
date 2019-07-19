@@ -1,6 +1,7 @@
 <template>
     <!-- 房源图片上传 -->
-    <div class="div_bg">
+    <div class="div_bg" style="background: #f8f8f8;">
+            <div class="div_bgfff"></div>
         <div class="div_body">
             <div>
                 <div class="font-title3" style="margin-bottom:10px;">
@@ -15,13 +16,14 @@
                 <div class="div_body1"></div>
                 <div class="div_body2"></div>
                 <div class="div_body3" id="photo_add">
+                    <!-- <photo></photo>       -->
                     <el-upload class="upload-demo" drag action="http://127.0.0.1:3000/add/" multiple>
-                        <i class="el-icon-upload"></i>
+                         <i class="el-icon-upload"></i>
                         <div class="el-upload__text p_font1">上传图片或者把它们拖进框内</div>
                         <div class="el-upload__tip" slot="tip"></div>
-                    </el-upload>
+                   </el-upload>
                 </div>
-                <!-- 底部固定悬浮 -->
+                <!-- 底部固定悬浮  -->
                 <div class="div_footer1">
                     <div>
                         <div class="div_margin" style="width:100%;">
@@ -53,8 +55,9 @@
         </div>
     </div>
 </template>
-<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=您申请的key值"></script>
+
 <script>
+    import photo from "./photo.vue"
     export default {
         data() {
             return {
@@ -67,7 +70,7 @@
             }
         },
         created(){
-            new Vue().$mount('#photo_add')
+            // new Vue().$mount('#photo_add')
         },
         methods: {
             submit() {
@@ -77,7 +80,10 @@
             return1() {
                 this.$router.push("/add_become_a_host_room/location2")
             },
-        }
+        },
+        components:{
+            // "photo":photo
+},
     }
 </script>
 <style scoped>

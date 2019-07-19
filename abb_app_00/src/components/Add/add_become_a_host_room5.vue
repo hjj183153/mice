@@ -1,7 +1,8 @@
 <template>
     <!-- 地图地址 -->
 
-    <div class="div_bg">
+    <div class="div_bg" style="background: #f8f8f8;">
+            <div class="div_bgfff"></div>
         <div class="div_body">
             <div>
                 <div class="div_title font_title1">
@@ -86,9 +87,7 @@
     </div>
 </template>
 
-<script>
 
-</script>
 <script>
     export default {
         data() {

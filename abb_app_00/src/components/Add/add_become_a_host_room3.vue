@@ -1,6 +1,7 @@
 <template>
     <!-- 卫生间数量 -->
-    <div class="div_bg">
+    <div class="div_bg" style="background: #f8f8f8;">
+        <div class="div_bgfff"></div>
         <div class="div_body">
             <div>
                 <div class="div_title font_title1">
@@ -9,7 +10,7 @@
                 <div class="font-title3">
                     <p>没有淋浴区或浴缸的卫生间算半个卫生间。</p>
                 </div>
-                <div class="div_body1" style="margin-bottom:500px;">
+                <div class="div_body1">
                     <div class="text_addreduce">
                         <p>卫生间</p>
                     </div>
@@ -72,7 +73,6 @@
         data() {
             return {
                 count: 1,
-
             }
         },
         props: {
@@ -93,6 +93,8 @@
                 // }  
             },
             submit() {
+                localStorage.setItem("House_restroom", this.count)
+
                 this.$emit('change', 4);
                 this.$router.push("/add_become_a_host_room/location")
             },
@@ -122,9 +124,7 @@
                         btn_reduce.style.opacity = "0.3"
                     }
                 }
-                console.log(this.count)
-                this.Airbnb_House.House_restroom = this.count
-                console.log(this.Airbnb_House.House_restroom);
+
             }
         }
 

@@ -1,6 +1,7 @@
 <template>
     <!-- 出租类型、房源类型 -->
-    <div class="div_bg">
+    <div class="div_bg" style="background: #f8f8f8;">
+        <div class="div_bgfff"></div>
         <div class="div_body" style="padding-top:74px;">
             <div>
                 <div class="div_title font_title1">
@@ -92,6 +93,9 @@
     export default {
         data() {
             return {
+                uid:2,
+                House_type:0,
+                House_Building:"",
                 housingResources_Type: [],
                 Rent_Type: [{
                     Rent_name: ""
@@ -102,35 +106,35 @@
                 }],
             }
         },
-        // props:{
-        //     Airbnb_House:{default:""},
-        //      add_page:{default:""}
-        //     },                  
+        mounted(){
+            this.history();
+        },               
         created() {
             this.loadMore();
         },
         methods: {
+            history(){
+                
+            },
             loadMore() {
                 this.axios.get("http://127.0.0.1:3000/add/housingResources_Type").then(result => {
                     this.housingResources_Type = result.data;
                 })
                 this.axios.get("http://127.0.0.1:3000/add/Rent_Type").then(result => {
                     this.Rent_Type = result.data;
-                    //console.log(this.Rent_Type)
-                })
-                //setTimeout(function(){this.Rentselect(0);},3000)
-                // console.log(add_page)
-                // if(this.add_page>=0){
-                //     this.Airbnb_House.Rent_Type=0;
-                // }  
+                })              
             },
             submit() {
                 // console.log(11)           
                 // this.$router.push("/add_become_a_host_room/bedrooms?id=6")
                 this.$emit('change',2);
+                localStorage.setItem("House_Building",this.House_Building)
+                localStorage.setItem("House_type",this.House_type)
+                // console.log(this.House_Building,this.House_type)
                 this.$router.push("/add_become_a_host_room/bedrooms")
                 // this.$router.push({path:'/add_become_a_host_room/bedrooms' , params: { add_page:this.add_page }})
                 // this.$router.params.this.Airbnb_House       
+
             },
             return1() {
                  this.$router.go(-1)
@@ -152,7 +156,7 @@
                     divc.style.background = "rgb(242,242,242)"
                 }
                 divs[i].style.background = "rgb(178,218,219)"
-                //this.Airbnb_House.House_Building=i;
+                this.House_Building=i;
             },
             Rentselect(i) {
                 var Rent_Type = document.getElementById("Rent_Type")
@@ -161,16 +165,13 @@
                     Rent_Typec.style.background = "rgb(242,242,242)"
                 }
                 Rent_Types[i].style.background = "rgb(178,218,219)"
-                // this.Airbnb_House.House_type=i;
+                 this.House_type=i;
             }
         }
     }
 </script>
 <style scoped>
-    .div_bg {
-        background: #f8f8f8;
-    }
-
+    
     .div_body {
         width: 912px;
         margin: auto;
@@ -356,5 +357,16 @@
         font-size: 16px;
         font-weight: 600;
         color: #fff;
+    }
+</style>
+<style>
+    .div_bgfff{
+        width:50%;
+        background: #fff;
+        z-index: -1;
+        position: fixed;
+        top:0px;
+        left:0px;
+        bottom:0px;
     }
 </style>

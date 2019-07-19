@@ -72,7 +72,7 @@ export default {
     // },
     methods:{
         change(show){
-            console.log(show)
+            //console.log(show)
             this.showbar=show;
         },       
         alert_show_click(){
