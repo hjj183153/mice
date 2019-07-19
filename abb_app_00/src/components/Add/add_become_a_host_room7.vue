@@ -57,7 +57,19 @@
                 House_name: "",
                 namecount: 50,
                 housingResources_Type:{},
-                Rent_Type:{}
+                Rent_Type:[],
+                House_type:"",
+                House_Building:"",
+                House_people_num:"",
+                House_bednum:"",
+                House_Bed:"",
+                House_restroom:"",
+                House_City_id:"",
+                House_District_id:"",
+                House_address:"",
+                House_number:"",
+                House_name:"",
+                House_User_id:1,
             }
         },
         methods: {
@@ -65,38 +77,98 @@
                 localStorage.setItem("House_name",this.House_name)
                 this.axios.get("http://127.0.0.1:3000/add/housingResources_Type").then(result => {
                     this.housingResources_Type = result.data;
-                    console.log(this.housingResources_Type)
+                    //console.log(this.housingResources_Type)
                 })
                 this.axios.get("http://127.0.0.1:3000/add/Rent_Type").then(result => {
                     this.Rent_Type = result.data;
-                    console.log(this.Rent_Type)
+                    // console.log(this.Rent_Type)//对象
+                    this.House_type=parseInt(localStorage.getItem("House_type"))
+                    
+                   
+                    // console.log(this.House_type,789)//能出结果
+                    // console.log(this.Rent_Type[this.House_type].Rent_name,789)
+                    this.House_type=this.Rent_Type[this.House_type].Rent_name
                 })   
-                console.log(localStorage.getItem("House_type"))
-                console.log(localStorage.getItem("House_Building"))
-                console.log(localStorage.getItem("House_people_num"))
-                console.log(localStorage.getItem("House_bednum"))
-                console.log(localStorage.getItem("bed1count"))
-                console.log(localStorage.getItem("bed2count"))
-                console.log(localStorage.getItem("bed3count"))
-                console.log(localStorage.getItem("bed4count"))
-                console.log(localStorage.getItem("bed5count"))
-                console.log(localStorage.getItem("House_restroom"))
-                console.log(localStorage.getItem("House_City_id"))
-                console.log(localStorage.getItem("House_District_id"))
-                console.log(localStorage.getItem("House_address"))
-                console.log(localStorage.getItem("House_number"))
-                console.log(localStorage.getItem("House_name"))
+                // console.log(this.House_type);
+                // for(var i=0;i<this.Rent_Type.length;i++){
+                //     console.log(888)
+                //     if(i==local_rent){
+                //         console.log(999)
+                //         this.House_type=this.Rent_Type.Rent_name;
+                //         console.log(this.House_type);
+                //     }
+                // }
+            
+                
+                // (localStorage.getItem("House_type"))
+                // console.log(localStorage.getItem("House_Building"))
+               
+                this.House_people_num=localStorage.getItem("House_people_num")
+                // console.log(this.House_people_num)
+                this.House_bednum=localStorage.getItem("House_bednum")
+                // console.log(this.House_bednum)
+                if(localStorage.getItem("bed1count")){
+                    this.House_Bed=localStorage.getItem("bed1count")
+                }
+                if(localStorage.getItem("bed2count")){
+                    this.House_Bed+=`|${localStorage.getItem("bed2count")}`
+                }
+                if(localStorage.getItem("bed3count")){
+                    this.House_Bed+=`|${localStorage.getItem("bed3count")}`
+                }
+                if(localStorage.getItem("bed4count")){
+                    this.House_Bed+=`|${localStorage.getItem("bed4count")}`
+                }
+                if(localStorage.getItem("bed5count")){
+                    this.House_Bed+=`|${localStorage.getItem("bed5count")}`
+                }
+                // console.log(this.House_Bed)
+                //0|0|0|0|0
+
+                // console.log(localStorage.getItem("bed1count"))
+                // console.log(localStorage.getItem("bed2count"))
+                // console.log(localStorage.getItem("bed3count"))
+                // console.log(localStorage.getItem("bed4count"))
+                // console.log(localStorage.getItem("bed5count"))
+                this.House_restroom=localStorage.getItem("House_restroom")
+                this.House_City_id=localStorage.getItem("House_City_id")
+                this.House_District_id=localStorage.getItem("House_District_id")
+                this.House_address=localStorage.getItem("House_address")
+                this.House_number=localStorage.getItem("House_number")
+                this.House_name=localStorage.getItem("House_name")
+            
+    // House_id,House_City_id,House_District_id,House_name,House_User_id,House_people_num,House_type,House_bednum,
+    // House_Bed,House_restroom,House_Building,House_address,House_number
+                // this.axios.get("http://127.0.0.1:3000/add/insertHouse", {params: {
+                //     House_id:null,
+                //     House_City_id:House_City_id,
+                //     House_District_id:House_District_id,
+                //     House_name:House_name,
+                //     House_User_id:House_User_id,
+                //     House_people_num:House_people_num,
+                //     House_type:House_type,
+                //     House_bednum:House_bednum,
+                //     House_Bed: House_Bed,
+                //     House_restroom:House_restroom,
+                //     House_Building:House_Building,
+                //     House_address:House_address,
+                //     House_number:House_number
+                // }})
+                // .then(result => {
+                //      console.log(result.data);
+                //     console.log(this.housingResources_Type)
+                // })
 
 
 
                  this.$router.push("/add_end")
-            },
+            },           
             return1() {
                 this.$router.push("/add_become_a_host_room/photos")
             },
 
             House_namechange() {
-                this.Airbnb_House.House_name = this.House_name;
+                // this.Airbnb_House.House_name = this.House_name;
             },
             housenamecount() {
                 this.namecount = 50 - this.House_name.length

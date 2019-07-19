@@ -52,7 +52,7 @@
                 </div>
                 <!-- 地图 -->
                 <div class="div_body3" style="width:100%;height:800px;">
-                    <div id="container" style="width:100%;height:800px;"></div>
+                    <div id="container" @click="map_title" style="width:100%;height:800px;"></div>
 
                 </div>
                 <!-- 底部固定悬浮 -->
@@ -126,6 +126,9 @@
                     viewMode: '3D' //使用3D视图
                 });
             },
+            map_title(){
+                this.div_location="true"
+            }
             // logMapinfo() {
             //     //显示地图层级与中心点信息
             //     function logMapinfo() {

@@ -69,21 +69,54 @@ router.get("/dd",(req,res)=>{
     }
   })
 })
-// router.get("/dd",(req,res)=>{
-//   //var id=req.query.id;
-//   //console.log(id,"1");
-//   var sql=`SELECT * FROM Airbnb_district`;
-//   pool.query(sql,(err,result)=>{
+
+// 上传房源信息接口
+// router.get("/insertHouse",(req,res)=>{
+//   var obj=req.query;
+//   console.log(obj);
+//   var sql=`INSERT INTO  Airbnb_House (
+//     House_id,House_City_id,House_District_id,House_name,House_User_id,House_people_num,House_type,House_bednum,
+//     House_Bed,House_restroom,House_Building,House_address,House_number
+//   ) VALUES ?;`;
+//   pool.query(sql,[obj],(err,result)=>{
 //     if(err){
 //       console.log(err);
 //       res.send({code:0});
 //     }else{
+//       console.log(result)
 //       res.send(result);
 //     }
 //   })
 // })
-//上传房源图片接口
-// router.get("/Houseimg",(req,res)=>{
+
+// null,
+//     'House_City_id',
+//     'House_District_id',
+//     'House_name',
+//     'House_User_id',
+//     '',
+//     '',
+//     'House_people_num',
+//     'House_type',
+//     '',
+//     '',
+//     'House_bednum',
+//     'House_Bed',
+//     'House_restroom',
+//     '',
+//     '',
+//     'House_Building',
+//     '',
+//     'House_address',
+//     'House_number',
+//     '',
+//     '',
+//     '',
+//     ''
+// 上传房源信息接口
+// pool.query('UPDATE xz_laptop SET title=?,price=? WHERE lid=?',
+	// [obj.title,obj.price,obj.lid],
+// router.get("/insertHouse",(req,res)=>{
 //   var House_imgurl=req.query.House_imgurl;
 //   console.log(House_imgurl);
 //   var sql=`UPDATE Airbnb_House SET House_imgurl=?`;
@@ -96,8 +129,6 @@ router.get("/dd",(req,res)=>{
 //     }
 //   })
 // })
-//
-
 
 
 

@@ -118,7 +118,7 @@
                     this.district = result.data;
                 })
                 // this.Airbnb_House.H
-                ouse_City_id = this.cityid;
+                House_City_id = this.cityid;
                 //console.log(this.Airbnb_House.House_City_id)            
             },
             district_change() {

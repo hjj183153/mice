@@ -86,7 +86,7 @@
                     <div class="div_body7_show">
                         <div>
                             <p>合用空间</p>
-                            <p class="font-title5" style="padding-top:2px;">0张床</p>
+                            <p class="font-title5" style="padding-top:2px;" v-text="`${bedroomcount}张床`"></p>
                         </div>
                         <div>
                             <div id="addbed" @click="btn_addbed(1)" v-show="addbed=='true'">
@@ -280,7 +280,7 @@
     export default {
         data() {
             return {
-
+                bedroomcount:0,
                 bedrooms: [],
                 bedcount: 1,
                 peoplecount: 4,
@@ -387,11 +387,13 @@
                     if (this.bed1count > 1) {
                         this.bed1count += z;
                         btn_add1.style.opacity = "1"
+                        this.bedroomcount+=z
                     } else if (this.bed1count == 1) {
                         btn_reduce1.style.opacity = "0.3"
                         this.bed1count += z;
                     }
                 }
+                this.bedroomcount=this.bed1count+this.bed2count+this.bed3count+this.bed4count+this.bed5count
                 // console.log(this.bed1count)
             },
             bed2_count(z) {
@@ -414,6 +416,7 @@
                         this.bed2count += z;
                     }
                 }
+                this.bedroomcount=this.bed1count+this.bed2count+this.bed3count+this.bed4count+this.bed5count
                 // console.log(this.bed2count)
             },
             bed3_count(z) {
@@ -436,6 +439,7 @@
                         this.bed3count += z;
                     }
                 }
+                this.bedroomcount=this.bed1count+this.bed2count+this.bed3count+this.bed4count+this.bed5count
                 // console.log(this.bed3count)
             },
             bed4_count(z) {
@@ -458,6 +462,7 @@
                         this.bed4count += z;
                     }
                 }
+                this.bedroomcount=this.bed1count+this.bed2count+this.bed3count+this.bed4count+this.bed5count
                 // console.log(this.bed4count)
             },
             bed5_count(z) {
@@ -480,6 +485,7 @@
                         this.bed5count += z;
                     }
                 }
+                this.bedroomcount=this.bed1count+this.bed2count+this.bed3count+this.bed4count+this.bed5count
                 // console.log(this.bed5count)
             }
         },
