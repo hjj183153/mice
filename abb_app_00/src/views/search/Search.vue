@@ -1,6 +1,6 @@
 <template>
 <div>
-  <!-- <user-header></user-header> -->
+  <user-header></user-header>
   <div class="search">
     <div class="search-nav-container _i8vcof">
       <div>
