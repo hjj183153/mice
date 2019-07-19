@@ -1,7 +1,6 @@
 <template>
     <!-- 房源名称 -->
-    <div class="div_bg" style="background: #f8f8f8;">
-            <div class="div_bgfff"></div>
+    <div class="div_bg">
         <div class="div_body">
             <div>
                 <div class="div_title font_title1">
@@ -37,7 +36,7 @@
                                         </svg>
                                     </div>
                                     <div class="return_btn" @click="return1">返回</div>
-                                    <div class="next_btn" @click="submit" style="padding: 12px 32px;">完成</div>
+                                    <div class="next_btn" @click="submit">下一个</div>
                                 </div>
                             </div>
 
@@ -56,40 +55,16 @@
             return {
                 House_name: "",
                 namecount: 50,
-                housingResources_Type:{},
-                Rent_Type:{}
+            }
+        },
+        props: {
+            Airbnb_House: {
+                House_name: ""
             }
         },
         methods: {
             submit() {
-                localStorage.setItem("House_name",this.House_name)
-                this.axios.get("http://127.0.0.1:3000/add/housingResources_Type").then(result => {
-                    this.housingResources_Type = result.data;
-                    console.log(this.housingResources_Type)
-                })
-                this.axios.get("http://127.0.0.1:3000/add/Rent_Type").then(result => {
-                    this.Rent_Type = result.data;
-                    console.log(this.Rent_Type)
-                })   
-                console.log(localStorage.getItem("House_type"))
-                console.log(localStorage.getItem("House_Building"))
-                console.log(localStorage.getItem("House_people_num"))
-                console.log(localStorage.getItem("House_bednum"))
-                console.log(localStorage.getItem("bed1count"))
-                console.log(localStorage.getItem("bed2count"))
-                console.log(localStorage.getItem("bed3count"))
-                console.log(localStorage.getItem("bed4count"))
-                console.log(localStorage.getItem("bed5count"))
-                console.log(localStorage.getItem("House_restroom"))
-                console.log(localStorage.getItem("House_City_id"))
-                console.log(localStorage.getItem("House_District_id"))
-                console.log(localStorage.getItem("House_address"))
-                console.log(localStorage.getItem("House_number"))
-                console.log(localStorage.getItem("House_name"))
-
-
-
-                 this.$router.push("/add_end")
+                //  this.$router.push("/add_become_a_host_room/description")
             },
             return1() {
                 this.$router.push("/add_become_a_host_room/photos")
