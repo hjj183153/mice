@@ -57,7 +57,7 @@
 </template>
 
 <script>
-    import photo from "./photo.vue"
+
     export default {
         data() {
             return {
@@ -81,9 +81,7 @@
                 this.$router.push("/add_become_a_host_room/location2")
             },
         },
-        components:{
-            // "photo":photo
-},
+        
     }
 </script>
 <style scoped>
