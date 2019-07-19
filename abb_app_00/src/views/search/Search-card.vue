@@ -50,13 +50,9 @@ export default {
     House_price: "",
     House_tag: "",
     House_type: "",
-<<<<<<< HEAD
     House_detail: "",
     House_id:"",
     House_imgurl:""
-=======
-    House_detail: ""
->>>>>>> d77b1a009be8c3702af1dbaa7be73029f9a248f9
   },
   data() {
     return {};
