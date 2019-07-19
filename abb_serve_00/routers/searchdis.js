@@ -8,9 +8,6 @@ router.get("/",(req,res)=>{
         City_id,
     }=condition;
     //console.log(condition);
-    if(!City_id){
-        City_id=2;
-    }
     var sql='SELECT * FROM Airbnb_district WHERE City_id=?'
     pool.query(sql,[City_id],(err,result)=>{
         if(err)throw err;

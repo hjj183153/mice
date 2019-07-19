@@ -321,12 +321,14 @@ export default {
         border: "1px solid #ccc"
       },
 
+
+
       windowHeight: "",
-      City_id:1,
-      disList:"",
-      latitude: "",
-      longitude: "",
-      dataList: "",
+      City_id:2,
+      disList: "",
+      latitude:39.9,
+      longitude:116.4,
+      dataList: [],
       mask: false,
       date: "",
       num1: 1,
@@ -443,24 +445,13 @@ export default {
     },
     //创建地图
     createMap() {
-      console.log(this.dataList);
       var City_jd = 0;
       var City_wd = 0;
-      this.City_id = 1;
-      if (this.City_id == 1) {
-        City_jd = 121.47;
-        City_wd = 31.23;
-      }
-      if (this.City_id == 2) {
-        City_jd = 116.4;
-        City_wd = 39.9;
-      }
-      this.SearchAxios();
       /* eslint-disable */
       // 创建Map实例
       var map = new BMap.Map("map");
       // 初始化地图,设置中心点坐标和地图级别
-      map.centerAndZoom(new BMap.Point(City_jd, City_wd), 11);
+      map.centerAndZoom(new BMap.Point(this.longitude, this.latitude), 11);
       //添加地图类型控件
       map.addControl(
         new BMap.MapTypeControl({
@@ -486,31 +477,29 @@ export default {
         map.addOverlay(marker); //把这个覆盖物加载到地图上
       }
       */
-      console.log(123);
-      var htm =
-        "<div style='background:#E7F0F5;color:#0082CB;border:1px solid #333'>" +
-        "欢迎使用百度地图！" +
-        "<img src='http://map.baidu.com/img/logo-map.gif' border='0' />" +
-        "</div>";
-      var htmls = `<div id='minitag' class='minitag' click='tobig()'><span>￥999</span><div class='sanjiaos'></div></div>`;
-      var htmlg = `<main id="main"><div id="banner"><div id="btn-left"></div><ul id="ul-imgs" style="width:1400px; margin-left:0px;"><li><a href="javascript:;"><img src="./img/7bf9c0ef-3e6a-4e74-b9b4-3653fafeb02e.jpg"></a></li><li><a href="javascript:;"><img src="./img/e20b958d-fee5-482e-b958-bf8dee1c3dff.jpg"></a></li><li><a href="javascript:;"><img src="./img/e20b958d-fee5-482e-b958-bf8dee1c3dff.jpg"></a></li><li><a href="javascript:;"><img src="./img/e20b958d-fee5-482e-b958-bf8dee1c3dff.jpg"></a></li><li><a href="javascript:;"><img src="./img/7bf9c0ef-3e6a-4e74-b9b4-3653fafeb02e.jpg"></a></li></ul><ul id="ul-idxs"><li class="active"></li><li></li><li></li><li></li></ul><div id="btn-right"></div></div><div class='minidetail'><a href="javascript:;"><div class='minidetail-text'><span class='minihouse'>独立房间·1室1卫1床</span><span class='mininame'>利欧的房间 - 美梦</span></div></a><div class='miniprice'><span>￥158每晚</span></div><div class='miniheadimg'><img src="./img/a23a2645-fc2b-44db-bfc6-2f9cae228b56.jpg" alt=""></div><div class='sanjiao'></div></div></main>`;
-      var htm = htmlg;
-
-      var point = new BMap.Point(116.404, 39.915);
-      var myRichMarkerObject = new BMapLib.RichMarker(htm, point, {
-        anchor: new BMap.Size(0, -20),
-        enableDragging: false
-      });
-      map.addOverlay(myRichMarkerObject);
-
-      //myRM.disableDragging();//设置Marker不能拖拽 否则是enableDragging();
-      //map.addOverlay(myRM);// 设置显示覆盖物标志
-
       //点击标注
       // marker.addEventListener("click", function() {
       //   console.log("您点击了标注");
       // });
-
+      var htm = "";
+      var htmlg = `<main id="main"><div class='car'></div><div id="banner"><div id="btn-left"></div><ul id="ul-imgs" style="width:1400px; margin-left:0px;"><li><a href="javascript:;"><img src="./img/7bf9c0ef-3e6a-4e74-b9b4-3653fafeb02e.jpg"></a></li><li><a href="javascript:;"><img src="./img/e20b958d-fee5-482e-b958-bf8dee1c3dff.jpg"></a></li><li><a href="javascript:;"><img src="./img/e20b958d-fee5-482e-b958-bf8dee1c3dff.jpg"></a></li><li><a href="javascript:;"><img src="./img/e20b958d-fee5-482e-b958-bf8dee1c3dff.jpg"></a></li><li><a href="javascript:;"><img src="./img/7bf9c0ef-3e6a-4e74-b9b4-3653fafeb02e.jpg"></a></li></ul><ul id="ul-idxs"><li class="active"></li><li></li><li></li><li></li></ul><div id="btn-right"></div></div><div class='minidetail'><a href="javascript:;"><div class='minidetail-text'><span class='minihouse'>独立房间·1室1卫1床</span><span class='mininame'>利欧的房间 - 美梦</span></div></a><div class='miniprice'><span>￥158每晚</span></div><div class='miniheadimg'><img src="./img/a23a2645-fc2b-44db-bfc6-2f9cae228b56.jpg" alt=""></div><div class='sanjiao'></div></div></main>`;
+      console.log(this.dataList);
+      //this.minicarousel();
+      for (var i = 0; i < this.dataList.length; i++) {
+        var htmls = `<div id='minitag' class='minitag' click='tobig()'><span>￥${this.dataList[i].House_price}</span><div class='sanjiaos'></div></div>`;
+        var htm = htmls;
+        var point = new BMap.Point(
+          this.dataList[i].House_longitude,
+          this.dataList[i].House_latitude
+        );
+        var myRichMarkerObject = new BMapLib.RichMarker(htm, point, {
+          anchor: new BMap.Size(0, 0),
+          enableDragging: false
+        });
+        map.addOverlay(myRichMarkerObject);
+      }
+      //myRM.disableDragging();//设置Marker不能拖拽 否则是enableDragging();
+      //map.addOverlay(myRM);// 设置显示覆盖物标志
       //事件
       //点击地图事件
       map.addEventListener("click", function() {
@@ -518,19 +507,29 @@ export default {
       });
       let that = this;
       //拖拽地图事件
-      map.addEventListener("dragend",function() {
+      map.addEventListener("dragend", function() {
         var center = map.getCenter();
         console.log("地图中心点变更为：" + center.lng + ", " + center.lat);
         this.latitude = center.lat;
         this.longitude = center.lng;
         console.log(this.longitude, this.latitude);
-        
-        // this.SearchAxios.apply(this.that,[]);
-        // this.SearchAxios();
+        //that = 外部 this
         that.SearchAxios();
-        //console.log(this.that);
+        //重新绘制地图
+        for (var i = 0; i < this.dataList.length; i++) {
+          var htmls = `<div id='minitag' class='minitag' click='tobig()'><span>￥${this.dataList[i].House_price}</span><div class='sanjiaos'></div></div>`;
+          var htm = htmls;
+          var point = new BMap.Point(
+            this.dataList[i].House_longitude,
+            this.dataList[i].House_latitude
+          );
+          var myRichMarkerObject = new BMapLib.RichMarker(htm, point, {
+            anchor: new BMap.Size(0, 0),
+            enableDragging: false
+          });
+          map.addOverlay(myRichMarkerObject);
+        }
       });
-
       /* eslint-enable */
     },
     //修改筛选按钮样式
@@ -684,7 +683,7 @@ export default {
           }
         }
       };
-    }
+    },
     //minicarousel
     // closeBox(event){
     //   //解决点击其他位置时关闭active
@@ -697,23 +696,54 @@ export default {
     //     }
     //   });
     // },
+
+    firstData() {
+      //初始加载数据
+      var url = "http://127.0.0.1:3000/search";
+      this.axios
+        .get(url, {
+          params: {
+            House_City_id: this.City_id,
+            Time_start: this.date[0],
+            Time_end: this.date[1],
+            people: "",
+            children: "",
+            baby: "",
+            price: [this.price[0], this.price[1]],
+            latitude: this.latitude,
+            longitude: this.longitude
+          }
+        })
+        .then(result => {
+          console.log(result.data);
+          this.dataList = result.data;
+          this.createMap();
+        });
+    }
   },
   mounted() {
     this.mapHeight();
-    this.createMap();
-    this.minicarousel();
+    this.firstData();
+    //this.createMap();
+    //this.minicarousel();
   },
   created() {
     console.log(this.$route.query.lid);
     if (!this.$route.query.lid || this.$route.query.lid == "北京") {
       this.City_id = 2;
+      //经度
+      this.longitude = 116.4;
+      //纬度
+      this.latitude = 39.9;
     }
     if (this.$route.query.lid == "上海") {
       this.City_id = 1;
+      this.longitude = 121.47;
+      this.latitude = 31.23;
     }
     //访问接口
     this.SearchDIS();
-    this.SearchAxios();
+    //this.SearchAxios();
   }
 };
 </script>
@@ -892,7 +922,7 @@ span.el-checkbox__label {
   margin: 0 auto;
 }
 #banner {
-  display: block;
+  display: none;
   width: 280px;
   overflow: hidden;
   position: relative;
