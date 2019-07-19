@@ -5,7 +5,7 @@ var pool = mysql.createPool({
     user:"root",
     password:"",
     port:3306,
-    database:"Airbnb",
+    database:"airbnb",
     connectionLimit:15
   })
   module.exports=pool;

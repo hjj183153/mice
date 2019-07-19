@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Text from './components/Abb/Text.vue' 
 import Details from './views/Details.vue'
-import Date from './components/Abb/Date.vue'
 import Index from './views/Index.vue'
 import add_become_a_host_room from './views/add_become_a_host_room.vue'
 import add_room from './components/Add/add_become_a_host_room1.vue'
@@ -25,7 +24,6 @@ import loginzmw from './views/loginzmw.vue'
 
 export default new Router({
   routes: [
-    {path: '/date',component:Date},
     {path: '/details',component: Details},
     {path:'/index',component:Index},
     {path:'/text',component:Text},
