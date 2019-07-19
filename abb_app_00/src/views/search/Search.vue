@@ -295,8 +295,7 @@
             :House_tag="item.House_tag"
             :House_type="item.House_type"
             :House_detail="item.House_detail"
-            :House_id="item.House_id"
-          ></SearchCard>
+            :House_id="item.House_id"></SearchCard>
         </div>
       </div>
       <div id="mapBox" class="search-map-box">
