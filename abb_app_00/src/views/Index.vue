@@ -2,7 +2,8 @@
     <div>
         <!--引入头部组件-->
         <div class="abs">
-        <my-header class="position-abs"></my-header>
+        <my-header class="position-abs" v-show="lp"></my-header>
+        <user-header class="position-abs" v-show="gyh"></user-header>
         </div>  
         <div class="block">
             <el-carousel height="429px">
@@ -146,6 +147,8 @@
 export default {
     data(){
         return {
+            lp:true,
+            gyh:false,
             Carousellist:[],
             i:0,
             j:1,
@@ -175,8 +178,20 @@ export default {
         this.getcarouserimg(),
         this.changeblue(this.i)
         this.changeblue2(this.j)
+        //this.islogin()
     },
     methods: {
+        /*
+        islogin(){
+            this.axios.get("use/login").then(result=>{
+                if(result.data.user_id){
+                    this.lp=false;
+                }else{
+                    this.gyh=false;
+                }
+            })
+        },
+        */
         getcarouserimg(){
             this.axios.get("/index/Carousel").then(result=>{
                 //console.log(result.data.data)
