@@ -1,9 +1,6 @@
 <template>
-<<<<<<< HEAD
 <div>
-  <user-header></user-header>
-=======
->>>>>>> d77b1a009be8c3702af1dbaa7be73029f9a248f9
+  <!-- <user-header></user-header> -->
   <div class="search">
     <div class="search-nav-container _i8vcof">
       <div>
@@ -288,7 +285,7 @@
     </div>
     <div class="search-container">
       <div class="search-index">
-        <h3 id='datanum' class="search-num">超过300个房源</h3>
+        <h3 id='datanum' class="search-num">{{this.datanum}}</h3>
         <div class="search-subject">
           <SearchCard
             v-for="(item,i) of dataList"
@@ -301,13 +298,9 @@
             :House_tag="item.House_tag"
             :House_type="item.House_type"
             :House_detail="item.House_detail"
-<<<<<<< HEAD
             :House_id="item.House_id"
             :House_imgurl="item.House_imgurl"
             ></SearchCard>
-=======
-          ></SearchCard>
->>>>>>> d77b1a009be8c3702af1dbaa7be73029f9a248f9
         </div>
       </div>
       <div id="mapBox" class="search-map-box">
@@ -331,7 +324,7 @@ export default {
         color: "#484848",
         border: "1px solid #ccc"
       },
-
+      datanum:'未搜寻到房源，请重新筛选',
       windowHeight: "",
       City_id: 2,
       disList: "",
@@ -420,19 +413,14 @@ export default {
         .then(result => {
           //console.log(result.data);
           this.dataList = result.data;
-<<<<<<< HEAD
           console.log(this.dataList);
-          if(this.dataList==''){
-            var datanum=document.getElementById('datanum');
-            datanum.innerHTML='未有符合条件房源,请重新筛选'
+          if(this.dataList){
+            this.datanum='超过300条房源'
           }else{
-            var datanum=document.getElementById('datanum');
-            datanum.innerHTML='超过300条房源'
+            this.datanum='未搜寻到房源，请重新筛选'
           }
           //console.log(that);
           this.drawMap(that);
-=======
->>>>>>> d77b1a009be8c3702af1dbaa7be73029f9a248f9
         });
     },
     //获取区域
