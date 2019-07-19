@@ -9,7 +9,7 @@ CREATE TABLE Airbnb_City(
  City_id INT PRIMARY KEY AUTO_INCREMENT,
  City_name VARCHAR(64) UNIQUE,
  City_longitude VARCHAR(64) UNIQUE,#经度
- City_latitude VARCHAR(64) UNIQUE,#纬度
+ City_latitude VARCHAR(64) UNIQUE#纬度
 );
 
 #房屋时间表
@@ -257,8 +257,8 @@ CREATE TABLE Airbnb_district(
  City_id INT
 );
 #城市表 数据 zm
-INSERT INTO Airbnb_City VALUES(NULL,'上海');
-INSERT INTO Airbnb_City VALUES(NULL,'北京');
+INSERT INTO Airbnb_City VALUES(NULL,'上海','121.29','31.14');
+INSERT INTO Airbnb_City VALUES(NULL,'北京','116.40','39.90');
 #地区表 数据 zm
 INSERT INTO Airbnb_district VALUES
 (NULL,'静安区','121.45','31.23','1'),
