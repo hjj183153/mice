@@ -28,17 +28,6 @@ router.get("/cities2",(req,res)=>{
     res.send({ code: 200, msg: "ok", data: result });
   })
 })
-router.get("/story",(req,res)=>{
-    var sql="SELECT * FROM Airbnb_story";
-    pool.query(sql,[],(err,result)=>{
-      if(err){
-        console.log(err);
-        res.send({code:0});
-      }else{
-        res.send(result);
-      }
-      
-    });
-  });
+
 
 module.exports=router;

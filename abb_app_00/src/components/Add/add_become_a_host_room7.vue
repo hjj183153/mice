@@ -1,7 +1,6 @@
 <template>
     <!-- 房源名称 -->
-    <div class="div_bg" style="background: #f8f8f8;">
-            <div class="div_bgfff"></div>
+    <div class="div_bg">
         <div class="div_body">
             <div>
                 <div class="div_title font_title1">
@@ -37,7 +36,7 @@
                                         </svg>
                                     </div>
                                     <div class="return_btn" @click="return1">返回</div>
-                                    <div class="next_btn" @click="submit" style="padding: 12px 32px;">完成</div>
+                                    <div class="next_btn" @click="submit">下一个</div>
                                 </div>
                             </div>
 

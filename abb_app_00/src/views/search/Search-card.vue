@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="search-card _1wbi47zw" @click="gotoDetails">
+    <div class="search-card _1wbi47zw">
       <div class="search-card-img">
         <el-carousel trigger="click" height="200px">
           <el-carousel-item v-for="item in 4" :key="item">
             <h3 class="small">
-              <img src="./img/7bf9c0ef-3e6a-4e74-b9b4-3653fafeb02e.jpg" alt />
+              <img :src="`http://127.0.0.1:3000/img${House_imgurl}`" alt />
             </h3>
           </el-carousel-item>
         </el-carousel>
@@ -13,10 +13,10 @@
       <div class="search-card-detail">
         <div class="search-house-detail">
           <div class="s-h-text">
-            <span>{{House_type}}</span>
-            <span>1室1.5卫1床{{House_id}}</span>
+            <span>整套公寓</span>
+            <span>1室1.5卫1床</span>
           </div>
-          <div class="s-h-name">{{House_name}}</div>
+          <div class="s-h-name">【浪漫满屋】国贸CBD三里屯的阳光复古浪漫公寓 托斯卡纳色调 夜景超美</div>
           <div class="s-h-label-box">
             <span class="s-h-label">5.0分·192条评论</span>
             <span class="s-h-label">超赞房东</span>
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="search-house-price">
-          <div class="_1ovgt1s0">￥{{House_price}}</div>
+          <div class="_1ovgt1s0">￥645</div>
           <div class="_6rrm590">每晚</div>
           <div class="_6rrm590">
             <i class="el-icon-circle-check"></i>满七天立享9.5折
@@ -43,7 +43,7 @@
 <script>
 export default {
   props: {
-    House_name:"",
+    House_name: "",
     House_Amenities: "",
     House_Bed: "",
     House_Building: "",
@@ -51,20 +51,14 @@ export default {
     House_tag: "",
     House_type: "",
     House_detail: "",
-    House_id:""
+    House_id:"",
+    House_imgurl:""
   },
   data() {
-    return {
-      
-    };
+    return {};
   },
-  methods: {
-    gotoDetails(){
-      console.log(this.House_id);
-      this.$router.push("/details?HouseId="+this.House_id);
-    },
-  },
-  created(){}
+  methods: {},
+  created() {}
 };
 </script>
 <style scoped>

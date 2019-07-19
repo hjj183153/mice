@@ -1,7 +1,6 @@
 <template>
     <!-- 房客数量，床数量，床型 -->
-    <div class="div_bg" style="background: #f8f8f8;">
-            <div class="div_bgfff"></div>
+    <div class="div_bg">
         <div class="div_body" style="padding-top:74px;">
             <div>
                 <div class="div_title font_title1">
@@ -291,22 +290,17 @@
                 bed4count: 0,
                 bed5count: 0,
             }
-        },       
+        },
+        props: {
+            //Airbnb_House:{default:""},
+            //  add_page:{default:""}
+        },
         created() {
             this.loadMore1();
 
         },
         methods: {
-            submit() {               
-                this.$emit('change',3);
-                localStorage.setItem("House_people_num",this.peoplecount)
-                localStorage.setItem("House_bednum",this.bedcount)
-                localStorage.setItem("bed1count",this.bed1count)
-                localStorage.setItem("bed2count",this.bed2count)
-                localStorage.setItem("bed3count",this.bed3count)
-                localStorage.setItem("bed4count",this.bed4count)
-                localStorage.setItem("bed5count",this.bed5count)
-
+            submit() {
                 this.$router.push("/add_become_a_host_room/bathrooms")
             },
             return1() {
@@ -352,7 +346,7 @@
                 if (m == 1) {
                     people_reduce.style.opacity = "1"
                     this.peoplecount += m;
-                    // console.log(this.peoplecount)
+                    console.log(this.peoplecount)
                 }
                 if (m == -1 && this.peoplecount > 2) {
                     this.peoplecount += m;
@@ -360,7 +354,7 @@
                     people_reduce.style.opacity = "0.3"
                     this.peoplecount += m;
                 }
-                // console.log(1);
+                console.log(1);
                 // this.Airbnb_House.House_people_num=this.peoplecount; 
                 // console.log(Airbnb_House) ;     
             },

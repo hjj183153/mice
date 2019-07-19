@@ -1,6 +1,5 @@
 <template>
-        <div class="div_bg" style="background: #f8f8f8;">
-                <div class="div_bgfff"></div>
+    <div class="div_bg">
         <div class="div_body" >
             <div>
                 <div class="div_body1"></div>
