@@ -3,10 +3,7 @@
         <div class="images" style="display:none" v-viewer="{movable: false}">
             <img v-for="(src,i) of houseData" :src="src.HouseImg_md" :key="i">
         </div>
-        
-        <div class="nav">
-            <!--<user-header> </user-header>-->     
-        </div>
+        <user-header> </user-header>
         <div class="topimg">
             <div class="topleft" >
                 <img :src="houseData[0].HouseImg_lg" @mouseover="imgLg" @mouseout="imgSm" @click="show" >
@@ -26,7 +23,7 @@
             <div class="main_nav">
                 <div class="ul">
                     <ul >
-                        <li><a :class="{black:changeBlack==0}" href="#details" @click="toggle(0)">详情</a></li>
+                        <li><a :class="{black:changeBlack==0}" href="javascript:;" @click="toggle(0)">详情</a></li>
                         <li><div class="circle"></div>  <a  href="javascript:;" :class="{black:changeBlack==1}" @click="toggle(1)">评价</a> </li>
                         <li style="width:75px;"><div class="circle"></div> <a href="javascript:;" :class="{black:changeBlack==2}" @click="toggle(2)">可定日期</a> </li>
                         <li><div class="circle"></div> <a href="javascript:;" :class="{black:changeBlack==3}" @click="toggle(3)">位置</a> </li>
@@ -80,6 +77,14 @@
                                 <div><span>1张{{houseData[0].House_Bed}}</span></div>
                             </div>
                         </div>
+                        <div class="promise">
+                            <div>
+                                <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" style="height: 24px; width: 24px; display: block; fill: rgb(96, 182, 181);"><path d="m11.9885999 21.958c-7.062-2.999-9.894-8.081-8.576-15.373 3.54-.523 6.405-1.966 8.576-4.329 2.171 2.363 5.036 3.806 8.576 4.329 1.318 7.292-1.514 12.374-8.576 15.373m9.491-15.915c-.042-.211-.214-.372-.428-.399-3.679-.473-6.564-1.961-8.681-4.467-.2-.236-.564-.236-.764 0-2.117 2.506-5.002 3.994-8.681 4.467-.214.027-.386.188-.428.399-1.57899999 8.018 1.548 13.703 9.3 16.919.122.051.26.051.382 0 7.752-3.216 10.879-8.901 9.3-16.919" fill="#484848"></path><path d="m16.1218999 11.274-5.5 4.5c-.415.339-1.024.292-1.381-.11l-2-2.25c-.367-.412-.329-1.044.083-1.411.413-.367 1.045-.33 1.412.083l1.363 1.532 4.756-3.892c.428-.349 1.058-.286 1.408.141.349.427.286 1.057-.141 1.407m3.767-3.54c-.019-.276-.165-.379-.4-.421-2.949-.437-5.449-1.625-7.304-3.539-.066-.068-.136-.114-.19-.114-.06 0-.131.046-.197.114-1.855 1.914-4.355 3.102-7.303 3.539-.235.042-.381.145-.4.421-.285 4.085.049 9.185 7.397 13.01.164.086.344.156.497.156.159 0 .339-.07.503-.156 7.347-3.825 7.681-8.925 7.397-13.01"></path></svg>
+                            </div>
+                            <div><span class="_1a5a9507">爱彼迎旅行保障</span></div>
+                            <div><span class="_11dqbld7">|</span></div>
+                            <div><span class="_11dqbld7" style="font-weight: 400">全方位保障 · 出行无忧</span></div>
+                        </div>
                         <div class="houserool">
                             <div class="rools" v-for="(message,i) of messages" :key="i" >
                                 <div>{{message}}</div>
@@ -96,17 +101,65 @@
                             </div>
                         </div>
                     </div>
-                    <div class="speak" style="height:500px">
+                    <div class="speak">
                         <h1>评价</h1>
+                        <div>
+                            <div style="width:30%">
+                                <el-rate v-model="value" disabled show-score text-color="#ff9900" score-template="{value}">
+                                        </el-rate>
+                            </div>
+                            <div>
+                                <h4>您的评价</h4>
+                                <div>
+                                    <div v-for="(v,i) of verb" :key="i">
+                                        <div>{{v}}</div> <el-rate v-model="value1[i]" show-text color="#008489"></el-rate>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                     </div>
-                    <div class="leftdate" style="height:500px">
+                    <div class="leftdate">
                         <h1>可定日期</h1>
-
+                        <div>
+                            <el-calendar v-model="value2">
+                                <template 
+                                    slot="dateCell"
+                                    slot-scope="{date, data}">
+                                    <p :class="data.isSelected ? 'is-selected' : ''" >
+                                    {{ data.day.split('-').slice(1).join('-') }} ￥{{parseInt(houseData[0].House_price*0.9)}}
+                                    </p>
+                                </template>
+                            </el-calendar>
+                        </div>
                     </div>
                     <div class="address" style="height:500px">
                         <h1>位置</h1>
-
+                        <div style="margin-top: 32px;font-weight: 800">
+                            <div class="_1m9t1a27">{{houseData[0].House_address}}</div>
+                        </div>
+                        <div style="margin-top:20px;">
+                            <p>·</p>
+                            <div style="font-size: 16px;margin:30px 0">
+                                <a href="javascript:;" style="font-size: 16px" @click="addressmore">查看更多</a>
+                            </div> 
+                            <p style="margin:20px 0;font-weight: 800">出行信息</p>
+                            
+                        </div>
+                        <div class="addressmore">
+                            <div>
+                                <div style="font-size:30px;cursor: pointer;" @click="addressmore">×</div>
+                                <h1>位置</h1>
+                                <div style="margin-top:32px;font-weight: 800">
+                                    <div>{{houseData[0].House_address}}</div>
+                                </div>
+                                <div>
+                                    <div style="white-space: pre-wrap">
+                                        {{houseData[0].House_detailed_address}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="notice" style="height:500px">
                         <h1>须知</h1>
@@ -204,7 +257,10 @@ export default {
             amenities:[],
             aimgs:[],
             value:4.3,
-            bed2count:0
+            value1:[3,3,3,3,3,3],
+            value2:"2019-7-18",
+            bed2count:0,
+            verb:["如实描述","位置便利","沟通交流","入住顺利","干净卫生","高性价比",]
         }
   },
     methods: {
@@ -242,6 +298,7 @@ export default {
             viewer.show()
         },
         scroll(){
+            //console.log(new Date(this.value2).getDay())
             var scrollTop =  document.documentElement.scrollTop;
             console.log(scrollTop)
             var mainnav = document.querySelector('.main_nav')
@@ -274,9 +331,9 @@ export default {
                 save.style.right="25px";
                 rightdate.style="position:absolute;top:-30px;width:83.5%;right:0px"
             }
-            if(scrollTop>=1550&&scrollTop<2000){
+            if(scrollTop>=1550&&scrollTop<1850){
                 this.changeBlack=1;
-            }else if(scrollTop>=2000&&scrollTop<2600){
+            }else if(scrollTop>=1850&&scrollTop<2600){
                 this.changeBlack=2;
             }else if(scrollTop>=2600&&scrollTop<3001){
                 this.changeBlack=3;
@@ -290,12 +347,14 @@ export default {
         },
         toggle(b){
             this.changeBlack=b;
+            
             if(b==0){
                 document.documentElement.scrollTop=350;
+                
             }else if(b==1){
                 document.documentElement.scrollTop=1550;
             }else if(b==2){
-                document.documentElement.scrollTop=2000;
+                document.documentElement.scrollTop=1850;
             }else if(b==3){
                 document.documentElement.scrollTop=2600;
             }else if(b==4){
@@ -332,12 +391,25 @@ export default {
         },
         people(){
             var people=document.querySelector(".people>div");
-            if(people.style.height=="300px"){
+            var yuding=document.querySelector(".mainright .yuding")
+            if(people.style.height=="310px"){
                 people.style.height="50px"
+                setTimeout(function(){
+                    yuding.style.opacity="1" 
+                },500)
+            }
+        },
+        addressmore(){
+            var am=document.querySelector(".addressmore");
+            if(am.style.display=="none"){
+                am.style.display="block"
+            }else{
+                am.style.display="none"
             }
         }
     },
     mounted() {
+    
       window.addEventListener('scroll', this.scroll);
       var date=document.querySelector(".rightdate .dated .mydate")
         //console.log(date.value)
@@ -360,6 +432,7 @@ export default {
       }
     },
     created() {
+        this.value2=new Date();
         var url="details";
         var obj={house_id:this.houseId};
         this.axios.get(url,{params:obj}).then(result=>{
@@ -375,6 +448,7 @@ export default {
             this.amenities=this.houseData[0].House_HouseAmenities.split(",");
             this.aimgs=this.houseData[0].House_Aimg.split(",");
             //console.log(this.aimgs)
+            
         })
     },
     components:{
@@ -383,9 +457,8 @@ export default {
 }
 </script>
 <style  scoped>
-    .nav{
-        height: 65px;
-        overflow: hidden;
+    user-header{
+        z-index:1000;
     }
     .topimg{
         display: flex;
@@ -444,7 +517,7 @@ export default {
         font:14px 微软雅黑;
         font-weight: bold;
         cursor: pointer;
-        z-index: 101;
+        z-index:99;
     }
     .topimg button img{
         width:20px;
@@ -541,11 +614,54 @@ export default {
         font-weight:lighter;
         margin: 0 5px
     }
-    .main_main .speak{
+    .main_main .speak>div>div{
+        margin:20px 0px;
     }
-    .main_main .leftdate{
+    .main_main .speak>div>div>div{
+        margin:10px 0px;
+        display: flex;
+        justify-content: space-between;
+        width:100%;
+        flex-wrap: wrap;
     }
-    .main_main .address{
+    .main_main .speak>div>div>div>div{
+        display: flex;
+        justify-content: space-between;
+        width:40%;
+        margin: 10px 0;
+        
+    }
+    .main_main .leftdate .is-selected {
+    color: #00f;
+    border:1px solid #00f;
+    
+  }
+  .main_main .leftdate p{
+    color: #008489;
+    border:1px solid #008489;
+    border-radius: 5px;
+    height:70px;
+    text-align: center;
+    line-height:35px;
+  }
+    .main_main .address .addressmore{
+        position: fixed;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 100;
+        display: none;
+    }
+    .main_main .address .addressmore>div{
+        width:500px;
+        height: 500px;
+        margin:30px auto;
+        background: #fff;
+        overflow: auto;
+        box-shadow: 0px 0px 10px -5px #000;
+        padding: 20px
     }
     .main_main .notice{
     }
@@ -610,7 +726,8 @@ export default {
     .master .img img{
         width: 100%;
         overflow: hidden;
-        border-radius: 50%
+        border-radius: 50%;
+        
     }
     .master .text{
         width:85%
@@ -651,6 +768,16 @@ export default {
     }
     .details .rooms .room div{
         margin-bottom:5px;
+    }
+    .details .promise{
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        margin: 30px 0;
+        padding-bottom: 30px;
+        font-size: 16px;
+    }
+    .details .promise>div{
+        margin-right:20px;
     }
     .details .houserool{
         font-size: 16px;
