@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Text from './components/Abb/Text.vue' 
 import Details from './views/Details.vue'
 import Index from './views/Index.vue'
+import add_end from './views/add_end.vue'
 import add_become_a_host_room from './views/add_become_a_host_room.vue'
 import add_room from './components/Add/add_become_a_host_room1.vue'
 import add_bedrooms from './components/Add/add_become_a_host_room2.vue'
@@ -27,6 +28,7 @@ export default new Router({
     {path: '/details',component: Details},
     {path:'/index',component:Index},
     {path:'/text',component:Text},
+    {path:'/add_end',component:add_end},
     {path:'/add_become_a_host_room',component:add_become_a_host_room,
       redirect: '/add_become_a_host_room/room',
       children:[

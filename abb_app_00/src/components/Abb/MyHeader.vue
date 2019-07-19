@@ -38,7 +38,7 @@
                 </el-menu-item>
             </el-submenu>
             <el-menu-item index="4">
-                <a href="javascript:;" target="_blank">故事</a>
+                <router-link to="Story" target="_blank">故事</router-link>
             </el-menu-item>
             <el-menu-item index="5">
                 <a href="javascript:;" target="_blank">帮助</a>
@@ -60,11 +60,7 @@ export default {
         activeIndex: '1',
         input:"",
         }
-    },
-    watch:{
-        input(){
-            console.log(this.input)
-        }
+    
     },
    methods: {
       handleSelect(key, keyPath) {
@@ -72,6 +68,7 @@ export default {
       },
       search(){
           console.log(this.input)
+          this.$router.push("/Search/?lid="+this.input)
       }
     }
 }

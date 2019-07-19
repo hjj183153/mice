@@ -241,11 +241,8 @@ export default {
 </script>
 <style scoped>
 .guide {
-  width: 1080px;
-  margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 0 100px;
+  width: 880px;
+  margin: 30px auto;
 }
 .guide_top {
   padding: 20px 0;
