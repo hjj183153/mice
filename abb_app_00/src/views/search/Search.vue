@@ -1,4 +1,6 @@
 <template>
+<div>
+  <!-- <user-header></user-header> -->
   <div class="search">
     <div class="search-nav-container _i8vcof">
       <div>
@@ -304,6 +306,7 @@
     </div>
     <div class="search-mask" v-show="mask"></div>
   </div>
+</div>
 </template>
 <script>
 import SearchCard from "./Search-card.vue";
@@ -342,7 +345,7 @@ export default {
         date2: "",
         delivery: false,
         type: [],
-        resource: "",
+        resource:"",
         desc: ""
       },
       rules: {
@@ -509,15 +512,17 @@ export default {
       map.addEventListener("dragend", function() {
         var center = map.getCenter();
         console.log("地图中心点变更为：" + center.lng + ", " + center.lat);
-        this.latitude = center.lat;
-        this.longitude = center.lng;
-        console.log(this.longitude, this.latitude);
+        that.latitude = center.lat;
+        that.longitude = center.lng;
+        console.log(that.longitude, that.latitude);
         map.clearOverlays();
-        console.log('map'+map);
-        console.log('this'+this);
+        // console.log('map'+map);
+        // console.log('this'+this);
         var that2=this;
         //that = 外部 this
+        console.log(123);
         that.SearchAxios(that2);
+        console.log(123);
         //重新绘制地图
       });
       /* eslint-enable */
@@ -729,8 +734,6 @@ export default {
   mounted() {
     this.mapHeight();
     this.firstData();
-    //this.createMap();
-    //this.minicarousel();
   },
   created() {
     console.log(this.$route.query.lid);
@@ -828,9 +831,9 @@ export default {
   border-right: 10px solid #cccccc;
 }
 .search-map-box {
-  width: 40%;
-  position: fixed;
-  top: 0;
+  width:40%;
+  position:fixed;
+  top:108px;
   right: 0;
   border-left: 1px solid #cccccc;
 }

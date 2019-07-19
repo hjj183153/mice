@@ -121,6 +121,7 @@ INSERT INTO `Airbnb_House` (`House_id`, `House_City_id`, `House_name`, `House_Us
 INSERT INTO `Airbnb_House` (`House_id`, `House_City_id`, `House_name`, `House_User_id`, `House_longitude`, `House_latitude`, `House_people_num`, `House_type`, `House_price`, `House_tag`, `House_bednum`, `House_Bed`, `House_restroom`, `House_HouseAmenities`, `House_Amenities`, `House_Building`, `House_detail`, `House_address`, `House_trip`, `House_label`,`House_imgurl`) VALUES (NULL, '2', '【浪漫满屋】国贸CBD三里屯的阳光复古浪漫公寓 托斯卡纳色调 夜景超美', '1', '116.37', '39.92', '3', '独立房间', '600', '0.9', '2', '圆床', '2', '厨房,空调', '免费停车位', '整间Loft', 'null', 'null', 'null', 'null','/img-index/index2.jpg');
 
 
+
 -- (NULL,'西城区','116.37','39.92','2'),
 -- (NULL,'东城区','116.42','39.93','2'),
 -- (NULL,'朝阳区','116.43','39.92','2'),

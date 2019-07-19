@@ -84,6 +84,7 @@ export default {
   box-sizing: border-box;
   margin: 8px 8px 12px;
   transition: all 0.5s linear;
+  cursor:pointer;
 }
 .search-card:hover {
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.1);
