@@ -191,6 +191,7 @@ export default {
                 }
             })
         },
+        
         */
         getcarouserimg(){
             this.axios.get("/index/Carousel").then(result=>{
