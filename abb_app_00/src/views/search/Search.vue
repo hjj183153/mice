@@ -321,13 +321,11 @@ export default {
         border: "1px solid #ccc"
       },
 
-
-
       windowHeight: "",
-      City_id:2,
+      City_id: 2,
       disList: "",
-      latitude:39.9,
-      longitude:116.4,
+      latitude: 39.9,
+      longitude: 116.4,
       dataList: [],
       mask: false,
       date: "",
@@ -392,7 +390,7 @@ export default {
   },
   methods: {
     //访问后台接口
-    SearchAxios() {
+    SearchAxios(that) {
       var url = "http://127.0.0.1:3000/search";
       this.axios
         .get(url, {
@@ -411,6 +409,8 @@ export default {
         .then(result => {
           console.log(result.data);
           this.dataList = result.data;
+          //console.log(that);
+          this.drawMap(that);
         });
     },
     //获取区域
@@ -445,8 +445,6 @@ export default {
     },
     //创建地图
     createMap() {
-      var City_jd = 0;
-      var City_wd = 0;
       /* eslint-disable */
       // 创建Map实例
       var map = new BMap.Map("map");
@@ -498,6 +496,8 @@ export default {
         });
         map.addOverlay(myRichMarkerObject);
       }
+      //console.log('map'+map);
+      //console.log('this'+this);
       //myRM.disableDragging();//设置Marker不能拖拽 否则是enableDragging();
       //map.addOverlay(myRM);// 设置显示覆盖物标志
       //事件
@@ -513,22 +513,13 @@ export default {
         this.latitude = center.lat;
         this.longitude = center.lng;
         console.log(this.longitude, this.latitude);
+        map.clearOverlays();
+        console.log('map'+map);
+        console.log('this'+this);
+        var that2=this;
         //that = 外部 this
-        that.SearchAxios();
+        that.SearchAxios(that2);
         //重新绘制地图
-        for (var i = 0; i < this.dataList.length; i++) {
-          var htmls = `<div id='minitag' class='minitag' click='tobig()'><span>￥${this.dataList[i].House_price}</span><div class='sanjiaos'></div></div>`;
-          var htm = htmls;
-          var point = new BMap.Point(
-            this.dataList[i].House_longitude,
-            this.dataList[i].House_latitude
-          );
-          var myRichMarkerObject = new BMapLib.RichMarker(htm, point, {
-            anchor: new BMap.Size(0, 0),
-            enableDragging: false
-          });
-          map.addOverlay(myRichMarkerObject);
-        }
       });
       /* eslint-enable */
     },
@@ -719,6 +710,21 @@ export default {
           this.dataList = result.data;
           this.createMap();
         });
+    },
+    drawMap(that){
+      for (var i = 0; i < this.dataList.length; i++) {
+        var htmls = `<div id='minitag' class='minitag' click='tobig()'><span>￥${this.dataList[i].House_price}</span><div class='sanjiaos'></div></div>`;
+        var htm = htmls;
+        var point = new BMap.Point(
+          this.dataList[i].House_longitude,
+          this.dataList[i].House_latitude
+        );
+        var myRichMarkerObject = new BMapLib.RichMarker(htm, point, {
+          anchor: new BMap.Size(0, 0),
+          enableDragging: false
+        });
+        that.addOverlay(myRichMarkerObject);
+      }
     }
   },
   mounted() {
